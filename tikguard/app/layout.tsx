@@ -21,7 +21,7 @@ export default function RootLayout({
         src="https://kit.fontawesome.com/29e5850037.js"
         crossOrigin="anonymous"
       />
-      <body className={inter.className}>{children}</body>
+      <body className="bg-foreground inter">{children}</body>
     </html>
   );
 }

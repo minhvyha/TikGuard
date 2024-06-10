@@ -8,7 +8,7 @@ const Nav = () => {
   const { account } = useContext(MainContext);
 
   return (
-    <nav className="flex items-center justify-between py-4 px-8 bg-white text-black border-b-2 border-gray-300">
+    <nav className="flex items-center justify-between py-4 px-8 bg-white text-black border-b-2 border-gray-300 ">
       <Link href='/' className="flex items-center cursor-pointer">
         <Image src={logo} alt='' width={50} height={50} />
         <h1 className="ml-2">Recipe Finder</h1>
