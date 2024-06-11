@@ -3,6 +3,8 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
+import DemoCard from './DemoCard'
+
 const Main = () => {
   const router = useRouter()
   const [searchTerm, setSearchTerm] = useState('')
@@ -11,7 +13,7 @@ const Main = () => {
   }
   return (
     <div className='flex justify-center flex-col items-center w-full py-8 gap-2 '>
-      
+<DemoCard />
     </div>
   )
 }
