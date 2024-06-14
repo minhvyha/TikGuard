@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
 const card = (
-  <React.Fragment>
+  <React.Fragment >
     <CardContent>
       <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
         Word of the Day
@@ -31,7 +31,7 @@ const card = (
 
 const DemoCard = () => {
   return (
-      <Card variant="outlined">{card}</Card>
+      <Card sx={{bgcolor: "background.default"}} variant="outlined">{card}</Card>
   )
 }
 

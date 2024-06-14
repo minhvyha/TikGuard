@@ -1,9 +1,12 @@
+
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Script from 'next/script';
 import Nav from "@/components/Nav";
 const inter = Inter({ subsets: ["latin"] });
+
+import ContextProviders from "@/app/context";
 
 export const metadata: Metadata = {
   title: "TikGuard",
@@ -21,9 +24,11 @@ export default function RootLayout({
         src="https://kit.fontawesome.com/29e5850037.js"
         crossOrigin="anonymous"
       />
-      <body className="bg-background text-text inter">
+      <body className="bg-background-700 text-text inter">
+
         <Nav />
-        {children}
+        
+        <ContextProviders>{children}</ContextProviders>
         </body>
     </html>
   );
