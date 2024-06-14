@@ -1,12 +1,10 @@
 'use client'
 import React, { useContext } from 'react';
 import Link from 'next/link';
-import { MainContext } from '@/app/page'; // adjust the import path as needed
 import logo from '@/assets/logo.png'; // adjust the import path as needed
 import Image from 'next/image';
 
 const Nav = () => {
-  const { account } = useContext(MainContext);
 
   return (
     <nav className="flex items-center justify-between py-3 px-8   border-b-2 border-gray-600 ">
