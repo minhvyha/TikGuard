@@ -4,10 +4,10 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import Link from 'next/link';
 
 
-
-const DemoCard = ({title}: {title: string}) => {
+const DemoCard = ({title, path}: {title: string, path: string}) => {
   return (
     <Card sx={{ bgcolor: 'background.default' }} variant="outlined">
       <CardContent>
@@ -27,7 +27,10 @@ const DemoCard = ({title}: {title: string}) => {
       </Typography>
     </CardContent>
     <CardActions>
-      <Button size="small">Learn More</Button>
+    <Link href={path}>
+      <Button size="small">Try Demo</Button>
+
+      </Link>
     </CardActions>
     </Card>
   );
