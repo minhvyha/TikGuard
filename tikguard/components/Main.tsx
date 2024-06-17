@@ -14,7 +14,7 @@ const Main = () => {
   // }
   let DemoCards = apiPage.map((api, index) => {
     return (
-      <DemoCard key={index} title={api.name} path={api.path} />
+      <DemoCard key={index} title={api.name} path={api.path} description={api.description} url={api.url}/>
       // <Link key={index} href={` ${api.path}`}>
       //   {api.name}
       // </Link>

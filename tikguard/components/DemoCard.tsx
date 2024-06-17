@@ -7,12 +7,15 @@ import Typography from '@mui/material/Typography';
 import Link from 'next/link';
 
 
-const DemoCard = ({title, path}: {title: string, path: string}) => {
+const DemoCard = ({title, path, description, url}: {title: string, path: string, description: string, url: string}) => {
   return (
     <Card sx={{ bgcolor: 'background.default' }} variant="outlined">
       <CardContent>
       <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-        Word of the Day
+        <Link href={url} target='_blank'>
+        {url}
+        
+        </Link>
       </Typography>
       <Typography variant="h5" component="div">
         {title}
@@ -21,9 +24,7 @@ const DemoCard = ({title, path}: {title: string, path: string}) => {
         adjective
       </Typography>
       <Typography variant="body2">
-        well meaning and kindly.
-        <br />
-        {'"a benevolent smile"'}
+        {description}
       </Typography>
     </CardContent>
     <CardActions>
