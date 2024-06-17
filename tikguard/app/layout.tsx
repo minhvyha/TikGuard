@@ -24,7 +24,7 @@ export default function RootLayout({
         src="https://kit.fontawesome.com/29e5850037.js"
         crossOrigin="anonymous"
       />
-      <body className="bg-background-700 text-text inter">
+      <body className="bg-background-700 text-text-100 inter">
 
         <Nav />
         
