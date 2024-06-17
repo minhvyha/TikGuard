@@ -14,14 +14,14 @@ const Main = () => {
   // }
   let DemoCards = apiPage.map((api, index) => {
     return (
-      <Link key={index} href={` ${api.path}`}>
-        {api.name}
-      </Link>
+      <DemoCard key={index} title={api.name} />
+      // <Link key={index} href={` ${api.path}`}>
+      //   {api.name}
+      // </Link>
     )
   })
   return (
     <div className='flex justify-center flex-col items-center w-full py-8 gap-2 '>
-      <DemoCard />
       {DemoCards}
     </div>
   )
