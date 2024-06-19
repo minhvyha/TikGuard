@@ -9,7 +9,6 @@ var nlClient = new NLClient();
 var text = "why are you so dumb, you can't even reach the top shelf.";
 
 const page = () => {
-
   // console.log(process.env.EAI_USERNAME)
   // console.log(process.env.EAI_PASSWORD)
   // nlClient.detect(text, {
@@ -19,9 +18,12 @@ const page = () => {
   //   console.log(result.data?.categories)
   // })
   return (
-    <div className='flex flex-row'>
+    <div className="flex flex-row">
       <div>
-      <DropZone />
+      <span className="material-symbols-outlined">
+backup
+</span>
+        <DropZone />
       </div>
       <Report />
     </div>

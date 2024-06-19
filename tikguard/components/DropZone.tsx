@@ -10,14 +10,12 @@ const DropZone = () => {
   return (
     <div
       {...getRootProps()}
-      className="border-dashed border border-gray-500 p-4 text-center cursor-pointer"
+      className={`border-dashed border border-gray-500 p-4 text-center cursor-pointer ${isDragActive ? 'border-green-500' : ''}`}
     >
       <input {...getInputProps()} />
-      {isDragActive ? (
-        <p>Drop the files here ...</p>
-      ) : (
+
         <p>Drag & drop some files here, or click to select files</p>
-      )}
+
     </div>
   );
 };
