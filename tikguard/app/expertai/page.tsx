@@ -3,6 +3,7 @@ import React from 'react';
 import { NLClient } from '@expertai/nlapi';
 import { Language } from '@expertai/nlapi';
 import DropZone from '@/components/DropZone';
+import Report from '@/components/Report';
 var nlClient = new NLClient();
 
 var text = "why are you so dumb, you can't even reach the top shelf.";
@@ -18,8 +19,11 @@ const page = () => {
   //   console.log(result.data?.categories)
   // })
   return (
-    <div>
+    <div className='flex flex-row'>
+      <div>
       <DropZone />
+      </div>
+      <Report />
     </div>
   );
 };
