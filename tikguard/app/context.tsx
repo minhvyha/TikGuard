@@ -1,8 +1,17 @@
 "use client";
 
 import { ThemeProvider, createTheme } from "@mui/material";
-import React from "react";
+import {create} from 'zustand';
 
+interface pageState{
+  text:string
+  setText: (text:string) => void  
+}
+
+export const useStore = create<pageState>((set) => ({
+  text: "why are you so dumb, you can't even reach the top shelf.",
+  setText: (text) => set({text})
+}))
 const darkTheme = createTheme({
   palette: {
     mode: 'dark',
@@ -16,4 +25,3 @@ export default function ContextProviders({ children }: { children: React.ReactNo
     <ThemeProvider theme={darkTheme}>{children}</ThemeProvider>
   );
 }
- 
