@@ -45,7 +45,7 @@ async function transcribeSpeechFlow(apiKeyId, apiKeySecret, lang, file = null, r
 }
 
 // Example usage:
-const apiKeyId = 'dZLKY1vC9Zcv7Bzi';
+const apiKeyId = '';
 const apiKeySecret = 'ixWlWhxP9RpHN5cP';
 const lang = 'en';
 // const localFile = document.querySelector('input[type="file"]').files[0]; // Assuming you have a file input element
