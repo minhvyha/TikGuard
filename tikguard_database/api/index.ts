@@ -15,6 +15,33 @@ const connectDB = async () => {
 };
 
 app.get("/", (req, res) => res.send("Express on Vercel"));
+
+app.get(
+  '/findReport',
+  (req, res) => {
+    const query = ReportModel.findOne({
+      taskId: req.params.taskId,
+    });
+    query.exec(function (err, report) {
+      if (report === null) {
+        res.status(401).json('Cannot find account')
+      }
+      res.json(report);
+    });
+    // console.log(user);
+  }
+);
+
+app.post(
+  '/addReport',
+  async (req, res) => {
+    const report = req.body;
+    const newReport = new ReportModel(report);
+    await newReport.save();
+    res.json(newReport);
+  }
+);
+
 connectDB().then(() => {
   app.listen(3000, () => {
     console.log('listening for requests on Port: ' + 3000);
