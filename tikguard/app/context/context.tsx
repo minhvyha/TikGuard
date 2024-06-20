@@ -1,31 +1,43 @@
 "use client";
 
-import { ThemeProvider, createTheme } from "@mui/material";
-import {create} from 'zustand';
+import React, { createContext, useContext, useState, ReactNode } from 'react';
+import { ThemeProvider, createTheme, Theme } from "@mui/material";
 
-interface pageState{
-  text:string
-  setText: (text:string) => void,
-  error: string | null,
-  setError: (error: string | null) => void,
-}
+const lightTheme = createTheme({
+  palette: {
+    mode: 'light',
+    background: {
+      default: "#ffffff",
+    },
+  },
+});
 
-export const useStore = create<pageState>((set) => ({
-  text: "why are you so dumb, you can't even reach the top shelf.",
-  setText: (text) => set({text}),
-  error: null,
-  setError: (error) => set({error}),
-}))
 const darkTheme = createTheme({
   palette: {
     mode: 'dark',
     background: {
-      default: "#282a36"
+      default: "#282a36",
     },
   },
 });
-export default function ContextProviders({ children }: { children: React.ReactNode }) {
+
+const ThemeContext = createContext({
+  theme: darkTheme,
+  toggleTheme: () => {},
+});
+
+export function ContextProviders({ children }: { children: ReactNode }) {
+  const [theme, setTheme] = useState<Theme>(darkTheme);
+
+  const toggleTheme = () => {
+    setTheme((prevTheme) => (prevTheme.palette.mode === 'dark' ? lightTheme : darkTheme));
+  };
+
   return (
-    <ThemeProvider theme={darkTheme}>{children}</ThemeProvider>
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      <ThemeProvider theme={theme}>{children}</ThemeProvider>
+    </ThemeContext.Provider>
   );
 }
+
+export const useThemeContext = () => useContext(ThemeContext);
