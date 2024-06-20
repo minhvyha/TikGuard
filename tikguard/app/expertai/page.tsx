@@ -5,9 +5,7 @@ import { useStore } from '@/app/context';
 import { NLClient } from '@expertai/nlapi';
 import { Language } from '@expertai/nlapi';
 import DropZone from '@/components/DropZone';
-import Report from '@/components/Report';
 var nlClient = new NLClient();
-
 
 
 const page = () => {
@@ -26,7 +24,6 @@ const page = () => {
         {error && <p>{error}</p>}
         <DropZone />
       </div>
-      <Report />
     </div>
   );
 };

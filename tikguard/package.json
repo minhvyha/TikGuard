@@ -13,6 +13,7 @@
     "@emotion/styled": "^11.11.5",
     "@expertai/nlapi": "^2.0.0",
     "@mui/material": "^5.15.19",
+    "nanoid": "^5.0.7",
     "next": "14.2.3",
     "react": "^18",
     "react-dom": "^18",

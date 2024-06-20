@@ -2,42 +2,68 @@
 import React, { useCallback, useEffect } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { useStore } from '@/app/context';
+import { nanoid } from 'nanoid';
+
 const DropZone = () => {
   const { text, setText, setError } = useStore();
   const onDrop = useCallback((acceptedFiles: File[]) => {
-    // Do something with the files
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      // console.log(acceptedFiles[0]);
+      let formDataBuffer = Buffer.from(e.target?.result as ArrayBuffer);
+      let formData = '';
+      
+      const boundary = nanoid();
+      formData += '--' + boundary + '\r\n';
+      formData +=
+        'Content-Disposition: form-data; name="file"; filename="' +
+        getFileNameByPath(acceptedFiles[0].name) +
+        '"\r\n';
+      formData += 'Content-Type: application/octet-stream\r\n\r\n';
+      console.log(formData);
+    };
+    reader.readAsArrayBuffer(acceptedFiles[0]);
   }, []);
   const onError = (err: Error) => {
     console.log(err);
-  }
-  const { getRootProps, acceptedFiles, getInputProps,fileRejections, isDragActive } =
-    useDropzone({
-      onDrop,
-      maxFiles: 1,
-      maxSize: 5000000,
-      
-      accept: {
-        'text/plain': ['.txt'],
-        'audio/mpeg': ['.mp3'],
-        'video/mp4': ['.mp4'],
-      },
-      onError
-    });
+  };
+  const {
+    getRootProps,
+    acceptedFiles,
+    getInputProps,
+    fileRejections,
+    isDragActive,
+  } = useDropzone({
+    onDrop,
+    maxFiles: 1,
+    maxSize: 5000000,
 
-    useEffect(() => {
-      if (fileRejections.length > 0) {
-        setError(fileRejections[0].errors[0].message);
-      }
+    accept: {
+      'text/plain': ['.txt'],
+      'audio/mpeg': ['.mp3'],
+      'video/mp4': ['.mp4'],
+    },
+    onError,
+  });
+
+  useEffect(() => {
+    if (fileRejections.length > 0) {
+      setError(fileRejections[0].errors[0].message);
     }
-    , [fileRejections]);
+  }, [fileRejections]);
   useEffect(() => {
     if (acceptedFiles.length > 0) {
-      if (acceptedFiles[0].type.includes('audio') || acceptedFiles[0].type.includes('video')) {
-        console.log(transcribeSpeechFlow(acceptedFiles[0]));
+      if (
+        acceptedFiles[0].type.includes('audio') ||
+        acceptedFiles[0].type.includes('video')
+      ) {
       }
     }
   }, [acceptedFiles]);
-
+  function getFileNameByPath(path:string) {
+    let index = path.lastIndexOf('/');
+    return path.substring(index + 1);
+  }
   async function transcribeSpeechFlow(file: File) {
     const url = 'https://api.speechflow.io/asr/file/v1/create';
 
@@ -47,16 +73,21 @@ const DropZone = () => {
 
     headers.append('keySecret', process.env.APIKEYSECRET || '');
 
-
     // Determine the content type based on the presence of the file or remotePath
     const isLocalFile = file !== null;
     const contentType = isLocalFile
       ? 'multipart/form-data'
       : 'application/x-www-form-urlencoded';
     headers.append('Content-Type', contentType);
-    headers.append("Access-Control-Allow-Origin", "*")
-    headers.append("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
-    headers.append("Access-Control-Allow-Headers", "Content-Type, Authorization")
+    headers.append('Access-Control-Allow-Origin', '*');
+    headers.append(
+      'Access-Control-Allow-Methods',
+      'GET, POST, PUT, DELETE, OPTIONS'
+    );
+    headers.append(
+      'Access-Control-Allow-Headers',
+      'Content-Type, Authorization'
+    );
 
     // Create the form data
     const formData = new FormData();
@@ -83,7 +114,6 @@ const DropZone = () => {
       throw error;
     }
   }
-
 
   return (
     <div

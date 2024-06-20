@@ -1,24 +1,24 @@
+'use server';
 const https = require('https');
 const querystring = require('querystring');
 const fs = require('fs');
 const { randomUUID } = require('crypto');
 
 // Generate API KEY, see: https://docs.speechflow.io/#/?id=generate-api-key
-const API_KEY_ID = 'YOUR_API_KEY_ID';
-const API_KEY_SECRET = 'YOUR_API_KEY_SECRET';
+const API_KEY_ID = 'dZLKY1vC9Zcv7Bzi';
+const API_KEY_SECRET = 'ixWlWhxP9RpHN5cP';
 // The language code of the speech in media file.
 // See more lang code: https://docs.speechflow.io/#/?id=ap-lang-list
 const LANG = 'en';
 // The local path or remote path of media file.
 const FILE_PATH =
-  'https://sf-docs-prod.s3.us-west-1.amazonaws.com/web/sample-audios/EN.wav';
+  '/Users/minhha/TikGuard/tikguard/Fuck you sound effect copy.mp4';
 
 // The translation result type.
 // 1, the default result type, the json format for sentences and words with begin time and end time.
 // 2, the json format for the generated subtitles with begin time and end time.
 // 3, the srt format for the generated subtitles with begin time and end time.
 // 4, the plain text format for transcription results without begin time and end time.
-const RESULT_TYPE = 1;
 //Parameter of the remote file
 const createData = querystring.stringify({
   lang: LANG,
@@ -42,6 +42,7 @@ if (FILE_PATH.startsWith('http')) {
   console.log('submitting a local file');
   let formData = '';
   const boundary = randomUUID().replace(/-/g, '');
+  console.log(boundary)
   formData += '--' + boundary + '\r\n';
   formData +=
     'Content-Disposition: form-data; name="file"; filename="' +
@@ -103,7 +104,7 @@ createRequest.on('response', (createResponse) => {
             '/asr/file/v1/query?taskId=' +
             taskId +
             '&resultType=' +
-            RESULT_TYPE,
+            "4",
         },
         (queryResponse) => {
           let responseData = '';
