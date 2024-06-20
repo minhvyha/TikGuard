@@ -5,6 +5,8 @@ const querystring = require('querystring');
 const fs = require('fs');
 const { randomUUID } = require('crypto');
 
+import { ClientRequest, IncomingMessage } from 'http';
+
 import { NextResponse } from 'next/server';
 export async function GET() {
   const LANG = 'en';
@@ -28,18 +30,20 @@ export async function GET() {
       fs.readFileSync(FILE_PATH),
       Buffer.from("\r\n--" + boundary + "--\r\n", "utf8"),
   ]);
-  createRequest = https.request({
+  let createRequest = https.request({
       method: 'POST',
       headers: {
           "Content-Type": `multipart/form-data; boundary=${boundary}`,
           "Content-Length": formDataBuffer.length,
-          'keyId': API_KEY_ID,
-          'keySecret': API_KEY_SECRET,
+          'keyId': process.env.APIKEYID,
+          'keySecret': process.env.APIKEYSECRET,
       },
       hostname: 'api.speechflow.io',
       path: '/asr/file/v1/create?lang=' + LANG
   });
-  createRequest.write(formDataBuffer)
+  let a = await createRequest.write(formDataBuffer)
+  console.log(a)
+
 
 
 function getFileNameByPath(path:string) {
@@ -53,7 +57,7 @@ createRequest.on('response', (createResponse:IncomingMessage):void => {
   createResponse.on('data', (chunk:string):void => {
       responseData += chunk;
   });
-
+  // return responseData
   createResponse.on('end', ():void => {
       const responseJSON:{code: number, taskId: string, msg: string} = JSON.parse(responseData);
       let taskId
@@ -69,11 +73,11 @@ createRequest.on('response', (createResponse:IncomingMessage):void => {
           const queryRequest:ClientRequest = https.request({
               method: 'GET',
               headers: {
-                  'keyId': API_KEY_ID,
-                  'keySecret': API_KEY_SECRET
+                  'keyId': process.env.APIKEYID,
+                  'keySecret': process.env.APIKEYSECRET
               },
               hostname: 'api.speechflow.io',
-              path: '/asr/file/v1/query?taskId=' + taskId + '&resultType=' + RESULT_TYPE
+              path: '/asr/file/v1/query?taskId=' + taskId + '&resultType=' + 4
           }, (queryResponse:IncomingMessage):void => {
               let responseData = '';
 
@@ -105,13 +109,11 @@ createRequest.on('response', (createResponse:IncomingMessage):void => {
       }, 3000);
   });
 });
-
 createRequest.on('error', (error:Error):void => {
   console.error(error);
 });
 
 createRequest.write(createData);
 createRequest.end();
-  console.log(a);
   return NextResponse.json({ test1: randomUUID() });
 }
