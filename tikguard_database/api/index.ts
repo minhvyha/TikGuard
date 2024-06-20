@@ -3,6 +3,8 @@ import { ReportModel } from "../models/ReportModel";
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 mongoose.set('strictQuery', false);
 const connectDB = async () => {
   try {
