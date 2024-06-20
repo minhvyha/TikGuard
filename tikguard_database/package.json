@@ -18,9 +18,5 @@
     "express": "^4.17.1",
     "mongoose": "^6.1.0",
     "nodemon": "^2.0.22"
-  },
-  "scripts": {
-    "build-sdk": "cd ../../; npm i; npm run build",
-    "start": "node index.js"
   }
 }
