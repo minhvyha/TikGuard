@@ -90,7 +90,7 @@ export async function GET() {
             });
 
             queryResponse.on('end', async (): Promise<void> => {
-              const responseJSON: { code: number; msg: string } =
+              const responseJSON: { code: number; msg: string, result:string } =
                 JSON.parse(responseData);
               if (responseJSON.code === 11000) {
                 console.log('transcription result:');
@@ -102,11 +102,12 @@ export async function GET() {
                     },
                     body: JSON.stringify({
                         id: boundary,
-                        result:'asdf asdf'
+                        result:responseJSON.result,
                     }),
                     });
-                console.log(a)
-                clearInterval(intervalID);
+                    let b = await a.json();
+                    console.log(b);
+                    clearInterval(intervalID);
               } else if (responseJSON.code == 11001) {
                 console.log('waiting');
               } else {
