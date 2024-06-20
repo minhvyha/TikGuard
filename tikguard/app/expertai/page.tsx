@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useStore } from '@/app/context/context';
 
 import { NLClient } from '@expertai/nlapi';
@@ -16,7 +16,8 @@ async function getUser() {
 
 const page = () => {
   const { error } = useStore();
-  getUser();
+
+  
   // console.log(process.env.EAI_USERNAME)
   // console.log(process.env.EAI_PASSWORD)
   // nlClient.detect(text, {
@@ -28,6 +29,7 @@ const page = () => {
   return (
     <div className="flex flex-row">
       <div>
+        <button onClick={getUser}>test</button>
         {error && <p>{error}</p>}
         <DropZone />
       </div>
