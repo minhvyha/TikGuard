@@ -38,7 +38,7 @@ app.post(
     const report = req.body;
     const newReport = new ReportModel({
       id: report.id,
-      result: '123123123',
+      result: `${report.result} 123123 ${report.id}`,
     });
     await newReport.save();
     res.json(newReport);
