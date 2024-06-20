@@ -23,7 +23,7 @@ $ ./venv/bin/python ./manage.py runserver
 
 | Endpoint | Purpose | Method | Data | Response |
 |----------|---------|--------|------|----------|
-| `/api/list_models` | To list the current models accessible via the API | GET | N/A | `{"models":[]}` |
+| `/api/list_models` | To list the current models accessible via the API | GET | N/A | `{"models":[<list of model identifiers>]}` |
 | `/api/use_model` | To utilise an accesible model | POST | `{"model":"model-name-from-list","data":"text-data-to-check"}` | `{"parsed_response": {"ishateful": <bool>}, "raw_response": "<raw model response>"}` |
 
 ## Author
