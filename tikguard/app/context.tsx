@@ -5,12 +5,16 @@ import {create} from 'zustand';
 
 interface pageState{
   text:string
-  setText: (text:string) => void  
+  setText: (text:string) => void,
+  error: string | null,
+  setError: (error: string | null) => void,
 }
 
 export const useStore = create<pageState>((set) => ({
   text: "why are you so dumb, you can't even reach the top shelf.",
-  setText: (text) => set({text})
+  setText: (text) => set({text}),
+  error: null,
+  setError: (error) => set({error}),
 }))
 const darkTheme = createTheme({
   palette: {

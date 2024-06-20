@@ -3,7 +3,7 @@ import React, { useCallback, useEffect } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { useStore } from '@/app/context';
 const DropZone = () => {
-  const { text, setText } = useStore();
+  const { text, setText, setError } = useStore();
   const onDrop = useCallback((acceptedFiles: File[]) => {
     // Do something with the files
   }, []);
@@ -26,13 +26,15 @@ const DropZone = () => {
 
     useEffect(() => {
       if (fileRejections.length > 0) {
-        console.log(fileRejections);
+        setError(fileRejections[0].errors[0].message);
       }
     }
     , [fileRejections]);
   useEffect(() => {
     if (acceptedFiles.length > 0) {
-      console.log(acceptedFiles[0]);
+      if (acceptedFiles[0].type.includes('audio') || acceptedFiles[0].type.includes('video')) {
+        console.log(transcribeSpeechFlow(acceptedFiles[0]));
+      }
     }
   }, [acceptedFiles]);
 
@@ -45,12 +47,16 @@ const DropZone = () => {
 
     headers.append('keySecret', process.env.APIKEYSECRET || '');
 
+
     // Determine the content type based on the presence of the file or remotePath
     const isLocalFile = file !== null;
     const contentType = isLocalFile
       ? 'multipart/form-data'
       : 'application/x-www-form-urlencoded';
     headers.append('Content-Type', contentType);
+    headers.append("Access-Control-Allow-Origin", "*")
+    headers.append("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
+    headers.append("Access-Control-Allow-Headers", "Content-Type, Authorization")
 
     // Create the form data
     const formData = new FormData();

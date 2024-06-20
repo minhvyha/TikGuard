@@ -1,4 +1,6 @@
+'use client';
 import React from 'react';
+import { useStore } from '@/app/context';
 
 import { NLClient } from '@expertai/nlapi';
 import { Language } from '@expertai/nlapi';
@@ -9,7 +11,7 @@ var nlClient = new NLClient();
 
 
 const page = () => {
-
+  const {error} = useStore()
   // console.log(process.env.EAI_USERNAME)
   // console.log(process.env.EAI_PASSWORD)
   // nlClient.detect(text, {
@@ -21,7 +23,7 @@ const page = () => {
   return (
     <div className="flex flex-row">
       <div>
-      
+        {error && <p>{error}</p>}
         <DropZone />
       </div>
       <Report />

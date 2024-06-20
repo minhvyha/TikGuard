@@ -1,62 +1,146 @@
-async function transcribeSpeechFlow(apiKeyId, apiKeySecret, lang, file = null, remotePath = null) {
-  const url = 'https://api.speechflow.io/asr/file/v1/create';
+const https = require('https');
+const querystring = require('querystring');
+const fs = require('fs');
+const { randomUUID } = require('crypto');
 
-  // Create headers
-  const headers = new Headers();
-  headers.append('keyId', apiKeyId);
-  headers.append('keySecret', apiKeySecret);
+// Generate API KEY, see: https://docs.speechflow.io/#/?id=generate-api-key
+const API_KEY_ID = 'YOUR_API_KEY_ID';
+const API_KEY_SECRET = 'YOUR_API_KEY_SECRET';
+// The language code of the speech in media file.
+// See more lang code: https://docs.speechflow.io/#/?id=ap-lang-list
+const LANG = 'en';
+// The local path or remote path of media file.
+const FILE_PATH =
+  'https://sf-docs-prod.s3.us-west-1.amazonaws.com/web/sample-audios/EN.wav';
 
-  // Determine the content type based on the presence of the file or remotePath
-  const isLocalFile = file !== null;
-  const contentType = isLocalFile ? 'multipart/form-data' : 'application/x-www-form-urlencoded';
-  headers.append('Content-Type', contentType);
-
-  // Create the form data
-  const formData = new FormData();
-  formData.append('lang', lang);
-  
-  if (isLocalFile) {
-    formData.append('file', file);
-  } else if (remotePath) {
-    formData.append('remotePath', remotePath);
-  } else {
-    throw new Error('Either file or remotePath must be provided');
-  }
-
-  // Create request options
-  const requestOptions = {
+// The translation result type.
+// 1, the default result type, the json format for sentences and words with begin time and end time.
+// 2, the json format for the generated subtitles with begin time and end time.
+// 3, the srt format for the generated subtitles with begin time and end time.
+// 4, the plain text format for transcription results without begin time and end time.
+const RESULT_TYPE = 1;
+//Parameter of the remote file
+const createData = querystring.stringify({
+  lang: LANG,
+  remotePath: FILE_PATH,
+});
+if (FILE_PATH.startsWith('http')) {
+  console.log('submitting a remote file');
+  createRequest = https.request({
     method: 'POST',
-    headers: headers,
-    body: isLocalFile ? formData : new URLSearchParams(formData)
-  };
-
-  // Make the request
-  try {
-    const response = await fetch(url, requestOptions);
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-    const result = await response.json();
-    return result;
-  } catch (error) {
-    console.error('Error during transcription:', error);
-    throw error;
-  }
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Content-Length': createData.length,
+      keyId: 'dZLKY1vC9Zcv7Bzi',
+      keySecret: 'ixWlWhxP9RpHN5cP',
+    },
+    body: createData,
+    hostname: 'api.speechflow.io',
+    path: '/asr/file/v1/create',
+  });
+} else {
+  console.log('submitting a local file');
+  let formData = '';
+  const boundary = randomUUID().replace(/-/g, '');
+  formData += '--' + boundary + '\r\n';
+  formData +=
+    'Content-Disposition: form-data; name="file"; filename="' +
+    getFileNameByPath(FILE_PATH) +
+    '"\r\n';
+  formData += 'Content-Type: application/octet-stream\r\n\r\n';
+  let formDataBuffer = Buffer.concat([
+    Buffer.from(formData, 'utf8'),
+    fs.readFileSync(FILE_PATH),
+    Buffer.from('\r\n--' + boundary + '--\r\n', 'utf8'),
+  ]);
+  createRequest = https.request({
+    method: 'POST',
+    headers: {
+      'Content-Type': `multipart/form-data; boundary=${boundary}`,
+      'Content-Length': formDataBuffer.length,
+      keyId: API_KEY_ID,
+      keySecret: API_KEY_SECRET,
+    },
+    hostname: 'api.speechflow.io',
+    path: '/asr/file/v1/create?lang=' + LANG,
+  });
+  createRequest.write(formDataBuffer);
 }
 
-// Example usage:
-const apiKeyId = '';
-const apiKeySecret = 'ixWlWhxP9RpHN5cP';
-const lang = 'en';
-// const localFile = document.querySelector('input[type="file"]').files[0]; // Assuming you have a file input element
-const remoteFilePath = 'https://drive.google.com/file/d/13c6RGTHvFk7bDfEMuaCcqenW-x4yjQo1/view?usp=drive_link';
+function getFileNameByPath(path) {
+  let index = path.lastIndexOf('/');
+  return path.substring(index + 1);
+}
+createRequest.on('response', (createResponse) => {
+  let responseData = '';
 
-// To transcribe a local file
-// transcribeSpeechFlow(apiKeyId, apiKeySecret, lang, localFile)
-//   .then(result => console.log('Transcription result:', result))
-//   .catch(error => console.error('Transcription error:', error));
+  createResponse.on('data', (chunk) => {
+    responseData += chunk;
+  });
 
-// To transcribe a remote file
-transcribeSpeechFlow(apiKeyId, apiKeySecret, lang, null, remoteFilePath)
-  .then(result => console.log('Transcription result:', result))
-  .catch(error => console.error('Transcription error:', error));
+  createResponse.on('end', () => {
+    let taskId;
+    const responseJSON = JSON.parse(responseData);
+    console.log(responseJSON);
+    if (responseJSON.code == 10000) {
+      taskId = responseJSON.taskId;
+    } else {
+      console.log('create error:');
+      console.log(responseJSON.msg);
+      return;
+    }
+
+    let intervalID = setInterval(() => {
+      const queryRequest = https.request(
+        {
+          method: 'GET',
+          headers: {
+            keyId: 'dZLKY1vC9Zcv7Bzi',
+            keySecret: 'ixWlWhxP9RpHN5cP',
+          },
+          hostname: 'api.speechflow.io',
+          path:
+            '/asr/file/v1/query?taskId=' +
+            taskId +
+            '&resultType=' +
+            RESULT_TYPE,
+        },
+        (queryResponse) => {
+          let responseData = '';
+
+          queryResponse.on('data', (chunk) => {
+            responseData += chunk;
+          });
+
+          queryResponse.on('end', () => {
+            const responseJSON = JSON.parse(responseData);
+            if (responseJSON.code === 11000) {
+              console.log('transcription result:');
+              console.log(responseData);
+              clearInterval(intervalID);
+            } else if (responseJSON.code == 11001) {
+              console.log('waiting');
+            } else {
+              console.log(responseJSON);
+              console.log('transcription error:');
+              console.log(responseJSON.msg);
+              clearInterval(intervalID);
+            }
+          });
+        }
+      );
+
+      queryRequest.on('error', (error) => {
+        console.error(error);
+      });
+      queryRequest.end();
+    }, 3000);
+  });
+});
+
+createRequest.on('error', (error) => {
+  console.error(error);
+});
+
+createRequest.write(createData);
+createRequest.end();
