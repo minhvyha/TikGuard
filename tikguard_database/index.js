@@ -5,6 +5,7 @@ const app = express();
 const PORT = process.env.PORT || 3011;
 const { ReportModel } = require('./models/ReportModel');
 
+
 app.use(express.json());
 app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
