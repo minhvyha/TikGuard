@@ -66,6 +66,7 @@ if (FILE_PATH.startsWith('http')) {
     path: '/asr/file/v1/create?lang=' + LANG,
   });
   createRequest.write(formDataBuffer);
+  console.log(createRequest)
 }
 
 function getFileNameByPath(path) {

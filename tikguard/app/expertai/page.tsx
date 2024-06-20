@@ -1,15 +1,22 @@
 'use client';
 import React from 'react';
-import { useStore } from '@/app/context';
+import { useStore } from '@/app/context/context';
 
 import { NLClient } from '@expertai/nlapi';
 import { Language } from '@expertai/nlapi';
 import DropZone from '@/components/DropZone';
+
 var nlClient = new NLClient();
 
+async function getUser() {
+  const res = await fetch('http://localhost:3000/expertai/api');
+  const data = await res.json();
+  console.log(data);
+}
 
 const page = () => {
-  const {error} = useStore()
+  const { error } = useStore();
+  getUser();
   // console.log(process.env.EAI_USERNAME)
   // console.log(process.env.EAI_PASSWORD)
   // nlClient.detect(text, {

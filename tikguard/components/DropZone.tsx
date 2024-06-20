@@ -1,28 +1,14 @@
 'use client';
 import React, { useCallback, useEffect } from 'react';
 import { useDropzone } from 'react-dropzone';
-import { useStore } from '@/app/context';
+import { useStore } from '@/app/context/context';
 import { nanoid } from 'nanoid';
+import https from 'https';
 
 const DropZone = () => {
   const { text, setText, setError } = useStore();
   const onDrop = useCallback((acceptedFiles: File[]) => {
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      // console.log(acceptedFiles[0]);
-      let formDataBuffer = Buffer.from(e.target?.result as ArrayBuffer);
-      let formData = '';
-      
-      const boundary = nanoid();
-      formData += '--' + boundary + '\r\n';
-      formData +=
-        'Content-Disposition: form-data; name="file"; filename="' +
-        getFileNameByPath(acceptedFiles[0].name) +
-        '"\r\n';
-      formData += 'Content-Type: application/octet-stream\r\n\r\n';
-      console.log(formData);
-    };
-    reader.readAsArrayBuffer(acceptedFiles[0]);
+
   }, []);
   const onError = (err: Error) => {
     console.log(err);
@@ -60,7 +46,7 @@ const DropZone = () => {
       }
     }
   }, [acceptedFiles]);
-  function getFileNameByPath(path:string) {
+  function getFileNameByPath(path: string) {
     let index = path.lastIndexOf('/');
     return path.substring(index + 1);
   }
