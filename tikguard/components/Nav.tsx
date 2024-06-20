@@ -1,16 +1,25 @@
+// Nav.tsx
+
 'use client';
 
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useThemeContext } from '../app/context/context';
+import { useThemeContext } from '../app/context/context'; 
 import logo from '@/assets/logo.png'; 
 
 const Nav = () => {
-  const { toggleTheme } = useThemeContext();
+  const { toggleTheme, theme } = useThemeContext();
+
+  // Conditionally apply styles based on theme
+  const navStyles = {
+    backgroundColor: theme.palette.background.default,
+    color: theme.palette.text.primary,
+    borderBottom: `2px solid ${theme.palette.divider}`,
+  };
 
   return (
-    <nav className="bg-gray-800 text-white flex items-center justify-between py-4 px-8 border-b border-gray-700">
+    <nav className="flex items-center justify-between py-3 px-8" style={navStyles}>
       <Link href='/' className="flex items-center gap-2 cursor-pointer">
         <Image src={logo} alt='logo' width={50} height={50} />
         <h1 className="text-2xl font-bold">TikGuard</h1>
