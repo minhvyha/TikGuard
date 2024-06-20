@@ -1,10 +1,10 @@
 require('dotenv').config();
+require("./bin/www");
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
 const PORT = process.env.PORT || 3011;
 const { ReportModel } = require('./models/ReportModel');
-
 
 app.use(express.json());
 app.use(function (req, res, next) {
