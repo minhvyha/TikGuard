@@ -6,11 +6,11 @@ import { ThemeProvider, createTheme, Theme } from "@mui/material";
 import {create} from 'zustand';
 
 interface pageState{
-  text:string | null
+  text:string | ''
   error: string | null,
   taskId: string | null,
   severity: string | null,
-  path: string | null,
+  path: string | '',
   setPath: (path: string) => void,  
   setSeverity: (severity: string) => void,
   setTaskId: (taskId: string) => void,
@@ -19,7 +19,7 @@ interface pageState{
 }
 
 export const useStore = create<pageState>((set) => ({
-  text: null,
+  text: '',
   setText: (text) => set({text}),
   error: null,
   setError: (error) => set({error}),
@@ -27,7 +27,7 @@ export const useStore = create<pageState>((set) => ({
   setSeverity: (severity) => set({severity}),
   taskId: null,
   setTaskId: (taskId) => set({taskId}),
-  path: null,
+  path: '',
   setPath: (path) => set({path}),
 }))
 

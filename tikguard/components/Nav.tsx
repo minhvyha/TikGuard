@@ -19,7 +19,7 @@ const Nav = () => {
   };
 
   return (
-    <nav className="flex items-center justify-between py-3 px-8" style={navStyles}>
+    <nav className="flex items-center justify-between py-3 px-8 fixed w-full z-20" style={navStyles}>
       <Link href='/' className="flex items-center gap-2 cursor-pointer">
         <Image src={logo} alt='logo' width={50} height={50} />
         <h1 className="text-2xl font-bold">TikGuard</h1>

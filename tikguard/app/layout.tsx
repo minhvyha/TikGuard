@@ -29,8 +29,10 @@ export default function RootLayout({
         <body className="bg-background-700 text-text-100 inter">
         <AlertMessage />
           <Nav />
+          <div className='pt-20'>
 
           {children}
+          </div>
         </body>
       </ContextProviders>
     </html>
