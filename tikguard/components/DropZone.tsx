@@ -2,12 +2,8 @@
 import React, { useCallback, useEffect } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { useStore } from '@/app/context/context';
-import { nanoid } from 'nanoid';
-import https from 'https';
-import axios from 'axios';
-import path from 'path';
 const DropZone = () => {
-  const { text, setText, setError } = useStore();
+  const { setError, taskId, setTaskId } = useStore();
   const onDrop = useCallback((acceptedFiles: File[]) => {
 
   }, []);

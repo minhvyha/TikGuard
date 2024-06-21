@@ -7,16 +7,24 @@ import {create} from 'zustand';
 
 interface pageState{
   text:string
-  setText: (text:string) => void,
   error: string | null,
+  taskId: string | null,
+  severity: string | null,
+  setSeverity: (severity: string) => void,
+  setTaskId: (taskId: string) => void,
+  setText: (text:string) => void,
   setError: (error: string | null) => void,
 }
 
 export const useStore = create<pageState>((set) => ({
   text: "why are you so dumb, you can't even reach the top shelf.",
   setText: (text) => set({text}),
-  error: null,
+  error: 'asdfasdf',
   setError: (error) => set({error}),
+  severity: 'error',
+  setSeverity: (severity) => set({severity}),
+  taskId: null,
+  setTaskId: (taskId) => set({taskId}),
 }))
 
 const lightTheme = createTheme({
