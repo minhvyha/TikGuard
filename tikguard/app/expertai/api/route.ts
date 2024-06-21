@@ -2,7 +2,6 @@
 
 const https = require('https');
 const querystring = require('querystring');
-const fs = require('fs');
 const { randomUUID } = require('crypto');
 
 import { ClientRequest, IncomingMessage } from 'http';
