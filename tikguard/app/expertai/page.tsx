@@ -5,21 +5,13 @@ import Button from '@mui/material/Button';
 import TextInput from '@/components/TextInput';
 import MainInput from '@/components/MainInput';
 import Report from '@/components/Report';
+import { useStore } from '@/app/context/context';
 
 
-import { NLClient } from '@expertai/nlapi';
-import { Language } from '@expertai/nlapi';
 
-var nlClient = new NLClient();
+
 const page = () => {
-  // console.log(process.env.EAI_USERNAME)
-  // console.log(process.env.EAI_PASSWORD)
-  // nlClient.detect(text, {
-  //   language: Language.EN,
-  //   detector: "hate-speech",
-  // }).then((result) => {
-  //   console.log(result.data?.categories)
-  // })
+  const { text } = useStore();
   function transcribe() {
     fetch('http://localhost:3000/expertai/api', {
       method: 'GET',
@@ -34,6 +26,23 @@ const page = () => {
         console.log(data);
       });
   }
+
+  function analyse() {
+    fetch('http://localhost:3000/expertai/api', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ text: text }),
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+      });
+  }
+
   return (
     <div className='flex flex-col gap-2 py-5'>
       <div className='flex flex-col justify-center items-center'>
@@ -49,9 +58,7 @@ const page = () => {
         <TextInput />
         <Button
           variant="outlined"
-          // onClick={() => {
-          //   setTaskId('123');
-          // }}
+          onClick={analyse}
         >
           Analyse
         </Button>

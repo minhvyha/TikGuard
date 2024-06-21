@@ -2,7 +2,7 @@ import React from 'react'
 
 const Report = () => {
   return (
-    <div>Report</div>
+    <div className='bg-background-800 h-full rounded-[3px]'>Report</div>
   )
 }
 
