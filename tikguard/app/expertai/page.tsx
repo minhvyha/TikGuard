@@ -34,12 +34,12 @@ const page = () => {
       });
   }
   return (
-    <div className="flex flex-row">
-      <div className='flex-1'>
-        <div>
+    <div className="flex flex-row gap-4 p-6 ">
+      <div className='flex-1 flex flex-col gap-4'>
+        <div className='flex'>
           <MainInput />
         </div>
-        <div className='flex flex-row'>
+        <div className='flex flex-row gap-2'>
         <TextInput />
         <Button
           variant="outlined"

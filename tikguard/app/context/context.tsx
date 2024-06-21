@@ -6,7 +6,7 @@ import { ThemeProvider, createTheme, Theme } from "@mui/material";
 import {create} from 'zustand';
 
 interface pageState{
-  text:string
+  text:string | null
   error: string | null,
   taskId: string | null,
   severity: string | null,
@@ -19,7 +19,7 @@ interface pageState{
 }
 
 export const useStore = create<pageState>((set) => ({
-  text: "why are you so dumb, you can't even reach the top shelf.",
+  text: null,
   setText: (text) => set({text}),
   error: null,
   setError: (error) => set({error}),
@@ -27,7 +27,7 @@ export const useStore = create<pageState>((set) => ({
   setSeverity: (severity) => set({severity}),
   taskId: null,
   setTaskId: (taskId) => set({taskId}),
-  path: 'https://storage.googleapis.com/aai-web-samples/5_common_sports_injuries.mp3',
+  path: null,
   setPath: (path) => set({path}),
 }))
 

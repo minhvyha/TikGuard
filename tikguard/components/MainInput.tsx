@@ -15,6 +15,10 @@ const MainInput = () => {
         label="Text to Analyse"
         variant="outlined"
         multiline
+        style={{ flex: '1' }}
+        minRows={20}
+        maxRows={20}
+        placeholder="why are you so dumb, you can't even reach the top shelf."
       />
   )
 }

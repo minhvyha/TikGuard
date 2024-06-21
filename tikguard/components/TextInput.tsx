@@ -16,9 +16,10 @@ const TextInput = () => {
         onChange={(e) => {
           setPath(e.target.value);
         }}
+        placeholder='https://storage.googleapis.com/aai-web-samples/5_common_sports_injuries.mp3'
         label="Video or audio urls"
         variant="outlined"
-        style={{ width: '90%' }} // Set the width to 80% of the div
+        style={{ flex: '1' }} // Set the width to 80% of the div
       />
   );
 };
