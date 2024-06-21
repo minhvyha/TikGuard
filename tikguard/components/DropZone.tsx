@@ -4,7 +4,8 @@ import { useDropzone } from 'react-dropzone';
 import { useStore } from '@/app/context/context';
 import { nanoid } from 'nanoid';
 import https from 'https';
-
+import axios from 'axios';
+import path from 'path';
 const DropZone = () => {
   const { text, setText, setError } = useStore();
   const onDrop = useCallback((acceptedFiles: File[]) => {
@@ -43,6 +44,8 @@ const DropZone = () => {
         acceptedFiles[0].type.includes('audio') ||
         acceptedFiles[0].type.includes('video')
       ) {
+        // transcribe(acceptedFiles[0]);
+        transcribe(acceptedFiles[0])
       }
     }
   }, [acceptedFiles]);
@@ -50,55 +53,32 @@ const DropZone = () => {
     let index = path.lastIndexOf('/');
     return path.substring(index + 1);
   }
-  async function transcribeSpeechFlow(file: File) {
-    const url = 'https://api.speechflow.io/asr/file/v1/create';
+  async function transcribe(file: File) {
 
-    // Create headers
-    const headers = new Headers();
-    headers.append('keyId', process.env.APIKEYID || ''); // Check if process.env.APIKEYID is defined and pass it as a string argument
+    const reader = new FileReader();
+    reader.onload = async (e) => {
+      if (e.target) {
 
-    headers.append('keySecret', process.env.APIKEYSECRET || '');
-
-    // Determine the content type based on the presence of the file or remotePath
-    const isLocalFile = file !== null;
-    const contentType = isLocalFile
-      ? 'multipart/form-data'
-      : 'application/x-www-form-urlencoded';
-    headers.append('Content-Type', contentType);
-    headers.append('Access-Control-Allow-Origin', '*');
-    headers.append(
-      'Access-Control-Allow-Methods',
-      'GET, POST, PUT, DELETE, OPTIONS'
-    );
-    headers.append(
-      'Access-Control-Allow-Headers',
-      'Content-Type, Authorization'
-    );
-
-    // Create the form data
-    const formData = new FormData();
-    formData.append('lang', 'en');
-    formData.append('file', file);
-
-    // Create request options
-    const requestOptions = {
+    const res = await fetch('http://localhost:3000/expertai/api',{
       method: 'POST',
-      headers: headers,
-      body: formData,
-    };
 
-    // Make the request
-    try {
-      const response = await fetch(url, requestOptions);
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
+      body: JSON.stringify({
+
+        file: Buffer.from((e.target.result as ArrayBuffer)),
+        path: file.name,
+      }),
+      
+    });
+    const result = await res.json();
+    console.log(result);
       }
-      const result = await response.json();
-      return result;
-    } catch (error) {
-      console.error('Error during transcription:', error);
-      throw error;
-    }
+    };
+    reader.readAsArrayBuffer(file);
+
+   
+
+
+
   }
 
   return (

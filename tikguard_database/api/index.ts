@@ -19,14 +19,14 @@ const connectDB = async () => {
 app.get("/", (req, res) => res.send("Express on Vercel"));
 
 app.get(
-  '/findReport',
+  '/findReport/:id',
   (req, res) => {
     const query = ReportModel.findOne({
-      taskId: req.params.taskId,
+      id: req.params.id,
     });
     query.exec(function (err, report) {
       if (report === null) {
-        res.status(401).json('Cannot find account')
+        res.status(401).json('Cannot find report')
       }
       res.json(report);
     });

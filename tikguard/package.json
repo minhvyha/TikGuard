@@ -14,6 +14,7 @@
     "@expertai/nlapi": "^2.0.0",
     "@mui/material": "^5.15.19",
     "@tanstack/react-query": "^5.45.1",
+    "axios": "^1.7.2",
     "nanoid": "^5.0.7",
     "next": "14.2.3",
     "react": "^18",

@@ -8,12 +8,11 @@ const { randomUUID } = require('crypto');
 import { ClientRequest, IncomingMessage } from 'http';
 
 import { NextResponse } from 'next/server';
-export async function GET() {
+export async function POST(request: Request) {
   const LANG = 'en';
   // The local path or remote path of media file.
-  const FILE_PATH =
-    '/Users/minhha/TikGuard/tikguard/Fuck you sound effect copy.mp4';
-
+  const data = await request.json();  
+  const FILE_PATH = data.path 
   const createData = querystring.stringify({
     lang: LANG,
     remotePath: FILE_PATH,
@@ -28,9 +27,10 @@ export async function GET() {
     getFileNameByPath(FILE_PATH) +
     '"\r\n';
   formData += 'Content-Type: application/octet-stream\r\n\r\n';
+ 
   let formDataBuffer: Buffer = Buffer.concat([
     Buffer.from(formData, 'utf8'),
-    fs.readFileSync(FILE_PATH),
+    Buffer.from(data.file.data),
     Buffer.from('\r\n--' + boundary + '--\r\n', 'utf8'),
   ]);
   let createRequest = https.request({
