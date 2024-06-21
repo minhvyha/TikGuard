@@ -23,7 +23,22 @@ const page = () => {
   return (
     <div className="flex flex-row">
       <div>
-
+        <button onClick={() =>{
+          fetch('http://localhost:3000/expertai/api', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              text: "I hate you",
+            }),
+          }).then((response) => {
+            return response.json();
+          }).then((data) => {
+            console.log(data)
+          
+          })
+        }}>test</button>
         <DropZone />
       </div>
     </div>
