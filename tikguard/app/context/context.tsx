@@ -10,6 +10,8 @@ interface pageState{
   error: string | null,
   taskId: string | null,
   severity: string | null,
+  path: string | null,
+  setPath: (path: string) => void,  
   setSeverity: (severity: string) => void,
   setTaskId: (taskId: string) => void,
   setText: (text:string) => void,
@@ -19,12 +21,14 @@ interface pageState{
 export const useStore = create<pageState>((set) => ({
   text: "why are you so dumb, you can't even reach the top shelf.",
   setText: (text) => set({text}),
-  error: 'asdfasdf',
+  error: null,
   setError: (error) => set({error}),
   severity: 'error',
   setSeverity: (severity) => set({severity}),
   taskId: null,
   setTaskId: (taskId) => set({taskId}),
+  path: 'https://storage.googleapis.com/aai-web-samples/5_common_sports_injuries.mp3',
+  setPath: (path) => set({path}),
 }))
 
 const lightTheme = createTheme({
