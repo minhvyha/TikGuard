@@ -1,6 +1,5 @@
 'use client';
 import React, { useEffect } from 'react';
-import { useStore } from '@/app/context/context';
 
 import { NLClient } from '@expertai/nlapi';
 import { Language } from '@expertai/nlapi';
@@ -11,7 +10,6 @@ var nlClient = new NLClient();
 
 
 const page = () => {
-  const { error } = useStore();
 
   
   // console.log(process.env.EAI_USERNAME)
@@ -26,7 +24,6 @@ const page = () => {
     <div className="flex flex-row">
       <div>
 
-        {error && <p>{error}</p>}
         <DropZone />
       </div>
     </div>
