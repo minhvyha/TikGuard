@@ -55,7 +55,7 @@ const DropZone = () => {
     reader.onload = async (e) => {
       if (e.target) {
 
-    const res = await fetch('http://localhost:3000/expertai/api',{
+    const res = await fetch('https://tikguard.vercel.app/expertai/api',{
       method: 'POST',
 
       body: JSON.stringify({
