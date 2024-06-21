@@ -4,7 +4,7 @@ import TextField from '@mui/material/TextField';
 
 const TextInput = () => {
 
-  const { path, setPath } = useStore();
+  const { path, setPath, text } = useStore();
   
   
 
@@ -13,6 +13,7 @@ const TextInput = () => {
       <TextField
         id="outlined-basic"
         value={path}
+        disabled={text !== ''}
         onChange={(e) => {
           setPath(e.target.value);
         }}
