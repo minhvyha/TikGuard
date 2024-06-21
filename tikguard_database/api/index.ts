@@ -64,16 +64,13 @@ app.post('/transcribe', async (req, res) => {
     });
   
     console.log('submitting a local file');
-      function getFileNameByPath(path: string) {
-        let index = path.lastIndexOf('/');
-        return path.substring(index + 1);
-      }
+
     let formData = '';
     const boundary: string = randomUUID().replace(/-/g, '');
     formData += '--' + boundary + '\r\n';
     formData +=
       'Content-Disposition: form-data; name="file"; filename="' +
-      getFileNameByPath(FILE_PATH) +
+      FILE_PATH +
       '"\r\n';
     formData += 'Content-Type: application/octet-stream\r\n\r\n';
    
