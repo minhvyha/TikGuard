@@ -1,10 +1,26 @@
-'use client';
 import React, { useCallback, useEffect } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { useStore } from '@/app/context/context';
+import { AssemblyAI } from 'assemblyai'
+
 const DropZone = () => {
+  const client = new AssemblyAI({
+    apiKey: "8faf7a4d58eb4638a69d44a367f1f8dd"
+  })
+  const audioUrl =
+  'https://storage.googleapis.com/aai-web-samples/5_common_sports_injuries.mp3'
+
+const config = {
+  audio_url: audioUrl
+}
+const run = async () => {
+  const transcript = await client.transcripts.transcribe(config)
+  console.log(transcript.text)
+}
   const { setError, taskId, setTaskId } = useStore();
-  const onDrop = useCallback((acceptedFiles: File[]) => {}, []);
+  const onDrop = useCallback((acceptedFiles: File[]) => {
+    run()
+  }, []);
   const onError = (err: Error) => {
     console.log(err);
   };
@@ -39,7 +55,8 @@ const DropZone = () => {
         acceptedFiles[0].type.includes('video')
       ) {
         // transcribe(acceptedFiles[0]);
-        transcribe(acceptedFiles[0]);
+        // transcribe(acceptedFiles[0]);
+        
       }
     }
   }, [acceptedFiles]);
@@ -47,15 +64,18 @@ const DropZone = () => {
     const reader = new FileReader();
     reader.onload = async (e) => {
       if (e.target) {
-        const res = await fetch('https://tikguarddatabase-minhvyhas-projects.vercel.app/transcribe', {
-          method: 'POST',
-          mode: 'no-cors',
+        const res = await fetch(
+          'https://tikguarddatabase-minhvyhas-projects.vercel.app/transcribe',
+          {
+            method: 'POST',
+            mode: 'no-cors',
 
-          body: JSON.stringify({
-            file: Buffer.from(e.target.result as ArrayBuffer),
-            path: file.name,
-          }),
-        });
+            body: JSON.stringify({
+              file: Buffer.from(e.target.result as ArrayBuffer),
+              path: file.name,
+            }),
+          }
+        );
         const result = await res.json();
         console.log(result);
       }
