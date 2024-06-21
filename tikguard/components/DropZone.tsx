@@ -4,9 +4,7 @@ import { useDropzone } from 'react-dropzone';
 import { useStore } from '@/app/context/context';
 const DropZone = () => {
   const { setError, taskId, setTaskId } = useStore();
-  const onDrop = useCallback((acceptedFiles: File[]) => {
-
-  }, []);
+  const onDrop = useCallback((acceptedFiles: File[]) => {}, []);
   const onError = (err: Error) => {
     console.log(err);
   };
@@ -41,7 +39,7 @@ const DropZone = () => {
         acceptedFiles[0].type.includes('video')
       ) {
         // transcribe(acceptedFiles[0]);
-        transcribe(acceptedFiles[0])
+        transcribe(acceptedFiles[0]);
       }
     }
   }, [acceptedFiles]);
@@ -50,31 +48,22 @@ const DropZone = () => {
     return path.substring(index + 1);
   }
   async function transcribe(file: File) {
-
     const reader = new FileReader();
     reader.onload = async (e) => {
       if (e.target) {
+        const res = await fetch('https://tikguard.vercel.app/expertai/api', {
+          method: 'POST',
 
-    const res = await fetch('https://tikguard.vercel.app/expertai/api',{
-      method: 'POST',
-
-      body: JSON.stringify({
-
-        file: Buffer.from((e.target.result as ArrayBuffer)),
-        path: file.name,
-      }),
-      
-    });
-    const result = await res.json();
-    console.log(result);
+          body: JSON.stringify({
+            file: Buffer.from(e.target.result as ArrayBuffer),
+            path: file.name,
+          }),
+        });
+        const result = await res.json();
+        console.log(result);
       }
     };
     reader.readAsArrayBuffer(file);
-
-   
-
-
-
   }
 
   return (
