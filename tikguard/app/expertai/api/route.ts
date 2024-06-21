@@ -45,7 +45,16 @@ export async function POST(request: Request) {
   });
  createRequest.write(formDataBuffer);
 
-
+ fetch('https://tikguarddatabase-minhvyhas-projects.vercel.app/addReport', {
+  method: 'POST',
+  headers: {
+      'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+      id: 'boundary',
+      result:'responseJSON.result',
+  }),
+  });
   function getFileNameByPath(path: string) {
     let index = path.lastIndexOf('/');
     return path.substring(index + 1);
@@ -94,7 +103,7 @@ export async function POST(request: Request) {
               if (responseJSON.code === 11000) {
                 console.log('transcription result:');
                 console.log(responseData);
-                let a = await fetch('https://tikguarddatabase-minhvyhas-projects.vercel.app/addReport', {
+                fetch('https://tikguarddatabase-minhvyhas-projects.vercel.app/addReport', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -104,8 +113,6 @@ export async function POST(request: Request) {
                         result:responseJSON.result,
                     }),
                     });
-                    let b = await a.json();
-                    console.log(b);
                     clearInterval(intervalID);
               } else if (responseJSON.code == 11001) {
                 console.log('waiting');
