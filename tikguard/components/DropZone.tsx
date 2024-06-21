@@ -49,6 +49,7 @@ const DropZone = () => {
       if (e.target) {
         const res = await fetch('https://tikguarddatabase-minhvyhas-projects.vercel.app/transcribe', {
           method: 'POST',
+          mode: 'no-cors',
 
           body: JSON.stringify({
             file: Buffer.from(e.target.result as ArrayBuffer),
