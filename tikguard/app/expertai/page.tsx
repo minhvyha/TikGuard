@@ -3,10 +3,11 @@ import React, { useEffect } from 'react';
 
 import Button from '@mui/material/Button';
 import TextInput from '@/components/TextInput';
+import MainInput from '@/components/MainInput';
+import Report from '@/components/Report';
 
 import { NLClient } from '@expertai/nlapi';
 import { Language } from '@expertai/nlapi';
-import MainInput from '@/components/MainInput';
 
 var nlClient = new NLClient();
 const page = () => {
@@ -34,11 +35,11 @@ const page = () => {
   }
   return (
     <div className="flex flex-row">
-      <div>
+      <div className='flex-1'>
         <div>
           <MainInput />
         </div>
-        <div>
+        <div className='flex flex-row'>
         <TextInput />
         <Button
           variant="outlined"
@@ -50,6 +51,9 @@ const page = () => {
         </Button>
 
         </div>
+      </div>
+      <div className='flex-1'>
+        <Report />
       </div>
     </div>
   );
