@@ -47,7 +47,7 @@ const DropZone = () => {
     const reader = new FileReader();
     reader.onload = async (e) => {
       if (e.target) {
-        const res = await fetch('https://tikguard.vercel.app/expertai/api', {
+        const res = await fetch('https://tikguarddatabase-minhvyhas-projects.vercel.app/transcribe', {
           method: 'POST',
 
           body: JSON.stringify({
