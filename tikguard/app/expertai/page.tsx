@@ -1,14 +1,15 @@
-'use client';
+'use client'
 import React, { useEffect } from 'react';
-
-import Button from '@mui/material/Button';
 import TextInput from '@/components/TextInput';
 import MainInput from '@/components/MainInput';
 import Report from '@/components/Report';
 import { useStore } from '@/app/context/context';
+import dynamic from 'next/dynamic';
 
 
-
+const Button = dynamic(() => import('@mui/material/Button'), {
+  ssr: true, // Disable server-side rendering for this component
+});
 
 const page = () => {
   const { text } = useStore();
@@ -58,7 +59,7 @@ const page = () => {
         <TextInput />
         <Button
           variant="outlined"
-          onClick={analyse}
+          onClick={() =>{analyse()}}
         >
           Analyse
         </Button>

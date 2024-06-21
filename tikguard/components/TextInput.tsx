@@ -1,3 +1,4 @@
+'use client'
 import React from 'react';
 import { useStore } from '@/app/context/context';
 import TextField from '@mui/material/TextField';
