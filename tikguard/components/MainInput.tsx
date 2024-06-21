@@ -12,7 +12,7 @@ const MainInput = () => {
         onChange={(e) => {
           setText(e.target.value);
         }}
-        label="Video or audio urls"
+        label="Text to Analyse"
         variant="outlined"
         multiline
       />
