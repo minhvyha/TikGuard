@@ -43,10 +43,6 @@ const DropZone = () => {
       }
     }
   }, [acceptedFiles]);
-  function getFileNameByPath(path: string) {
-    let index = path.lastIndexOf('/');
-    return path.substring(index + 1);
-  }
   async function transcribe(file: File) {
     const reader = new FileReader();
     reader.onload = async (e) => {
