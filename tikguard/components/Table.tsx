@@ -9,7 +9,7 @@ const Table = () => {
     return theme.palette.mode === 'dark' ? 'bg-background-900' : 'bg-light-background';
   };
 
-  const classStyleName = 'dark: bg-background-900 bg-light-background';
+  const classStyleName = 'dark:bg-background-900 bg-light-background';
 
   const columns: GridColDef[] = [
     { field: 'id', headerName: 'ID', width: 70, headerClassName: classStyleName },
