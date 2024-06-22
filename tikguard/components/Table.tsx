@@ -6,19 +6,21 @@ const Table = () => {
   const { theme } = useStore();
 
   const getHeaderClassName = () => {
-    return theme.palette.mode === 'dark' ? 'bg-background-900' : 'bg-light-background'; // Adjust class names as per your actual theme classes
+    return theme.palette.mode === 'dark' ? 'bg-background-900' : 'bg-light-background';
   };
 
+  const classStyleName = 'dark: bg-background-900 bg-light-background';
+
   const columns: GridColDef[] = [
-    { field: 'id', headerName: 'ID', width: 70, headerClassName: getHeaderClassName() },
-    { field: 'firstName', headerName: 'First name', width: 130, headerClassName: getHeaderClassName() },
-    { field: 'lastName', headerName: 'Last name', width: 130, headerClassName: getHeaderClassName() },
+    { field: 'id', headerName: 'ID', width: 70, headerClassName: classStyleName },
+    { field: 'firstName', headerName: 'First name', width: 130, headerClassName: classStyleName },
+    { field: 'lastName', headerName: 'Last name', width: 130, headerClassName: classStyleName },
     {
       field: 'age',
       headerName: 'Age',
       type: 'number',
       width: 90,
-      headerClassName: getHeaderClassName(),
+      headerClassName: classStyleName,
     },
     {
       field: 'fullName',
@@ -26,7 +28,7 @@ const Table = () => {
       description: 'This column has a value getter and is not sortable.',
       sortable: false,
       width: 160,
-      headerClassName: getHeaderClassName(),
+      headerClassName: classStyleName,
       valueGetter: (value, row) => `${row.firstName || ''} ${row.lastName || ''}`,
     },
   ];

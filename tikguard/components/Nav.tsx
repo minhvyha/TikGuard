@@ -9,17 +9,10 @@ import { useStore } from '../app/context/context';
 import logo from '@/assets/logo.png'; 
 
 const Nav = () => {
-  const { toggleTheme, theme } = useStore();
-
-  // Conditionally apply styles based on theme
-  const navStyles = {
-    backgroundColor: theme.palette.background.default,
-    color: theme.palette.text.primary,
-    borderBottom: `2px solid ${theme.palette.divider}`,
-  };
+  const { toggleTheme } = useStore();
 
   return (
-    <nav className="flex  items-center justify-between py-3 px-8 fixed w-full z-20 dark:text-white text-black dark:bg-white bg-black ">
+    <nav className="flex  items-center justify-between py-3 px-8 fixed w-full z-20 dark:text-white text-black dark:bg-black bg-white ">
       <Link href='/' className="flex items-center gap-2 cursor-pointer">
         <Image src={logo} alt='logo' width={50} height={50} />
         <h1 className="text-2xl font-bold ">TikGuard</h1>

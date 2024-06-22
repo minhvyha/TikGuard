@@ -4,7 +4,7 @@ import TextInput from '@/components/TextInput';
 import MainInput from '@/components/MainInput';
 import Report from '@/components/Report';
 import SubmitButton from '@/components/SubmitButton';
-import { useStore } from '../context/context';
+
 const page = () => {
   function transcribe() {
     fetch('http://localhost:3000/expertai/api', {
@@ -21,17 +21,11 @@ const page = () => {
       });
   }
 
-  const { theme } = useStore();
-  const expertAIStyles = {
-    backgroundColor: theme.palette.background.default,
-    color: theme.palette.text.primary,
-    borderBottom: `2px solid ${theme.palette.divider}`,
-  };
 
   return (
-    <div className='flex flex-col gap-2 py-5' style={expertAIStyles}>
+    <div className='flex flex-col gap-2 py-5 dark:text-white text-black dark:bg-black bg-white'>
       <div className='flex flex-col justify-center items-center'>
-        <h1 className='text-2xl text-text-100' style={{color: theme.palette.primary.main}}>ExpertAI</h1>
+        <h1 className='text-2xl text-text-100 dark: text-blue-500 text-blue-500'>ExpertAI</h1>
         <h2 className='text-text-150'>Advanced natural language API for understanding and analyzing text.</h2>
       </div>
     <div className="flex flex-row gap-4 p-6 ">
