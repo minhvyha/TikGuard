@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 import { ThemeProvider, createTheme, Theme } from "@mui/material";
 
 import {create} from 'zustand';
@@ -65,16 +65,17 @@ export const useStore = create<pageState>((set) => ({
 }))
 
 
-const ThemeContext = createContext({
- 
-});
 
 export function ContextProviders({ children }: { children: ReactNode }) {
   const {theme} = useStore();
 
 
   return (
-      <ThemeProvider theme={theme}>{children}</ThemeProvider>
+      <ThemeProvider theme={theme} >
+        <div className={theme.palette.mode === 'dark' ? 'dark' : ''}>
+        {children}
+        </div>
+      </ThemeProvider>
   );
 }
 

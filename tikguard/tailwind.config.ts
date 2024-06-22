@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: 'class',
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -12,7 +13,7 @@ module.exports = {
         inter: ['Inter', 'sans-serif'],
       },
       colors: {
-        'text': {
+        text: {
           50: '#f0f1f5',
           100: '#e0e2eb',
           200: '#c2c5d6',
@@ -25,7 +26,7 @@ module.exports = {
           900: '#14161f',
           950: '#0a0b0f',
         },
-        'background': {
+        background: {
           50: '#f0f1f4',
           100: '#e2e3e9',
           200: '#c4c7d4',
@@ -38,7 +39,7 @@ module.exports = {
           900: '#16171d',
           950: '#0b0b0f',
         },
-        'primary': {
+        primary: {
           50: '#eceef9',
           100: '#d8ddf3',
           200: '#b1bae7',
@@ -51,7 +52,7 @@ module.exports = {
           900: '#0c1127',
           950: '#060813',
         },
-        'secondary': {
+        secondary: {
           50: '#e9ecfb',
           100: '#d4d9f7',
           200: '#a9b3ef',
@@ -64,7 +65,7 @@ module.exports = {
           900: '#080d2b',
           950: '#040716',
         },
-        'accent': {
+        accent: {
           50: '#e7ebfd',
           100: '#d0d6fb',
           200: '#a1aef7',
@@ -77,7 +78,7 @@ module.exports = {
           900: '#040a2f',
           950: '#020518',
         },
-      },       
+      },
     },
   },
   plugins: [],
