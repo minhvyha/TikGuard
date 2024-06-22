@@ -49,6 +49,7 @@ const Table = () => {
           },
         }}
         pageSizeOptions={[5, 10, 20, 100]}
+        rowSelection={false}
       />
   
 }
