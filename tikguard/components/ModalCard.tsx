@@ -23,7 +23,7 @@ const ModalCard = ({title, data}: {title: string, data: Object}) => {
     console.log(open)
   };
   return (
-    <div  className='transition-all flex flex-col  w-full p-3 border-2 cursor-pointer border-background-500 dark:border-gray-500 border-solid text-xs rounded-sm'>
+    <div className='transition-all flex flex-col  w-full p-3 border-2 cursor-pointer border-background-500 dark:border-gray-500 border-solid text-xs rounded-sm'>
         <div>
 
         {title}

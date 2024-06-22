@@ -32,7 +32,7 @@ const page = () => {
   return (
     <div className='flex flex-col gap-2 py-5' style={expertAIStyles}>
       <div className='flex flex-col justify-center items-center'>
-        <h1 className='text-2xl text-text-100'>ExpertAI</h1>
+        <h1 className='text-2xl text-text-100' style={{color: theme.palette.primary.main}}>ExpertAI</h1>
         <h2 className='text-text-150'>Advanced natural language API for understanding and analyzing text.</h2>
       </div>
     <div className="flex flex-row gap-4 p-6 ">
