@@ -3,16 +3,10 @@ import React, { useEffect } from 'react';
 import TextInput from '@/components/TextInput';
 import MainInput from '@/components/MainInput';
 import Report from '@/components/Report';
-import { useStore } from '@/app/context/context';
-import dynamic from 'next/dynamic';
+import SubmitButton from '@/components/SubmitButton';
 
-
-const Button = dynamic(() => import('@mui/material/Button'), {
-  ssr: true, // Disable server-side rendering for this component
-});
 
 const page = () => {
-  const { text } = useStore();
   function transcribe() {
     fetch('http://localhost:3000/expertai/api', {
       method: 'GET',
@@ -28,21 +22,7 @@ const page = () => {
       });
   }
 
-  function analyse() {
-    fetch('http://localhost:3000/expertai/api', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ text: text }),
-    })
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        console.log(data);
-      });
-  }
+
 
   return (
     <div className='flex flex-col gap-2 py-5'>
@@ -57,12 +37,7 @@ const page = () => {
         </div>
         <div className='flex flex-row gap-2'>
         <TextInput />
-        <Button
-          variant="outlined"
-          onClick={() =>{analyse()}}
-        >
-          Analyse
-        </Button>
+        <SubmitButton apiRoute='expertai' />
 
         </div>
       </div>
