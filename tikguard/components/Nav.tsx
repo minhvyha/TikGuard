@@ -5,11 +5,11 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useThemeContext } from '../app/context/context'; 
+import { useStore } from '../app/context/context'; 
 import logo from '@/assets/logo.png'; 
 
 const Nav = () => {
-  const { toggleTheme, theme } = useThemeContext();
+  const { toggleTheme, theme } = useStore();
 
   // Conditionally apply styles based on theme
   const navStyles = {

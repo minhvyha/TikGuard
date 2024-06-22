@@ -1,37 +1,9 @@
 "use client";
 
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, ReactNode } from 'react';
 import { ThemeProvider, createTheme, Theme } from "@mui/material";
 
 import {create} from 'zustand';
-
-interface pageState{
-  text:string | ''
-  error: string | null,
-  taskId: string | null,
-  severity: string | null,
-  path: string | '',
-  baseUrl: string,
-  setPath: (path: string) => void,  
-  setSeverity: (severity: string) => void,
-  setTaskId: (taskId: string) => void,
-  setText: (text:string) => void,
-  setError: (error: string | null) => void,
-}
-
-export const useStore = create<pageState>((set) => ({
-  text: '',
-  baseUrl: process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://tikguard.vercel.app/',
-  setText: (text) => set({text}),
-  error: null,
-  setError: (error) => set({error}),
-  severity: 'error',
-  setSeverity: (severity) => set({severity}),
-  taskId: null,
-  setTaskId: (taskId) => set({taskId}),
-  path: '',
-  setPath: (path) => set({path}),
-}))
 
 const lightTheme = createTheme({
   palette: {
@@ -51,23 +23,58 @@ const darkTheme = createTheme({
   },
 });
 
-const ThemeContext = createContext({
+
+interface pageState{
+  text:string | ''
+  error: string | null,
+  taskId: string | null,
+  severity: string | null,
+  path: string | '',
+  baseUrl: string,
+  theme: Theme,
+  toggleTheme: () => void,
+  setPath: (path: string) => void,  
+  setSeverity: (severity: string) => void,
+  setTaskId: (taskId: string) => void,
+  setText: (text:string) => void,
+  setError: (error: string | null) => void,
+}
+
+export const useStore = create<pageState>((set) => ({
+  text: '',
+  baseUrl: process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://tikguard.vercel.app/',
+  setText: (text) => set({text}),
+  error: null,
+  setError: (error) => set({error}),
+  severity: 'error',
+  setSeverity: (severity) => set({severity}),
+  taskId: null,
+  setTaskId: (taskId) => set({taskId}),
+  path: '',
+  setPath: (path) => set({path}),
   theme: darkTheme,
-  toggleTheme: () => {},
+
+  toggleTheme: () => {
+    set((state) => {
+      return {
+        ...state,
+        theme: state.theme.palette.mode === 'dark' ? lightTheme : darkTheme,
+      };
+    });
+  }
+}))
+
+
+const ThemeContext = createContext({
+ 
 });
 
 export function ContextProviders({ children }: { children: ReactNode }) {
-  const [theme, setTheme] = useState<Theme>(darkTheme);
+  const {theme} = useStore();
 
-  const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme.palette.mode === 'dark' ? lightTheme : darkTheme));
-  };
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
       <ThemeProvider theme={theme}>{children}</ThemeProvider>
-    </ThemeContext.Provider>
   );
 }
 
-export const useThemeContext = () => useContext(ThemeContext);

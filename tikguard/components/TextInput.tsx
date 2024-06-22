@@ -1,10 +1,9 @@
 import React from 'react';
 import TextField from '@mui/material/TextField';
-import { useStore, useThemeContext } from '../app/context/context';
+import { useStore } from '../app/context/context';
 
 const TextInput = () => {
-  const { path, setPath, text } = useStore();
-  const { theme } = useThemeContext();
+  const { path, setPath, text, theme } = useStore();
 
   const TextInputStyles = {
     backgroundColor: theme.palette.background.default,

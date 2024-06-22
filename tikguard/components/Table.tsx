@@ -1,9 +1,9 @@
 import React from 'react';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
-import { useThemeContext } from '../app/context/context';
+import { useStore } from '../app/context/context';
 
 const Table = () => {
-  const { theme } = useThemeContext();
+  const { theme } = useStore();
 
   const getHeaderClassName = () => {
     return theme.palette.mode === 'dark' ? 'bg-background-900' : 'bg-light-background'; // Adjust class names as per your actual theme classes

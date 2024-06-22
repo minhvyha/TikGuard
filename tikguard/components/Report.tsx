@@ -1,10 +1,10 @@
 import React from 'react'
 import ModalCard from '@/components/ModalCard';
-import { useThemeContext } from '@/app/context/context';
+import { useStore } from '@/app/context/context';
 
 const Report = () => {
 
-    const { theme } = useThemeContext();
+    const { theme } = useStore();
     const ReportStyles = {
         backgroundColor: theme.palette.background.default,
         color: theme.palette.text.primary,

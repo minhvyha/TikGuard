@@ -4,8 +4,7 @@ import TextInput from '@/components/TextInput';
 import MainInput from '@/components/MainInput';
 import Report from '@/components/Report';
 import SubmitButton from '@/components/SubmitButton';
-import { useThemeContext } from '../context/context';
-
+import { useStore } from '../context/context';
 const page = () => {
   function transcribe() {
     fetch('http://localhost:3000/expertai/api', {
@@ -22,7 +21,7 @@ const page = () => {
       });
   }
 
-  const { theme } = useThemeContext();
+  const { theme } = useStore();
   const expertAIStyles = {
     backgroundColor: theme.palette.background.default,
     color: theme.palette.text.primary,
