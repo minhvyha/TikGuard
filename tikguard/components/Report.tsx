@@ -1,10 +1,18 @@
 import React from 'react'
 import ModalCard from '@/components/ModalCard';
+import { useThemeContext } from '@/app/context/context';
 
 const Report = () => {
 
+    const { theme } = useThemeContext();
+    const ReportStyles = {
+        backgroundColor: theme.palette.background.default,
+        color: theme.palette.text.primary,
+        borderBottom: `2px solid ${theme.palette.divider}`,
+    };
+
   return (
-    <div className='bg-background-800 h-full rounded-[3px]'>
+    <div className='bg-background-800 h-full rounded-[3px]' style={ReportStyles}>
 
       <ModalCard title='test 1' data={{
     "data": {
