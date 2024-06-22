@@ -1,6 +1,5 @@
 import React from 'react';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
-import { useStore } from '../app/context/context';
 
 const Table = () => {
   const classStyleName = 'dark:bg-background-900 bg-light-background';
