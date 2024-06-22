@@ -3,13 +3,7 @@ import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { useStore } from '../app/context/context';
 
 const Table = () => {
-  const { theme } = useStore();
-
-  const getHeaderClassName = () => {
-    return theme.palette.mode === 'dark' ? 'bg-background-900' : 'bg-light-background';
-  };
-
-  const classStyleName = 'dark: bg-background-900 bg-light-background';
+  const classStyleName = 'dark:bg-background-900 bg-light-background';
 
   const columns: GridColDef[] = [
     { field: 'id', headerName: 'ID', width: 70, headerClassName: classStyleName },
@@ -45,11 +39,6 @@ const Table = () => {
     { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
   ];
 
-  const TableStyles = {
-    backgroundColor: theme.palette.background.default,
-    color: theme.palette.text.primary,
-    borderBottom: `2px solid ${theme.palette.divider}`,
-};
 
   return (
     <DataGrid
@@ -62,7 +51,7 @@ const Table = () => {
       }}
       pageSizeOptions={[5, 10, 20, 100]}
       rowSelection={false}
-      style={TableStyles}
+      className={classStyleName}
     />
   );
 };
