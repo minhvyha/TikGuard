@@ -1,11 +1,6 @@
 import React from 'react'
 import { useStore } from '@/app/context/context';
-import dynamic from 'next/dynamic';
-
-
-const Button = dynamic(() => import('@mui/material/Button'), {
-  ssr: true, // Disable server-side rendering for this component
-});
+import { Button } from '@mui/material';
 
 const SubmitButton = ({apiRoute} : {apiRoute: string}) => {
   const { text } = useStore();
