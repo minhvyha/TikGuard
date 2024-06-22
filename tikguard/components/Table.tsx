@@ -1,15 +1,18 @@
 import React from 'react'
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
+import { useThemeContext } from '../app/context/context'; 
+
 
 const columns: GridColDef[] = [
-  { field: 'id', headerName: 'ID', width: 70 },
-  { field: 'firstName', headerName: 'First name', width: 130 },
-  { field: 'lastName', headerName: 'Last name', width: 130 },
+  { field: 'id', headerName: 'ID', width: 70, headerClassName: 'bg-background-900' },
+  { field: 'firstName', headerName: 'First name', width: 130, headerClassName: 'bg-background-900' },
+  { field: 'lastName', headerName: 'Last name', width: 130, headerClassName: 'bg-background-900' },
   {
     field: 'age',
     headerName: 'Age',
     type: 'number',
     width: 90,
+    headerClassName: 'bg-background-900'
   },
   {
     field: 'fullName',
@@ -17,6 +20,7 @@ const columns: GridColDef[] = [
     description: 'This column has a value getter and is not sortable.',
     sortable: false,
     width: 160,
+    headerClassName: 'bg-background-900',
     valueGetter: (value, row) => `${row.firstName || ''} ${row.lastName || ''}`,
   },
 ];
@@ -33,7 +37,10 @@ const rows = [
   { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
 ];
 const Table = () => {
+  const {  theme } = useThemeContext();
+
   return <DataGrid
+  className='bg-background-900'
         rows={rows}
         columns={columns}
         initialState={{
