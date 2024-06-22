@@ -1,29 +1,82 @@
 import React from 'react';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
+import { useStore } from '@/app/context/context';
+import { styled } from '@mui/material/styles';
+
+const GridContainer = styled('div')`
+  .MuiDataGrid-cell {
+
+    border-top: 2px solid rgb(107 114 128) !important;
+
+  }
+  .MuiDataGrid-filler{
+    border-top: 2px solid rgb(107 114 128) !important;
+  }
+  .MuiDataGrid-footerContainer{
+    border-top: 2px solid rgb(107 114 128) !important;
+  
+  }
+  .css-mtwq5m-MuiDataGrid-root .MuiDataGrid-row:hover{
+    background-color: rgb(65 68 88 ) !important;
+  }
+
+`;
 
 const Table = () => {
-  const classStyleName = 'dark:bg-background-900 bg-light-background';
+  const { theme } = useStore();
 
   const columns: GridColDef[] = [
-    { field: 'id', headerName: 'ID', width: 70, headerClassName: classStyleName },
-    { field: 'firstName', headerName: 'First name', width: 130, headerClassName: classStyleName },
-    { field: 'lastName', headerName: 'Last name', width: 130, headerClassName: classStyleName },
+    {
+      field: 'id',
+      headerName: 'ID',
+      width: 70,
+      headerClassName:
+        theme.palette.mode === 'dark'
+          ? 'bg-background-700'
+          : 'bg-background-100',
+
+    },
+    {
+      field: 'firstName',
+      headerName: 'First name',
+      width: 130,
+      headerClassName:
+        theme.palette.mode === 'dark'
+          ? 'bg-background-700'
+          : 'bg-background-100',
+      cellClassName:
+        theme.palette.mode === 'dark'
+          ? 'bg-background-700'
+          : 'bg-background-100',
+    },
+    {
+      field: 'lastName',
+      headerName: 'Last name',
+      width: 130,
+      headerClassName:
+        theme.palette.mode === 'dark'
+          ? 'bg-background-700'
+          : 'bg-background-100',
+      cellClassName:
+        theme.palette.mode === 'dark'
+          ? 'bg-background-700'
+          : 'bg-background-100',
+    },
     {
       field: 'age',
       headerName: 'Age',
       type: 'number',
       width: 90,
-      headerClassName: classStyleName,
+      headerClassName:
+        theme.palette.mode === 'dark'
+          ? 'bg-background-700'
+          : 'bg-background-100',
+      cellClassName:
+        theme.palette.mode === 'dark'
+          ? 'bg-background-700'
+          : 'bg-background-100',
     },
-    {
-      field: 'fullName',
-      headerName: 'Full name',
-      description: 'This column has a value getter and is not sortable.',
-      sortable: false,
-      width: 160,
-      headerClassName: classStyleName,
-      valueGetter: (value, row) => `${row.firstName || ''} ${row.lastName || ''}`,
-    },
+
   ];
 
   const rows = [
@@ -36,11 +89,19 @@ const Table = () => {
     { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
     { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
     { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
+    { id: 10, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
+
+    { id: 11, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
+
   ];
 
-
   return (
+    <GridContainer>
     <DataGrid
+      sx={{
+        height: 350,
+        backgroundColor: theme.palette.mode === 'dark' ? '#414458' : '#e2e3e9',
+      }}
       rows={rows}
       columns={columns}
       initialState={{
@@ -50,8 +111,8 @@ const Table = () => {
       }}
       pageSizeOptions={[5, 10, 20, 100]}
       rowSelection={false}
-      className={classStyleName}
     />
+    </GridContainer>
   );
 };
 

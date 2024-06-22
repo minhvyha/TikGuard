@@ -4,10 +4,13 @@
 
 body {
   --sb-track-color: #1d1f27;
-  --sb-thumb-color: #2b2e3b;
+  --sb-thumb-color: #343746;
   --sb-size: 7px;
 }
+html{
+  scroll-behavior: smooth;
 
+}
 ::-webkit-scrollbar {
   width: var(--sb-size)
 }
@@ -27,7 +30,6 @@ body {
 
 @supports not selector(::-webkit-scrollbar) {
   * {
-    scrollbar-color: var(--sb-thumb-color)
-                     var(--sb-track-color);
+    scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
   }
 }

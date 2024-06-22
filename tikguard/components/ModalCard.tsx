@@ -9,7 +9,6 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  height: 400,
 };
 
 const ModalCard = ({title, data}: {title: string, data: Object}) => {
