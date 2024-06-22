@@ -5,6 +5,7 @@ import Nav from '@/components/Nav';
 const inter = Inter({ subsets: ['latin'] });
 import AlertMessage from '@/components/AlertMessage';
 import {ContextProviders} from '@/app/context/context';
+import { useThemeContext } from '../app/context/context';
 
 
 export const metadata: Metadata = {
@@ -17,6 +18,9 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+  const { theme } = useThemeContext();
+
   return (
     <html lang="en">
       <head>
