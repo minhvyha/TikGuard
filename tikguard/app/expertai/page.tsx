@@ -5,7 +5,6 @@ import MainInput from '@/components/MainInput';
 import Report from '@/components/Report';
 import SubmitButton from '@/components/SubmitButton';
 
-
 const page = () => {
   function transcribe() {
     fetch('http://localhost:3000/expertai/api', {

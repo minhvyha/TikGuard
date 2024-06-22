@@ -13,6 +13,7 @@
     "@emotion/styled": "^11.11.5",
     "@expertai/nlapi": "^2.0.0",
     "@mui/material": "^5.15.19",
+    "@mui/x-data-grid": "^7.7.1",
     "@tanstack/react-query": "^5.45.1",
     "assemblyai": "^4.5.0",
     "axios": "^1.7.2",

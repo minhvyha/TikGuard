@@ -11,6 +11,7 @@ interface pageState{
   taskId: string | null,
   severity: string | null,
   path: string | '',
+  baseUrl: string,
   setPath: (path: string) => void,  
   setSeverity: (severity: string) => void,
   setTaskId: (taskId: string) => void,
@@ -20,6 +21,7 @@ interface pageState{
 
 export const useStore = create<pageState>((set) => ({
   text: '',
+  baseUrl: process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://tikguard.vercel.app/',
   setText: (text) => set({text}),
   error: null,
   setError: (error) => set({error}),

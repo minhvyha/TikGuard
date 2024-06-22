@@ -1,30 +1,71 @@
-import React from 'react';
+import React from 'react'
+import ModalCard from '@/components/ModalCard';
 
 const Report = () => {
+
   return (
-    
-    <div className='bg-background-800 h-full rounded-[3px] p-6 flex flex-col justify-center items-center'>
-      <h1 className='text-2xl text-text-100 mb-4'>Report</h1>
-      <div className='grid grid-cols-2 gap-4' style={{ width: '500px', height: '400px' }}>
-        <div className='flex flex-col items-center justify-center w-full h-full border p-4 rounded-md'>
-          <span className='text-text-100'>Folder Name:</span>
-          <span className='text-text-150'>None</span>
-        </div>
-        <div className='flex flex-col items-center justify-center w-full h-full border p-4 rounded-md'>
-          <span className='text-text-100'>Size Before:</span>
-          <span className='text-text-150'>0 Bytes</span>
-        </div>
-        <div className='flex flex-col items-center justify-center w-full h-full border p-4 rounded-md'>
-          <span className='text-text-100'>Backup Folder:</span>
-          <span className='text-text-150'>None</span>
-        </div>
-        <div className='flex flex-col items-center justify-center w-full h-full border p-4 rounded-md'>
-          <span className='text-text-100'>Size After:</span>
-          <span className='text-text-150'>0 Bytes</span>
-        </div>
-      </div>
+    <div className='bg-background-800 h-full rounded-[3px]'>
+
+      <ModalCard title='test 1' data={{
+    "data": {
+        "content": "fuck you",
+        "language": "en",
+        "version": "sensei: 4.7.2; disambiguator: 16.0-QNTF-2017",
+        "categories": [
+            {
+                "namespace": "hate-speech_en_1.1",
+                "id": "1000",
+                "label": "Personal Insult",
+                "hierarchy": [
+                    "Personal Insult"
+                ],
+                "score": 120,
+                "frequency": 0,
+                "winner": true,
+                "positions": [
+                    {
+                        "start": 0,
+                        "end": 4
+                    },
+                    {
+                        "start": 5,
+                        "end": 8
+                    }
+                ]
+            }
+        ],
+        "extractions": [
+            {
+                "namespace": "hate-speech_en_1.1",
+                "template": "Hate_speech_detection",
+                "fields": [
+                    {
+                        "name": "cyberbullying",
+                        "value": "fuck you",
+                        "positions": [
+                            {
+                                "start": 0,
+                                "end": 4
+                            }
+                        ]
+                    },
+                    {
+                        "name": "target",
+                        "value": "individual",
+                        "positions": [
+                            {
+                                "start": 5,
+                                "end": 8
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}} />
     </div>
-  );
+  )
 }
 
 export default Report;
