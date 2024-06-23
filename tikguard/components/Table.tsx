@@ -24,6 +24,7 @@ const GridContainer = styled('div')`
 
 const Table = () => {
   const { theme } = useStore();
+  const currentMode = theme.palette.mode === 'dark' ? 'bg-background-700': 'bg-background-100';
 
   const columns: GridColDef[] = [
     {
@@ -31,9 +32,7 @@ const Table = () => {
       headerName: 'ID',
       width: 70,
       headerClassName:
-        theme.palette.mode === 'dark'
-          ? 'bg-background-700'
-          : 'bg-background-100',
+        currentMode,
 
     },
     {
@@ -41,26 +40,18 @@ const Table = () => {
       headerName: 'First name',
       width: 130,
       headerClassName:
-        theme.palette.mode === 'dark'
-          ? 'bg-background-700'
-          : 'bg-background-100',
+        currentMode,
       cellClassName:
-        theme.palette.mode === 'dark'
-          ? 'bg-background-700'
-          : 'bg-background-100',
+        currentMode,
     },
     {
       field: 'lastName',
       headerName: 'Last name',
       width: 130,
       headerClassName:
-        theme.palette.mode === 'dark'
-          ? 'bg-background-700'
-          : 'bg-background-100',
+        currentMode,
       cellClassName:
-        theme.palette.mode === 'dark'
-          ? 'bg-background-700'
-          : 'bg-background-100',
+        currentMode,
     },
     {
       field: 'age',
@@ -68,13 +59,9 @@ const Table = () => {
       type: 'number',
       width: 90,
       headerClassName:
-        theme.palette.mode === 'dark'
-          ? 'bg-background-700'
-          : 'bg-background-100',
+        currentMode,
       cellClassName:
-        theme.palette.mode === 'dark'
-          ? 'bg-background-700'
-          : 'bg-background-100',
+        currentMode,
     },
 
   ];

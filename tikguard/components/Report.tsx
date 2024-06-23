@@ -4,15 +4,8 @@ import { useStore } from '@/app/context/context';
 
 const Report = () => {
 
-    const { theme } = useStore();
-    const ReportStyles = {
-        backgroundColor: theme.palette.background.default,
-        color: theme.palette.text.primary,
-        borderBottom: `2px solid ${theme.palette.divider}`,
-    };
-
   return (
-    <div className='bg-background-800 h-full rounded-[3px]' style={ReportStyles}>
+    <div className='bg-background-800 h-full rounded-[3px] dark:text-white text-black dark:bg-black bg-white'>
 
       <ModalCard title='test 1' data={{
     "data": {
