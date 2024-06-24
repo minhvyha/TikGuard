@@ -41,8 +41,6 @@ const Table = () => {
       width: 130,
       headerClassName:
         currentMode,
-      cellClassName:
-        currentMode,
     },
     {
       field: 'lastName',
@@ -50,8 +48,7 @@ const Table = () => {
       width: 130,
       headerClassName:
         currentMode,
-      cellClassName:
-        currentMode,
+
     },
     {
       field: 'age',
@@ -60,8 +57,7 @@ const Table = () => {
       width: 90,
       headerClassName:
         currentMode,
-      cellClassName:
-        currentMode,
+
     },
 
   ];

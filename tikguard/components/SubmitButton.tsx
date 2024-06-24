@@ -1,9 +1,8 @@
 import React from 'react'
 import { useStore } from '@/app/context/context';
-import { Button } from '@mui/material';
-
+import Button from '@mui/material/Button';
 const SubmitButton = ({apiRoute} : {apiRoute: string}) => {
-  const { text } = useStore();
+  const { text, setData } = useStore();
 
   function analyse() {
     fetch(`http://localhost:3000/${apiRoute}/api`, {
@@ -17,16 +16,27 @@ const SubmitButton = ({apiRoute} : {apiRoute: string}) => {
         return response.json();
       })
       .then((data) => {
-        console.log(data);
+        setData(data);
       });
   }
   return (
-    <Button
-    variant="outlined"
-    onClick={() =>{analyse()}}
-  >
-    Analyse
-  </Button>
+  <Button
+  variant="contained"
+  color="primary"
+  style={{
+    position: 'absolute',
+    bottom: 10,
+    right: 10,
+    borderRadius: 30,
+    textTransform: 'none',
+  }}
+  onClick={() => {
+    // Handle analyze text button click
+    analyse();
+  }}
+>
+  Analyze Text
+</Button>
   )
 }
 

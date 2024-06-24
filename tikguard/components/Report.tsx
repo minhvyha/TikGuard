@@ -1,11 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import ModalCard from '@/components/ModalCard';
 import { useStore } from '@/app/context/context';
 
 const Report = () => {
-
+    const { data } = useStore();
+    let modalCards 
+    useEffect(() => {  
+        modalCards = data.map((card: { title: string; data: Object; }, index: React.Key | null | undefined) => {
+            return <ModalCard key={index} title={card.title} data={card.data} />
+        }
+    )
+        }
+    , [data])
   return (
-    <div className='bg-background-800 h-full rounded-[3px] dark:text-white text-black dark:bg-black bg-white'>
+    <div className=' h-full rounded-[3px] dark:text-white text-black dark:bg-black bg-white'>
 
       <ModalCard title='test 1' data={{
     "data": {

@@ -32,6 +32,8 @@ interface pageState{
   path: string | '',
   baseUrl: string,
   theme: Theme,
+  data: any,
+  setData: (data: any) => void, 
   toggleTheme: () => void,
   setPath: (path: string) => void,  
   setSeverity: (severity: string) => void,
@@ -47,10 +49,12 @@ export const useStore = create<pageState>((set) => ({
   error: null,
   setError: (error) => set({error}),
   severity: 'error',
+  setData: (data) => set({data}),
   setSeverity: (severity) => set({severity}),
   taskId: null,
   setTaskId: (taskId) => set({taskId}),
   path: '',
+  data: null,
   setPath: (path) => set({path}),
   theme: darkTheme,
 
@@ -72,7 +76,7 @@ export function ContextProviders({ children }: { children: ReactNode }) {
 
   return (
       <ThemeProvider theme={theme} >
-        <div className={theme.palette.mode === 'dark' ? 'dark' : ''}>
+        <div className={theme.palette.mode === 'dark' ? 'dark bg-black h-screen' : 'h-screen'}>
         {children}
         </div>
       </ThemeProvider>

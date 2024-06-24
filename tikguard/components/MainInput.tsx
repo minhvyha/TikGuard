@@ -1,10 +1,10 @@
 'use client'
 import React from 'react';
 import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
 import { useStore } from '@/app/context/context';
+import SubmitButton from './SubmitButton';
 
-const MainInput = () => {
+const MainInput = ({apiRoute}: {apiRoute: string}) => {
   const { text, setText, path } = useStore();
 
   const countWords = (str: string) => {
@@ -49,24 +49,7 @@ const MainInput = () => {
       }}>
         {countWords(text)} words
       </div>
-      <Button
-        variant="contained"
-        color="primary"
-        style={{
-          position: 'absolute',
-          bottom: 10,
-          right: 10,
-          borderRadius: 30,
-          textTransform: 'none',
-          pointerEvents: path ? 'none' : 'auto' // Disable the button if path is not empty
-        }}
-        onClick={() => {
-          // Handle analyze text button click
-          console.log('Analyze text:', text);
-        }}
-      >
-        Analyze Text
-      </Button>
+      <SubmitButton apiRoute={apiRoute} />
     </div>
   );
 };

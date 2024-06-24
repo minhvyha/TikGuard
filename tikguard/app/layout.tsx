@@ -25,12 +25,12 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
         />
       </head>
-        <body className="bg-background-700 text-text-100 inter">
+        <body className="text-text-100 inter">
       <ContextProviders>
 
         <AlertMessage />
           <Nav />
-          <div className='pt-20'>
+          <div className='pt-16 '>
 
           {children}
           </div>
