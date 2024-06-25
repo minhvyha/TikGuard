@@ -2,11 +2,26 @@ import React from 'react'
 import { useStore } from '@/app/context/context';
 import Button from '@mui/material/Button';
 const SubmitButton = ({apiRoute} : {apiRoute: string}) => {
-  const { text, setData,path } = useStore();
+  const { text, setData,path, setError, setSeverity, setText, setPath } = useStore();
 
-  function analyse() {
-    console.log(apiRoute)
-    if(text || path){
+  async function analyse() {
+    if (!text && !path) {
+      setError('Please enter text or url to analyze');
+      setSeverity('error');
+      return;
+    }
+    if(path){
+      let result = await fetch(`http://localhost:3000/transcribe/api`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ path: path }),
+      })  
+      let data = await result.json()
+      setText(data.text)
+      setPath('')
+    }
     fetch(`http://localhost:3000/${apiRoute}/api`, {
       method: 'POST',
       headers: {
@@ -18,10 +33,11 @@ const SubmitButton = ({apiRoute} : {apiRoute: string}) => {
         return response.json();
       })
       .then((data) => {
-        console.log(data);
         setData(data.data);
+        console.log(text)
+        console.log(data.data)
       });
-  }
+  
 }
   return (
   <Button

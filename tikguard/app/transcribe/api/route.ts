@@ -11,8 +11,10 @@ export async function POST(request: Request) {
   });
   const audioUrl = data.path;
   const config = {
-    audio_url: 'https://github.com/rafaelreis-hotmart/Audio-Sample-files/raw/master/sample.mp3',
+    audio_url: audioUrl,
     language_detection: true,
+
+
   };
 
   const transcript = await client.transcripts.transcribe(config);
