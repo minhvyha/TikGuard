@@ -62,7 +62,7 @@ const Report = ({ page }: { page: string }) => {
       console.log(remainingCards)
     }, []);
   return (
-    <div className=" h-full rounded-[3px] dark:text-white text-black dark:bg-black bg-white">
+    <div className=" h-full flex flex-row flex-wrap justify-center gap-4 rounded-[3px] dark:text-white text-black dark:bg-black bg-white">
       {modalCards}
       {remainingCards}
       {/* <ModalCard data={{

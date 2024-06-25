@@ -1,10 +1,10 @@
           // @ts-ignore
 
 import React from 'react'
-import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import Table from './Table';
+import { useStore } from '@/app/context/context';
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -27,14 +27,16 @@ const ModalCard = ({ data}: { data: {
   
   }]| null
 }}) => {
+  const {setError, setSeverity} = useStore();
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
-    console.log(3)
+    if(!data.positions) {
+      setError('No data available for this category');
+      setSeverity('warning')
+    };
     setOpen(true)};
   const handleClose = () => {
-    console.log(1)
     setOpen(false)
-    console.log(open)
   };
   return (
     <>
@@ -48,11 +50,11 @@ const ModalCard = ({ data}: { data: {
           <Table data={data.positions} />
         </Box>
       </Modal> :<></>}
-    <div onClick={handleOpen}  className='transition-all flex flex-col  w-full p-3 border-2 cursor-pointer border-background-500 dark:border-gray-500 border-solid text-xs rounded-sm'>
+    <div onClick={handleOpen}  className='transition-all w-[45%] flex flex-col  p-3 border-2 cursor-pointer border-background-500 dark:border-gray-500 border-solid text-xs rounded'>
         <div>
-          {data.label}
+          {data.label}:
         </div>
-        <div >
+        <div className='h-full flex items-center justify-center '>
           Frequencies: {data.positions ? (data as { positions: any[] }).positions.length : 0}
         </div>
 

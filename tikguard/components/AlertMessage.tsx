@@ -16,7 +16,7 @@ export default function AlertMessage() {
 
 
   const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
-    setError(null);
+    setError(null)
     if (reason === 'clickaway') {
       return;
     }
