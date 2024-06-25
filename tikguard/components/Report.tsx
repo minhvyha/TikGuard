@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import ModalCard from '@/components/ModalCard';
 import { useStore } from '@/app/context/context';
+import nanoid from 'nanoid';
 
 const Report = () => {
   const { data } = useStore();
 const [modalCards, setModalCards] = useState([] as any[]);
     useEffect(() => {
         if (data) {
-        const cards = data.map((card: any) => {
-            return <ModalCard data={card} />;
+        const cards = data.map((card: any, index: number) => { // Explicitly specify the type of 'index' as 'number'
+            return <ModalCard key={index} data={card} />;
         });
         setModalCards(cards);
         }
