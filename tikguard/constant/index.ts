@@ -1,3 +1,3 @@
-import { apiPage } from "./api";
+import { apiPage, defaultValue } from "./api";
 
-export { apiPage };
+export { apiPage, defaultValue };

@@ -14,18 +14,18 @@ const style = {
 };
 
 const ModalCard = ({ data}: { data: {
-  namespace: String,
-  id: String,
+  namespace: String | null,
+  id: String | null,
   label: String,
-  hierarchy: String[],
-  score: Number,
-  frequency: Number,
-  winner: Boolean,
-  positions:[ {
+  hierarchy: String[] | null,
+  score: Number | null,
+  frequency: Number | null,
+  winner: Boolean | null,
+  positions: [ {
     start: Number,
     end: Number
   
-  }]
+  }]| null
 }}) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
@@ -38,7 +38,7 @@ const ModalCard = ({ data}: { data: {
   };
   return (
     <>
-            <Modal
+            { data.positions? <Modal
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
@@ -47,13 +47,13 @@ const ModalCard = ({ data}: { data: {
         <Box sx={style}>
           <Table data={data.positions} />
         </Box>
-      </Modal>
+      </Modal> :<></>}
     <div onClick={handleOpen}  className='transition-all flex flex-col  w-full p-3 border-2 cursor-pointer border-background-500 dark:border-gray-500 border-solid text-xs rounded-sm'>
         <div>
           {data.label}
         </div>
         <div >
-          Frequencies: {(data as { positions: any[] }).positions.length}
+          Frequencies: {data.positions ? (data as { positions: any[] }).positions.length : 0}
         </div>
 
 

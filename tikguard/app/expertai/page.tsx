@@ -3,7 +3,6 @@ import React, { useEffect } from 'react';
 import TextInput from '@/components/TextInput';
 import MainInput from '@/components/MainInput';
 import Report from '@/components/Report';
-import SubmitButton from '@/components/SubmitButton';
 
 const page = () => {
 
@@ -59,7 +58,7 @@ const page = () => {
         </div>
       </div>
       <div className='flex-1'>
-        <Report />
+        <Report page='expertai' />
       </div>
     </div>
     </div>

@@ -69,7 +69,7 @@ const Table = ({data}: {data: [
   ];
 let rows = data.map((row, index) => {
   return {
-    id: index,
+    id: index + 1,
     start: row.start,
     end: row.end,
     word: text.substring(Number(row.end), Number(row.start)),

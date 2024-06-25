@@ -1,22 +1,70 @@
 import React, { useEffect, useState } from 'react';
 import ModalCard from '@/components/ModalCard';
 import { useStore } from '@/app/context/context';
-import nanoid from 'nanoid';
+import { defaultValue } from '@/constant';
 
-const Report = () => {
+const Report = ({ page }: { page: string }) => {
   const { data } = useStore();
-const [modalCards, setModalCards] = useState([] as any[]);
-    useEffect(() => {
-        if (data) {
-        const cards = data.map((card: any, index: number) => { // Explicitly specify the type of 'index' as 'number'
-            return <ModalCard key={index} data={card} />;
+  const [modalCards, setModalCards] = useState([] as any[]);
+  const [remainingCards, setRemainingCards] = useState([] as any[]);
+  useEffect(() => {
+    let remaining = defaultValue[page as keyof typeof defaultValue];
+    if (data !== null) {
+      const cards = data.map((info: any, index: number) => {
+        remaining = remaining.filter((x) => x !== info.label);
+
+        return <ModalCard key={index} data={info} />;
+      });
+      if (remaining.length > 0) {
+        const remainingCards = remaining.map((label: string, index: number) => {
+          return (
+            <ModalCard
+              key={index}
+              data={{
+                namespace: null,
+                id: null,
+                label: label,
+                hierarchy: null,
+                score: null,
+                frequency: null,
+                winner: null,
+                positions: null,
+              }}
+            />
+          );
         });
-        setModalCards(cards);
-        }
-    }, [data]);
+        setRemainingCards([...remainingCards]);
+      }
+      setModalCards(cards);
+    }
+  }, [data]);
+  useEffect(() => { 
+    let remaining = defaultValue[page as keyof typeof defaultValue];
+
+    const remainingCards = remaining.map((label: string, index: number) => {
+        return (
+          <ModalCard
+            key={index}
+            data={{
+              namespace: null,
+              id: null,
+              label: label,
+              hierarchy: null,
+              score: null,
+              frequency: null,
+              winner: null,
+              positions: null,
+            }}
+          />
+        );
+      });
+      setRemainingCards([...remainingCards]);
+      console.log(remainingCards)
+    }, []);
   return (
     <div className=" h-full rounded-[3px] dark:text-white text-black dark:bg-black bg-white">
       {modalCards}
+      {remainingCards}
       {/* <ModalCard data={{
      
         "namespace": "hate-speech_en_1.1",

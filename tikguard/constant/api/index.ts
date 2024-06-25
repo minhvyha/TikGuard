@@ -5,17 +5,6 @@ let apiPage = [
     path: 'expertai',
     description:
       'Advanced natural language API for understanding and analyzing text.',
-    default: [
-      'Personal Insult',
-      'Racism',
-      'Sexism',
-      'Ableism',
-      'Religious Hatred',
-      'Homophobia',
-      'Classism',
-      'Body Shaming',
-      'Threat and Violence',
-    ],
   },
   {
     name: 'Azure AI Content Safety',
@@ -40,4 +29,24 @@ let apiPage = [
   },
 ];
 
-export { apiPage };
+let defaultValue = {
+  expertai: [
+    'Personal Insult',
+    'Racism',
+    'Sexism',
+    'Ableism',
+    'Religious Hatred',
+    'Homophobia',
+    'Classism',
+    'Body Shaming',
+    'Threat and Violence',
+  ],
+  azure: [
+    'Personal Insult',
+    'Racism',
+    'Sexism',
+    'Threat and Violence',
+  ],
+}
+
+export { apiPage, defaultValue };
