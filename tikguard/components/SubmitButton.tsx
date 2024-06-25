@@ -10,31 +10,40 @@ const SubmitButton = ({apiRoute} : {apiRoute: string}) => {
       setSeverity('error');
       return;
     }
-    if(path){
-      let result = await fetch(`http://localhost:3000/transcribe/api`, {
+    try{
+
+      if(path){
+        let result = await fetch(`http://localhost:3000/transcribe/api`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ path: path }),
+        })  
+        let data = await result.json()
+        setText(data.text)
+        setPath('')
+      }
+      fetch(`http://localhost:3000/${apiRoute}/api`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ path: path }),
-      })  
-      let data = await result.json()
-      setText(data.text)
-      setPath('')
-    }
-    fetch(`http://localhost:3000/${apiRoute}/api`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ text: text }),
-    })
-      .then((response) => {
-        return response.json();
+        body: JSON.stringify({ text: text }),
       })
-      .then((data) => {
-        setData(data.data);
-      });
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          setData(data.data);
+        });
+    }
+    catch(err){
+      if(err){
+        setError(err.toString()); // Convert the error object to a string
+        setSeverity('error');
+      }
+    }
   
 }
   return (
