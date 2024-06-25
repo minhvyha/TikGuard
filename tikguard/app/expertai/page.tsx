@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect } from 'react';
+import React from 'react';
 import TextInput from '@/components/TextInput';
 import MainInput from '@/components/MainInput';
 import Report from '@/components/Report';
@@ -44,7 +44,6 @@ const page = () => {
     <div className='flex flex-col gap-2 py-5 dark:text-white text-black dark:bg-black bg-white'>
       <div className='flex flex-col justify-center items-center'>
         <h1 className='text-2xl'>ExpertAI</h1>
-        <button onClick={test}>test</button>
         <h2 className='text-text-150'>Advanced natural language API for understanding and analyzing text.</h2>
       </div>
     <div className="flex flex-row gap-4 p-6 ">

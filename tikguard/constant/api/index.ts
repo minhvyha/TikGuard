@@ -42,10 +42,10 @@ let defaultValue = {
     'Threat and Violence',
   ],
   azure: [
-    'Personal Insult',
-    'Racism',
-    'Sexism',
-    'Threat and Violence',
+    'Hate',
+    'SelfHarm',
+    'Sexual',
+    'Violence',
   ],
 }
 
