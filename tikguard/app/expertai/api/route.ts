@@ -11,5 +11,5 @@ export async function POST(request: Request) {
       language: Language.EN,
       detector: "hate-speech",
     });
-    return NextResponse.json({data : result.data});
+    return NextResponse.json({data : result.data?.categories});
   }

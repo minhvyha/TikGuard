@@ -22,8 +22,14 @@ const GridContainer = styled('div')`
 
 `;
 
-const Table = () => {
-  const { theme } = useStore();
+const Table = ({data}: {data: [
+  {
+    start: Number,
+    end: Number,
+  }
+] 
+}) => {
+  const { theme, text } = useStore();
   const currentMode = theme.palette.mode === 'dark' ? 'bg-background-700': 'bg-background-100';
 
   const columns: GridColDef[] = [
@@ -36,23 +42,23 @@ const Table = () => {
 
     },
     {
-      field: 'firstName',
-      headerName: 'First name',
+      field: 'start',
+      headerName: 'Start Index',
       width: 130,
       headerClassName:
         currentMode,
     },
     {
-      field: 'lastName',
-      headerName: 'Last name',
+      field: 'end',
+      headerName: 'End Index',
       width: 130,
       headerClassName:
         currentMode,
 
     },
     {
-      field: 'age',
-      headerName: 'Age',
+      field: 'word',
+      headerName: 'Words',
       type: 'number',
       width: 90,
       headerClassName:
@@ -61,22 +67,15 @@ const Table = () => {
     },
 
   ];
+let rows = data.map((row, index) => {
+  return {
+    id: index,
+    start: row.start,
+    end: row.end,
+    word: text.substring(Number(row.end), Number(row.start)),
+  };
+});
 
-  const rows = [
-    { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
-    { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
-    { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
-    { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },
-    { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
-    { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
-    { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
-    { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
-    { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
-    { id: 10, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
-
-    { id: 11, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
-
-  ];
 
   return (
     <GridContainer>

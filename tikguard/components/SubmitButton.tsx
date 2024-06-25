@@ -2,9 +2,11 @@ import React from 'react'
 import { useStore } from '@/app/context/context';
 import Button from '@mui/material/Button';
 const SubmitButton = ({apiRoute} : {apiRoute: string}) => {
-  const { text, setData } = useStore();
+  const { text, setData,path } = useStore();
 
   function analyse() {
+    console.log(apiRoute)
+    if(text || path){
     fetch(`http://localhost:3000/${apiRoute}/api`, {
       method: 'POST',
       headers: {
@@ -16,9 +18,11 @@ const SubmitButton = ({apiRoute} : {apiRoute: string}) => {
         return response.json();
       })
       .then((data) => {
-        setData(data);
+        console.log(data);
+        setData(data.data);
       });
   }
+}
   return (
   <Button
   variant="contained"
@@ -35,7 +39,7 @@ const SubmitButton = ({apiRoute} : {apiRoute: string}) => {
     analyse();
   }}
 >
-  Analyze Text
+  Analyze
 </Button>
   )
 }

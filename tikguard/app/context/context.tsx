@@ -54,7 +54,29 @@ export const useStore = create<pageState>((set) => ({
   taskId: null,
   setTaskId: (taskId) => set({taskId}),
   path: '',
-  data: null,
+  data: [
+    {
+      "namespace": "hate-speech_en_1.1",
+      "id": "1000",
+      "label": "Personal Insult",
+      "hierarchy": [
+          "Personal Insult"
+      ],
+      "score": 120,
+      "frequency": 0,
+      "winner": true,
+      "positions": [
+          {
+              "start": 0,
+              "end": 4
+          },
+          {
+              "start": 5,
+              "end": 8
+          }
+      ]
+    }
+  ],
   setPath: (path) => set({path}),
   theme: darkTheme,
 

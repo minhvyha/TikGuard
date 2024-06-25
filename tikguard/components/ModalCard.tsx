@@ -1,3 +1,5 @@
+          // @ts-ignore
+
 import React from 'react'
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
@@ -11,7 +13,20 @@ const style = {
   transform: 'translate(-50%, -50%)',
 };
 
-const ModalCard = ({title, data}: {title: string, data: Object}) => {
+const ModalCard = ({ data}: { data: {
+  namespace: String,
+  id: String,
+  label: String,
+  hierarchy: String[],
+  score: Number,
+  frequency: Number,
+  winner: Boolean,
+  positions:[ {
+    start: Number,
+    end: Number
+  
+  }]
+}}) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => {
     console.log(3)
@@ -22,26 +37,28 @@ const ModalCard = ({title, data}: {title: string, data: Object}) => {
     console.log(open)
   };
   return (
-    <div className='transition-all flex flex-col  w-full p-3 border-2 cursor-pointer border-background-500 dark:border-gray-500 border-solid text-xs rounded-sm'>
-        <div>
-
-        {title}
-        </div>
-        <div onClick={handleOpen}>
-          Frequencies: {(data as { data: { categories: any[] } })['data']['categories'].length}
-        </div>
-        <Modal
+    <>
+            <Modal
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Table />
+          <Table data={data.positions} />
         </Box>
       </Modal>
+    <div onClick={handleOpen}  className='transition-all flex flex-col  w-full p-3 border-2 cursor-pointer border-background-500 dark:border-gray-500 border-solid text-xs rounded-sm'>
+        <div>
+          {data.label}
+        </div>
+        <div >
+          Frequencies: {(data as { positions: any[] }).positions.length}
+        </div>
+
 
     </div>
+    </>
 
   )
 }
