@@ -27,13 +27,11 @@ export async function POST(request) {
     if (isUnexpected(result)) {
         throw result;
     }
-  //   for (let i = 0; i < result.body.categoriesAnalysis.length; i++) {
-  //   const imageCategoriesAnalysisOutput = result.body.categoriesAnalysis[i];
-  //   console.log(
-  //     imageCategoriesAnalysisOutput.category,
-  //     " severity: ",
-  //     imageCategoriesAnalysisOutput.severity
-  //   );
-  // }
-    return NextResponse.json(result.body);
+    let returnData = [];  
+    for (let i = 0; i < result.body.categoriesAnalysis.length; i++) {
+    const imageCategoriesAnalysisOutput = result.body.categoriesAnalysis[i];
+    returnData.push({label: imageCategoriesAnalysisOutput.category, severity: imageCategoriesAnalysisOutput.severity});
+  }
+
+    return NextResponse.json({data : returnData});
 }

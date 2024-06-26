@@ -12,8 +12,17 @@ const Report = ({ page }: { page: string }) => {
     if (data !== null) {
       const cards = data.map((info: any, index: number) => {
         remaining = remaining.filter((x) => x !== info.label);
-
-        return <ModalCard key={index} data={info} />;
+        console.log(remaining)
+        return (
+          <ModalCard
+            key={index}
+            data={{
+              label: info.label,
+              severity: info.severity || null,
+              positions: info.positions || null,
+            }}
+          />
+        );
       });
       if (remaining.length > 0) {
         const remainingCards = remaining.map((label: string, index: number) => {
@@ -21,13 +30,8 @@ const Report = ({ page }: { page: string }) => {
             <ModalCard
               key={index}
               data={{
-                namespace: null,
-                id: null,
                 label: label,
-                hierarchy: null,
-                score: null,
-                frequency: null,
-                winner: null,
+                severity: null,
                 positions: null,
               }}
             />
@@ -35,47 +39,36 @@ const Report = ({ page }: { page: string }) => {
         });
         setRemainingCards([...remainingCards]);
       }
+      else{
+        setRemainingCards([])
+      }
       setModalCards(cards);
     }
   }, [data]);
-  useEffect(() => { 
+  useEffect(() => {
     let remaining = defaultValue[page as keyof typeof defaultValue];
 
     const remainingCards = remaining.map((label: string, index: number) => {
-        return (
-          <ModalCard
-            key={index}
-            data={{
-              namespace: null,
-              id: null,
-              label: label,
-              hierarchy: null,
-              score: null,
-              frequency: null,
-              winner: null,
-              positions: null,
-            }}
-          />
-        );
-      });
-      setRemainingCards([...remainingCards]);
-      console.log(remainingCards)
-    }, []);
+      return (
+        <ModalCard
+          key={index}
+          data={{
+            label: label,
+            severity: null,
+            positions: null,
+          }}
+        />
+      );
+    });
+    setRemainingCards([...remainingCards]);
+  }, []);
   return (
     <div className=" h-full flex flex-row flex-wrap justify-center gap-4 rounded-[3px] dark:text-white text-black dark:bg-black bg-white">
       {modalCards}
       {remainingCards}
       {/* <ModalCard data={{
-     
-        "namespace": "hate-speech_en_1.1",
-        "id": "1000",
         "label": "Personal Insult",
-        "hierarchy": [
-            "Personal Insult"
-        ],
-        "score": 120,
-        "frequency": 0,
-        "winner": true,
+        "severity": 0,
         "positions": [
             {
                 "start": 0,

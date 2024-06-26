@@ -35,7 +35,11 @@ const SubmitButton = ({apiRoute} : {apiRoute: string}) => {
           return response.json();
         })
         .then((data) => {
-          setData(data.data);
+          if(data){
+
+            console.log(data.data)
+            setData(data.data);
+          }
         });
     }
     catch(err){

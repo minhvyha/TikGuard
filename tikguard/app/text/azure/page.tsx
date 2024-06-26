@@ -13,7 +13,7 @@ const page = () => {
   <div className="flex flex-row gap-4 p-6 ">
     <div className='flex-1 flex flex-col gap-4'>
       <div className='flex'>
-        <MainInput apiRoute='azure' />
+        <MainInput apiRoute='text/azure' />
       </div>
       <div className='flex flex-row gap-2'>
       <TextInput />

@@ -14,13 +14,8 @@ const style = {
 };
 
 const ModalCard = ({ data}: { data: {
-  namespace: String | null,
-  id: String | null,
   label: String,
-  hierarchy: String[] | null,
-  score: Number | null,
-  frequency: Number | null,
-  winner: Boolean | null,
+  severity: Number | null,
   positions: [ {
     start: Number,
     end: Number
@@ -40,29 +35,45 @@ const ModalCard = ({ data}: { data: {
   };
   return (
     <>
-            { data.positions? <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
+      {data.positions ? (
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box sx={style}>
+            <Table data={data.positions} />
+          </Box>
+        </Modal>
+      ) : (
+        <></>
+      )}
+      <div
+        onClick={handleOpen}
+        className="transition-all w-[45%] flex flex-col  p-3 border-2 cursor-pointer border-background-500 dark:border-gray-500 border-solid text-xs rounded"
       >
-        <Box sx={style}>
-          <Table data={data.positions} />
-        </Box>
-      </Modal> :<></>}
-    <div onClick={handleOpen}  className='transition-all w-[45%] flex flex-col  p-3 border-2 cursor-pointer border-background-500 dark:border-gray-500 border-solid text-xs rounded'>
         <div>
           {data.label}:
         </div>
-        <div className='h-full flex items-center justify-center '>
-          Frequencies: {data.positions ? (data as { positions: any[] }).positions.length : 0}
+        <div className="h-full flex items-center justify-center ">
+          {data.positions ? (
+            <>
+              Frequencies: {(data as { positions: any[] }).positions.length}
+            </>
+          ) : data.severity ? (
+            <>
+              Severity: {data.severity.toString()}
+            </>
+          ) : (
+            <>
+              Severity: Not Available
+            </>
+          )}
         </div>
-
-
-    </div>
+      </div>
     </>
-
-  )
+  );
 }
 
 export default ModalCard
