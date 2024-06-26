@@ -1,43 +1,10 @@
-const ContentSafetyClient = require("@azure-rest/ai-content-safety").default,
-  { isUnexpected } = require("@azure-rest/ai-content-safety");
-const { AzureKeyCredential } = require("@azure/core-auth");
-const fs = require("fs");
-const path = require("path");
-
-// Load the .env file if it exists
-
+const OpenAI = require('openai');
+const openai = new OpenAI({ apiKey: 'sk-proj-25GVEUI633OhAGpRL5u2T3BlbkFJG2G59pxGuwJ1zRH7LSf9'});
 
 async function main() {
-    // get endpoint and key from environment variables
-    const endpoint = process.env["CONTENT_SAFETY_ENDPOINT"];
-    const key = process.env["CONTENT_SAFETY_KEY"];
-    
-    const credential = new AzureKeyCredential(key);
-    const client = ContentSafetyClient(endpoint, credential);
-    
-    // replace with your own sample image file path 
-    const image_path = path.resolve(__dirname, "./resources/image.jpg");
-    
-    const imageBuffer = fs.readFileSync(image_path);
-    const base64Image = imageBuffer.toString("base64");
-    const analyzeImageOption = { image: { content: base64Image } };
-    const analyzeImageParameters = { body: analyzeImageOption };
-    
-    const result = await client.path("/image:analyze").post(analyzeImageParameters);
-    
-    if (isUnexpected(result)) {
-        throw result;
-    }
-    for (let i = 0; i < result.body.categoriesAnalysis.length; i++) {
-    const imageCategoriesAnalysisOutput = result.body.categoriesAnalysis[i];
-    console.log(
-      imageCategoriesAnalysisOutput.category,
-      " severity: ",
-      imageCategoriesAnalysisOutput.severity
-    );
-  }
+  const moderation = await openai.moderations.create({ input: "Sample text goes here." });
+
+  console.log(completion.choices[0]);
 }
 
-main().catch((err) => {
-    console.error("The sample encountered an error:", err);
-});
+main();

@@ -15,7 +15,7 @@ const style = {
 
 const ModalCard = ({ data}: { data: {
   label: String,
-  severity: Number | null,
+  severity: Number | String | null,
   positions: [ {
     start: Number,
     end: Number

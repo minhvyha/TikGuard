@@ -32,6 +32,7 @@ const SubmitButton = ({apiRoute} : {apiRoute: string}) => {
         body: JSON.stringify({ text: text }),
       })
         .then((response) => {
+          console.log(response)
           return response.json();
         })
         .then((data) => {
