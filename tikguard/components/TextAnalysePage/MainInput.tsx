@@ -1,10 +1,10 @@
-'use client'
+'use client';
 import React from 'react';
 import TextField from '@mui/material/TextField';
 import { useStore } from '@/app/context/context';
 import SubmitButton from './SubmitButton';
 
-const MainInput = ({apiRoute}: {apiRoute: string}) => {
+const MainInput = ({ apiRoute }: { apiRoute: string }) => {
   const { text, setText, path } = useStore();
 
   const countWords = (str: string) => {
@@ -26,7 +26,7 @@ const MainInput = ({apiRoute}: {apiRoute: string}) => {
         variant="outlined"
         multiline
         fullWidth
-        style={{ 
+        style={{
           flex: '1',
           boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2)',
           borderRadius: 10,
@@ -39,14 +39,16 @@ const MainInput = ({apiRoute}: {apiRoute: string}) => {
           },
         }}
       />
-      <div style={{
-        position: 'absolute',
-        bottom: 10, // Adjust this value to position the word count inside the TextField
-        left: 10,
-        fontSize: '12px',
-        color: 'gray',
-        pointerEvents: 'none', // Prevent the word count from interfering with input
-      }}>
+      <div
+        style={{
+          position: 'absolute',
+          bottom: 10, // Adjust this value to position the word count inside the TextField
+          left: 10,
+          fontSize: '12px',
+          color: 'gray',
+          pointerEvents: 'none', // Prevent the word count from interfering with input
+        }}
+      >
         {countWords(text)} words
       </div>
       <SubmitButton apiRoute={apiRoute} />

@@ -30,7 +30,7 @@ export default function RootLayout({
 
         <AlertMessage />
           <Nav />
-          <div className='pt-16 '>
+          <div className='pt-16 dark:bg-black'>
 
           {children}
           </div>

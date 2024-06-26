@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import ModalCard from '@/components/ModalCard';
 import { useStore } from '@/app/context/context';
 import { defaultValue } from '@/constant';
+import ModalCard from './ModalCard';
 
 const Report = ({ page }: { page: string }) => {
   const { data } = useStore();

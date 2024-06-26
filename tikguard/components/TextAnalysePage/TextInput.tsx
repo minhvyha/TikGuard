@@ -1,7 +1,6 @@
 import React from 'react';
 import TextField from '@mui/material/TextField';
-import { useStore } from '../app/context/context';
-
+import { useStore } from '@/app/context/context';
 const TextInput = () => {
   const { path, setPath, text } = useStore();
 
