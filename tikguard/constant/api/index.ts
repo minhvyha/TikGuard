@@ -2,20 +2,20 @@ let apiPage = [
   {
     name: 'expert.ai',
     url: 'https://developer.expert.ai',
-    path: 'expertai',
+    path: 'text/expertai',
     description:
       'Advanced natural language API for understanding and analyzing text.',
   },
   {
     name: 'Azure AI Content Safety',
     url: 'https://azure.microsoft.com/products/ai-services/ai-content-safety',
-    path: 'azure',
+    path: 'text/azure',
     description: 'Safeguard user and AI-generated text and image content',
   },
   {
     name: 'HateHoundAPI',
     url: 'https://hate-hound-api.vercel.app/',
-    path: 'hatehoundapi',
+    path: 'text/hatehoundapi',
     description:
       'AI-powered API for detecting toxic comments swiftly and accurately.',
   },
@@ -23,7 +23,7 @@ let apiPage = [
   {
     name: 'Fuk.ai',
     url: 'https://fuk.ai',
-    path: 'fukai',
+    path: 'text/fukai',
     description:
       'Free AI-powered hate speech and profanity detection tool for content moderation.',
   },
