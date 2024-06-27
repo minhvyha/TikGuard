@@ -13,7 +13,7 @@ const SubmitButton = ({apiRoute} : {apiRoute: string}) => {
     try{
 
       if(path){
-        let result = await fetch(`http://localhost:3000/transcribe/api`, {
+        let result = await fetch(`/transcribe/api`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -24,7 +24,7 @@ const SubmitButton = ({apiRoute} : {apiRoute: string}) => {
         setText(data.text)
         setPath('')
       }
-      fetch(`http://localhost:3000/${apiRoute}/api`, {
+      fetch(`/${apiRoute}/api`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
