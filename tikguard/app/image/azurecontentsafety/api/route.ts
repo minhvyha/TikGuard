@@ -1,41 +1,39 @@
+import { NextResponse } from 'next/server';
 const ContentSafetyClient = require("@azure-rest/ai-content-safety").default,
   { isUnexpected } = require("@azure-rest/ai-content-safety");
 const { AzureKeyCredential } = require("@azure/core-auth");
-const fs = require("fs");
-const path = require("path");
-import { NextResponse } from "next/server";
-// Load the .env file if it exists
 
 export async function POST(request: Request) {
-    // get endpoint and key from environment variables
-    const endpoint = process.env["CONTENT_SAFETY_ENDPOINT"];
-    const key = process.env["CONTENT_SAFETY_KEY"];
-    
-    const credential = new AzureKeyCredential(key);
-    const client = ContentSafetyClient(endpoint, credential);
-    
-    // replace with your own sample image file path 
-    const image_path = path.resolve(__dirname, "./resources/image.jpg");
-    
-    const imageBuffer = fs.readFileSync(image_path);
-    const base64Image = imageBuffer.toString("base64");
-    const analyzeImageOption = { image: { content: base64Image } };
-    const analyzeImageParameters = { body: analyzeImageOption };
-    
-    const result = await client.path("/image:analyze").post(analyzeImageParameters);
-    
-    if (isUnexpected(result)) {
-        throw result;
-    }
-    for (let i = 0; i < result.body.categoriesAnalysis.length; i++) {
-    const imageCategoriesAnalysisOutput = result.body.categoriesAnalysis[i];
-    console.log(
-      imageCategoriesAnalysisOutput.category,
-      " severity: ",
-      imageCategoriesAnalysisOutput.severity
-    );
+  // Assuming the request is a ReadableStream
+  const formData = await request.formData();
+  
+  const endpoint = process.env.CONTENT_SAFETY_ENDPOINT;
+  const key = process.env.CONTENT_SAFETY_KEY;
+  
+  const credential = new AzureKeyCredential(key);
+  const client = ContentSafetyClient(endpoint, credential);
+
+  // Extracting the file from FormData
+  const file = formData.get('file') as Blob;
+
+  if (!file) {
+    return NextResponse.json({ message: "No file uploaded" }, { status: 400 });
   }
-}
-export async function GET() {
-  return NextResponse.json({ message: "This is a GET request" });
+
+  // Reading the file content
+  const fileContent = await file.arrayBuffer();
+  const buffer = Buffer.from(fileContent);
+  const base64Image = buffer.toString('base64'); // Assuming the file is a text file for simplicity
+
+  const analyzeImageOption = { image: { content: base64Image } };
+  const analyzeImageParameters = { body: analyzeImageOption };
+  const result = await client.path("/image:analyze").post(analyzeImageParameters);
+    
+  if (isUnexpected(result)) {
+      throw result;
+  }
+
+
+
+  return NextResponse.json({ message: "File content read successfully", result: result.body });
 }

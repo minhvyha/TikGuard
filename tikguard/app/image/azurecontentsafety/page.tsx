@@ -2,16 +2,34 @@
 import React from 'react'
 
 const page = () => {
-  async function test() {
-    const res = await fetch('/image/azurecontentsafety/api', {
-      method: 'GET'
-    })
-    const data = await res.json()
-    console.log(data)
-  }
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData = new FormData();
+    formData.append('file', event.currentTarget.file.files[0]);
+
+    try {
+      const response = await fetch('/image/azurecontentsafety/api', {
+        method: 'POST',
+        body: formData,
+      });
+      const data = await response.json();
+      console.log(data);
+      if (response.ok) {
+        console.log('File uploaded successfully');
+      } else {
+        console.error('File upload failed');
+      }
+    } catch (error) {
+      console.error('Error uploading file:', error);
+    }
+  };
+
   return (
     <div>
-      <button onClick={test}>test</button>
+      <form onSubmit={handleSubmit}>
+        <input type="file" name="file" />
+        <button type="submit">Upload</button>
+      </form>
     </div>
   )
 }
