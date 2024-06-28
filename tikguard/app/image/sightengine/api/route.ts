@@ -1,39 +1,57 @@
 import { NextResponse } from 'next/server';
-const ContentSafetyClient = require("@azure-rest/ai-content-safety").default,
-  { isUnexpected } = require("@azure-rest/ai-content-safety");
-const { AzureKeyCredential } = require("@azure/core-auth");
+import fs from 'fs';
+import { NextRequest } from 'next/server';
+import { Readable, Duplex } from 'stream';
+const axios = require('axios');
+
+export async function GET(request: NextRequest) {
+  try {
+    let url = request.nextUrl.searchParams.get('url') ?? '';
+
+    const result = await fetch(
+      'https://api.sightengine.com/1.0/check.json?' +
+        new URLSearchParams({
+          url: url,
+          models:
+            'nudity-2.1,weapon,alcohol,recreational_drug,medical,offensive,text-content,gore-2.0,qr-content,tobacco,violence,self-harm,money,gambling',
+          api_user: '92303675',
+          api_secret: 'Vf3ZZrMqeJBScK2XoBPk8YZ35JubduBK',
+        }),
+      {
+        method: 'GET',
+      }
+    );
+    const data = await result.json();
+
+    return NextResponse.json(data);
+  } catch (error) {
+    console.error('Error uploading file:', error);
+    return NextResponse.json({ error });
+  }
+}
 
 export async function POST(request: Request) {
-  // Assuming the request is a ReadableStream
   const formData = await request.formData();
-  console.log(formData.get('file'))
-  const endpoint = process.env.CONTENT_SAFETY_ENDPOINT;
-  const key = process.env.CONTENT_SAFETY_KEY;
-  
-  const credential = new AzureKeyCredential(key);
-  const client = ContentSafetyClient(endpoint, credential);
-
-  // Extracting the file from FormData
   const file = formData.get('file') as Blob;
+  let data = new FormData();
+  data.append('media', file);
+  data.append(
+    'models',
+    'nudity-2.1,weapon,alcohol,recreational_drug,medical,offensive,text-content,gore-2.0,qr-content,tobacco,violence,self-harm,money,gambling'
+  );
+  data.append('api_user', '92303675');
+  data.append('api_secret', 'Vf3ZZrMqeJBScK2XoBPk8YZ35JubduBK');
 
-  if (!file) {
-    return NextResponse.json({ message: "No file uploaded" }, { status: 400 });
-  }
+  const response = await axios({
+    method: 'post',
+    url: 'https://api.sightengine.com/1.0/check.json',
+    data: data,
+    headers: {
+      'Content-Type': 'multipart/form-data',
+      models:
+        'nudity-2.1,weapon,alcohol,recreational_drug,medical,offensive,text-content,gore-2.0,qr-content,tobacco,violence,self-harm,money,gambling',
+    },
+  });
 
-  // Reading the file content
-  const fileContent = await file.arrayBuffer();
-  const buffer = Buffer.from(fileContent);
-  const base64Image = buffer.toString('base64'); // Assuming the file is a text file for simplicity
-
-  const analyzeImageOption = { image: { content: base64Image } };
-  const analyzeImageParameters = { body: analyzeImageOption };
-  const result = await client.path("/image:analyze").post(analyzeImageParameters);
-    
-  if (isUnexpected(result)) {
-      throw result;
-  }
-
-
-
-  return NextResponse.json({ message: "File content read successfully", result: result.body });
+  return NextResponse.json(response.data);
 }
