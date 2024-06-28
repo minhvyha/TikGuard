@@ -1,7 +1,6 @@
 
 import { AssemblyAI } from 'assemblyai';
 import { NextResponse } from 'next/server';
-import {NLClient} from "@expertai/nlapi"
 
 export async function POST(request: Request) {
   const data = await request.json();

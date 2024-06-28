@@ -6,7 +6,7 @@ const { AzureKeyCredential } = require("@azure/core-auth");
 export async function POST(request: Request) {
   // Assuming the request is a ReadableStream
   const formData = await request.formData();
-  
+  console.log(formData.get('file'))
   const endpoint = process.env.CONTENT_SAFETY_ENDPOINT;
   const key = process.env.CONTENT_SAFETY_KEY;
   

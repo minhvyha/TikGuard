@@ -13,7 +13,7 @@ const SubmitButton = ({apiRoute} : {apiRoute: string}) => {
     try{
 
       if(path){
-        let result = await fetch(`/transcribe/api`, {
+        let result = await fetch(`/transcribe/assemblyai/api`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
