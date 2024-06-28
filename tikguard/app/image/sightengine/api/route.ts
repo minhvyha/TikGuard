@@ -1,7 +1,4 @@
-import { NextResponse } from 'next/server';
-import fs from 'fs';
-import { NextRequest } from 'next/server';
-import { Readable, Duplex } from 'stream';
+import { NextRequest, NextResponse } from 'next/server';
 const axios = require('axios');
 
 export async function GET(request: NextRequest) {

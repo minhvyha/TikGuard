@@ -8,7 +8,7 @@ const page = () => {
     formData.append('file', event.currentTarget.file.files[0]);
 
     try {
-      const response = await fetch('/image/sightengine/api', {
+      const response = await fetch('/image/azurecontentmoderator/api', {
         method: 'POST',
         body: formData,
       });

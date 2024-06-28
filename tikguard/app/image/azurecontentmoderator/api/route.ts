@@ -1,37 +1,33 @@
-const ContentSafetyClient = require("@azure-rest/ai-content-safety").default,
-  { isUnexpected } = require("@azure-rest/ai-content-safety");
-const { AzureKeyCredential } = require("@azure/core-auth");
 
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 // Load the .env file if it exists
 
 
-export async function POST(request: Request) {
-    // get endpoint and key from environment variables
-    const data = await request.json();
-    const text = data.text;
-    const endpoint = process.env.CONTENT_SAFETY_ENDPOINT;
-    const key = process.env.CONTENT_SAFETY_KEY;
-    
-    const credential = new AzureKeyCredential(key);
-    const client = ContentSafetyClient(endpoint, credential);
-    
-    // replace with your own sample image file path 
-    // const image_path = path.resolve(__dirname, "./resources/image.jpg");
+export async function GET(request: NextRequest) {
+  try {
+    let url = request.nextUrl.searchParams.get('url') ?? '';
 
-    const analyzeTextOption = { text: text };
-    const analyzeTextParameters = { body: analyzeTextOption };
-    
-    const result = await client.path("/text:analyze").post(analyzeTextParameters);
-    
-    if (isUnexpected(result)) {
-        throw result;
-    }
-    let returnData = [];  
-    for (let i = 0; i < result.body.categoriesAnalysis.length; i++) {
-    const imageCategoriesAnalysisOutput = result.body.categoriesAnalysis[i];
-    returnData.push({label: imageCategoriesAnalysisOutput.category, severity: imageCategoriesAnalysisOutput.severity});
+    const headers = new Headers({
+      'Content-Type': 'application/json',
+      'Ocp-Apim-Subscription-Key': process.env.AZURE_CONTENT_MODERATOR_KEY ?? '',
+    });
+
+    const result = await fetch(
+      'https://api.sightengine.com/1.0/check.json',
+      {
+        method: 'POST',
+        headers: headers,
+        body: JSON.stringify({
+          url: url,
+          DataRepresentation: "URL",
+        }),
+      }
+    );
+    const data = await result.json();
+
+    return NextResponse.json(data);
+  } catch (error) {
+    console.error('Error uploading file:', error);
+    return NextResponse.json({ error });
   }
-
-    return NextResponse.json({data : returnData});
 }
