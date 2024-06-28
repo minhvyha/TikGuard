@@ -33,6 +33,7 @@ interface pageState{
   baseUrl: string,
   theme: Theme,
   data: any,
+  loading: boolean
   setData: (data: any) => void, 
   toggleTheme: () => void,
   setPath: (path: string) => void,  
@@ -45,18 +46,20 @@ interface pageState{
 export const useStore = create<pageState>((set) => ({
   text: '',
   baseUrl: process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://tikguard.vercel.app/',
-  setText: (text) => set({text}),
   error: null,
-  setError: (error) => set({error}),
   severity: 'error',
+  taskId: null,
+  path: '',
+  theme: darkTheme,
+
+  data: null,
+  loading: false,
+  setText: (text) => set({text}),
+  setError: (error) => set({error}),
   setData: (data) => set({data}),
   setSeverity: (severity) => set({severity}),
-  taskId: null,
   setTaskId: (taskId) => set({taskId}),
-  path: '',
-  data: null,
   setPath: (path) => set({path}),
-  theme: darkTheme,
 
   toggleTheme: () => {
     set((state) => {

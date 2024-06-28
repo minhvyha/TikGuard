@@ -11,25 +11,27 @@ const DemoCard = ({
   path,
   description,
   url,
+  category
 }: {
   title: string;
   path: string;
   description: string;
   url: string;
+  category: string;
 }) => {
   return (
-    <Card sx={{ bgcolor: 'background.default' }} variant="outlined">
+    <Card sx={{ bgcolor: 'background.default', maxWidth: '400px', padding: '4px' }} variant="outlined">
       <CardContent>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          <Link href={url} target="_blank">
+          <Link href={url} target="_blank" style={{ display: 'inline-block', maxWidth: '100%', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
             {url}
           </Link>
         </Typography>
         <Typography variant="h5" component="div">
           {title}
         </Typography>
-        <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          adjective
+        <Typography sx={{ mb: 1.5, mt:1 }} color="text.secondary">
+          {category}
         </Typography>
         <Typography variant="body2">{description}</Typography>
       </CardContent>

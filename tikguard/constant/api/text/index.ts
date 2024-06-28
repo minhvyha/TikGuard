@@ -17,19 +17,22 @@ let header = {
   },
 }
 
-let apiPage = [
+let textApiPage = [
   {
     name: 'expert.ai',
     url: 'https://developer.expert.ai',
     path: 'text/expertai',
     description:
       'Advanced natural language API for understanding and analyzing text.',
+      category: 'Text Analysis'
   },
   {
     name: 'Azure AI Content Safety',
     url: 'https://azure.microsoft.com/products/ai-services/ai-content-safety',
     path: 'text/azure',
     description: 'Safeguard user and AI-generated text and image content',
+    category: 'Text Analysis'
+  
   },
   {
     name: 'HateHoundAPI',
@@ -37,14 +40,18 @@ let apiPage = [
     path: 'text/hatehoundapi',
     description:
       'AI-powered API for detecting toxic comments swiftly and accurately.',
-  },
+      category: 'Text Analysis'
+  
+    },
 
   {
-    name: 'Fuk.ai',
-    url: 'https://fuk.ai',
-    path: 'text/fukai',
+    name: 'Sightengine',
+    url: 'https://sightengine.com/',
+    category: 'Text Analysis',
+  
+    path: 'text/sightengine',
     description:
-      'Free AI-powered hate speech and profanity detection tool for content moderation.',
+      'APIs to automatically assess, filter and moderate text.',
   },
 ];
 
@@ -76,4 +83,4 @@ let defaultValue = {
   ]
 }
 
-export { apiPage, defaultValue, header };
+export { textApiPage, defaultValue, header };
