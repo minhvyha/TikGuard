@@ -1,4 +1,4 @@
-import { textApiPage, defaultValue, header } from "./api/text";
+import { textApiPage, defaultValue, header, languageCode } from "./api/text";
 import {imageApiPage} from "./api/image";
 import { aiApiPage } from "./api/ai";
-export { textApiPage, defaultValue, header, imageApiPage, aiApiPage };
+export { textApiPage, defaultValue, header, imageApiPage, aiApiPage, languageCode };

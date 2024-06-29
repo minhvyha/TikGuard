@@ -30,6 +30,8 @@ export async function GET(request: NextRequest) {
 export async function POST(request: Request) {
   const formData = await request.formData();
   const file = formData.get('file') as Blob;
+  console.log(file)
+
   let data = new FormData();
   data.append('media', file);
   data.append(

@@ -1,16 +1,13 @@
 'use client'
 import React from 'react'
-
 const page = () => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData();
     formData.append('file', event.currentTarget.file.files[0]);
-
     try {
-      const response = await fetch('/image/azurecontentmoderator/api', {
-        method: 'POST',
-        body: formData,
+      const response = await fetch('/video/sightengine/api', {
+        method: 'GET',
       });
       const data = await response.json();
       console.log(data);

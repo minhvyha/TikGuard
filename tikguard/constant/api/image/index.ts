@@ -17,4 +17,6 @@ let imageApiPage = [
   },
 ];
 
-export {imageApiPage}
+
+
+export {imageApiPage,}

@@ -1,22 +1,8 @@
-
-import { AssemblyAI } from 'assemblyai';
 import { NextResponse } from 'next/server';
 
-export async function POST(request: Request) {
-  const data = await request.json();
+var sightengine = require('sightengine')('92303675', 'Vf3ZZrMqeJBScK2XoBPk8YZ35JubduBK');
 
-  const client = new AssemblyAI({
-    apiKey: '8faf7a4d58eb4638a69d44a367f1f8dd',
-  });
-  const audioUrl = data.path;
-  const config = {
-    audio_url: audioUrl,
-    language_detection: true,
-
-
-  };
-
-  const transcript = await client.transcripts.transcribe(config);
-  console.log(transcript.text);
-  return NextResponse.json({ text: transcript.text });
+export async function GET() {
+  const result = await sightengine.check(['nudity-2.1,weapon,alcohol,recreational_drug,medical,offensive,text-content,gore-2.0,qr-content,tobacco,violence,self-harm,money,gambling']).video_sync('http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4')
+  return NextResponse.json({data : result});
 }
