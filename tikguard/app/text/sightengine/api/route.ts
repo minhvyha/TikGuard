@@ -19,5 +19,5 @@ const response = await axios({
   data: data,
   headers: data.getHeaders()
 })
-
+  return NextResponse.json(response.data);
 }
