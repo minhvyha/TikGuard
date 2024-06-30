@@ -1,12 +1,13 @@
 // // this example uses axios and form-data
 const axios = require('axios');
 const FormData = require('form-data');
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 
-export async function GET(request: NextRequest) {
+export async function POST(request: Request) {
+  let {text, language} = await request.json()
   let data = new FormData();
-  data.append('text', 'You are ṣẗ_ȕ_ṕıď');
-  data.append('lang', 'en');
+  data.append('text', text);
+  data.append('lang', language);
   data.append(
     'categories',
     'profanity,personal,link,drug,weapon,spam,content-trade,money-transaction,extremism,violence,self-harm,medical'
@@ -16,7 +17,6 @@ export async function GET(request: NextRequest) {
   data.append('api_secret', '{api_secret}');
 
   try {
-    let url = request.nextUrl.searchParams.get('url') ?? '';
 
     const response = await axios({
       url: 'https://api.sightengine.com/1.0/text/check.json',

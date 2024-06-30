@@ -80,6 +80,9 @@ let defaultValue = {
     "threat",
     "insult",
     "identity_hate"
+  ],
+  sightenginen: [
+    
   ]
 }
 
