@@ -11,6 +11,7 @@ const Report = ({ page }: { page: string }) => {
     let remaining = defaultValue[page as keyof typeof defaultValue];
     if (data !== null) {
       const cards = data.map((info: any, index: number) => {
+        console.log(info.label)
         remaining = remaining.filter((x) => x !== info.label);
         console.log(remaining)
         return (

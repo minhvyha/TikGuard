@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import TextAnalysePage from '@/components/TextAnalysePage';
 import Header from '@/components/Header';
 import BasicSelect from '@/components/BasicSelect';
@@ -9,7 +9,12 @@ import Link from 'next/link';
 import { useStore } from '@/app/context/context';
 
 const page = () => {
-  const {language, setLanguage} = useStore();
+  const {language, setLanguage, setData} = useStore();
+  useEffect(() => {
+    return () => {
+      setData(null);
+    };
+  }, []);
   let languageList = languageCode.map((item) => {
     return {
       value: item.code,
