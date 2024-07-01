@@ -2,7 +2,7 @@ import React from 'react'
 import { useStore } from '@/app/context/context';
 import Button from '@mui/material/Button';
 const SubmitButton = ({apiRoute} : {apiRoute: string}) => {
-  const { text, setData,path, setError, setSeverity, setText, setPath, language } = useStore();
+  const { text, setData,path, setError, setSeverity, setText, setPath, language, setLoading  } = useStore();
 
   async function analyse() {
     if (!text && !path) {
@@ -11,7 +11,8 @@ const SubmitButton = ({apiRoute} : {apiRoute: string}) => {
       return;
     }
     try{
-
+      setLoading(true)
+      console.log(true)
       if(path){
         let result = await fetch(`/transcribe/assemblyai/api`, {
           method: 'POST',
@@ -37,9 +38,14 @@ const SubmitButton = ({apiRoute} : {apiRoute: string}) => {
         })
         .then((data) => {
           if(data){
-
+            if(data.error){
+              setError(data.error)
+              setSeverity('error')
+            }
             console.log(data.data)
             setData(data.data);
+      setLoading(false)
+
           }
         });
     }
@@ -47,8 +53,11 @@ const SubmitButton = ({apiRoute} : {apiRoute: string}) => {
       if(err){
         setError(err.toString()); // Convert the error object to a string
         setSeverity('error');
+      setLoading(false)
+        
       }
     }
+
   
 }
   return (

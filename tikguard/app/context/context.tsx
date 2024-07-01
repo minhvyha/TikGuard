@@ -42,6 +42,7 @@ interface pageState{
   setSeverity: (severity: string) => void,
   setTaskId: (taskId: string) => void,
   setText: (text:string) => void,
+  setLoading: (loading: boolean) => void,
   setError: (error: string | null) => void,
 }
 
@@ -63,7 +64,7 @@ export const useStore = create<pageState>((set) => ({
   setSeverity: (severity) => set({severity}),
   setTaskId: (taskId) => set({taskId}),
   setPath: (path) => set({path}),
-
+  setLoading: (loading) => set({loading}),
   toggleTheme: () => {
     set((state) => {
       return {

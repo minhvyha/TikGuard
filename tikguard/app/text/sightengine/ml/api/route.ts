@@ -25,7 +25,6 @@ export async function POST(request: Request) {
     const res = await response.data.moderation_classes;
 
     delete res.available
-    console.log(res)
     let returnData = []
     for (const [key, value] of Object.entries(res)) {
       returnData.push({label: key, severity: value})
