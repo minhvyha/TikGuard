@@ -7,8 +7,8 @@ const page = () => {
 
   return (
     <div className="flex flex-col gap-2 py-5 dark:text-white text-black dark:bg-black bg-white">
-      <Header page="hatehoundapi" />
-      <TextAnalysePage page="hatehoundapi" />
+      <Header page="sightengine" />
+      <TextAnalysePage page="mlbasedsightengine" />
     </div>
   );
 };

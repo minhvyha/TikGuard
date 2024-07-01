@@ -11,9 +11,9 @@ let header = {
     title: 'HateHoundAPI',
     description: 'AI-powered API for detecting toxic comments swiftly and accurately.',
   },
-  fukai :{
-    title: 'Fuk.ai',
-    description: 'Free AI-powered hate speech and profanity detection tool for content moderation.',
+  sightengine :{
+    title: 'Sightengine',
+    description: 'APIs to automatically assess, filter and moderate text.',
   },
 }
 
@@ -81,9 +81,28 @@ let defaultValue = {
     "insult",
     "identity_hate"
   ],
-  sightenginen: [
-    
-  ]
+  rulebasedsightengine: [
+    "profanity",
+    "personal",
+    "link",
+    "medical",
+    "weapon",
+    "extremism",
+    "drug",
+    "self-harm",
+    "violence",
+    "content-trade",
+    "money-transaction",
+    "spam",
+  ],
+  mlbasedsightengine: [
+    "sexual",
+    "discriminatory",
+    "insulting",
+    "violent",
+    "toxic",
+    "self-harm"
+  ],
 }
 
 let languageCode = [
