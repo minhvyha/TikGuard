@@ -8,13 +8,10 @@ export async function POST(request: Request) {
   let data = new FormData();
   data.append('text', text);
   data.append('lang', language);
-  data.append(
-    'categories',
-    'profanity,personal,link,drug,weapon,spam,content-trade,money-transaction,extremism,violence,self-harm,medical'
-  );
-  data.append('mode', 'rules');
-  data.append('api_user', '{api_user}');
-  data.append('api_secret', '{api_secret}');
+  data.append('models', 'general,self-harm');
+  data.append('mode', 'ml');
+  data.append('api_user', process.env.SIGHTENGINE_USER);
+  data.append('api_secret', process.env.SIGHTENGINE_SECRET);
 
   try {
 
@@ -25,9 +22,15 @@ export async function POST(request: Request) {
       headers: data.getHeaders(),
     });
 
-    const res = await response.json();
+    const res = await response.data.moderation_classes;
 
-    return NextResponse.json(res);
+    delete res.available
+    console.log(res)
+    let returnData = []
+    for (const [key, value] of Object.entries(res)) {
+      returnData.push({label: key, severity: value})
+    }
+    return NextResponse.json({data: returnData });
   } catch (error) {
     console.error('Error uploading file:', error);
     return NextResponse.json({ error });

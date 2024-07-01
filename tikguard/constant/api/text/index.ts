@@ -49,7 +49,7 @@ let textApiPage = [
     url: 'https://sightengine.com/',
     category: 'Text Analysis',
   
-    path: 'text/sightengine',
+    path: 'text/sightengine/ml',
     description:
       'APIs to automatically assess, filter and moderate text.',
   },
@@ -81,7 +81,7 @@ let defaultValue = {
     "insult",
     "identity_hate"
   ],
-  rulebasedsightengine: [
+  'sightengine/rule': [
     "profanity",
     "personal",
     "link",
@@ -95,7 +95,7 @@ let defaultValue = {
     "money-transaction",
     "spam",
   ],
-  mlbasedsightengine: [
+  'sightengine/ml': [
     "sexual",
     "discriminatory",
     "insulting",

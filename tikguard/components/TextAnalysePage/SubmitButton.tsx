@@ -2,7 +2,7 @@ import React from 'react'
 import { useStore } from '@/app/context/context';
 import Button from '@mui/material/Button';
 const SubmitButton = ({apiRoute} : {apiRoute: string}) => {
-  const { text, setData,path, setError, setSeverity, setText, setPath } = useStore();
+  const { text, setData,path, setError, setSeverity, setText, setPath, language } = useStore();
 
   async function analyse() {
     if (!text && !path) {
@@ -29,7 +29,7 @@ const SubmitButton = ({apiRoute} : {apiRoute: string}) => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ text: text }),
+        body: JSON.stringify({ text: text, language: language}),
       })
         .then((response) => {
           console.log(response)

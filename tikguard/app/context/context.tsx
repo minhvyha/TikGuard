@@ -33,7 +33,9 @@ interface pageState{
   baseUrl: string,
   theme: Theme,
   data: any,
-  loading: boolean
+  loading: boolean,
+  language: string,
+  setLanguage: (language: string) => void,
   setData: (data: any) => void, 
   toggleTheme: () => void,
   setPath: (path: string) => void,  
@@ -51,9 +53,10 @@ export const useStore = create<pageState>((set) => ({
   taskId: null,
   path: '',
   theme: darkTheme,
-
+  language: 'en',
   data: null,
   loading: false,
+  setLanguage: (language) => set({language}),
   setText: (text) => set({text}),
   setError: (error) => set({error}),
   setData: (data) => set({data}),
