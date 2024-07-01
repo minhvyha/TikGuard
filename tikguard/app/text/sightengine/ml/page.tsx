@@ -9,9 +9,9 @@ import Link from 'next/link';
 import { useStore } from '@/app/context/context';
 import { usePathname } from 'next/navigation';
 const page = () => {
-  const pathname = usePathname()
+  const pathname = usePathname();
 
-  const {language, setLanguage, setData} = useStore();
+  const { language, setLanguage, setData } = useStore();
   useEffect(() => {
     return () => {
       setData(null);
@@ -28,10 +28,12 @@ const page = () => {
       <Header page="sightengine" />
       <div className="flex flex-row p-6 pb-0">
         <div className="flex-1 pr-4 flex flex-row gap-3">
-          <Link className='flex' href="/text/sightengine/ml">
-            <Button variant="outlined" color="success">ML Model</Button>
+          <Link className="flex" href="/text/sightengine/ml">
+            <Button variant="outlined" color="success">
+              ML Model
+            </Button>
           </Link>
-          <Link className='flex' href="/text/sightengine/rule">
+          <Link className="flex" href="/text/sightengine/rule">
             <Button variant="outlined">Rule-based Model</Button>
           </Link>
 
