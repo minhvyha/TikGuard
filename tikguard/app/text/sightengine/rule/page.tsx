@@ -7,20 +7,24 @@ import { languageCode } from '@/constant';
 import Button from '@mui/material/Button';
 import Link from 'next/link';
 import { useStore } from '@/app/context/context';
+import { usePathname } from 'next/navigation'
 
 const page = () => {
+  const pathname = usePathname()
+
   const {language, setLanguage, setData} = useStore();
   useEffect(() => {
     return () => {
       setData(null);
     };
-  }, []);
+  }, [pathname]);
   let languageList = languageCode.map((item) => {
     return {
       value: item.code,
       label: item.name + ' ' + `(${item.native})`,
     };
   });
+  
   return (
     <div className="flex flex-col gap-2 py-5 dark:text-white text-black dark:bg-black bg-white">
       <Header page="sightengine" />

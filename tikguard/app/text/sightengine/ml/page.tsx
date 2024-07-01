@@ -7,14 +7,16 @@ import { languageCode } from '@/constant';
 import Button from '@mui/material/Button';
 import Link from 'next/link';
 import { useStore } from '@/app/context/context';
-
+import { usePathname } from 'next/navigation';
 const page = () => {
+  const pathname = usePathname()
+
   const {language, setLanguage, setData} = useStore();
   useEffect(() => {
     return () => {
       setData(null);
     };
-  }, []);
+  }, [pathname]);
   let languageList = languageCode.map((item) => {
     return {
       value: item.code,
