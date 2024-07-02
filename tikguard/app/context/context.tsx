@@ -62,7 +62,7 @@ export const useStore = create<pageState>((set) => ({
   language: 'en',
   data: null,
   loading: false,
-  imgUrl: '',
+  imgUrl: 'https://picsum.photos/200/300',
   setImgUrl: (imgUrl) => set({imgUrl}),
   setAnalysedText: (analysedText) => set({analysedText}),
   setLanguage: (language) => set({language}),

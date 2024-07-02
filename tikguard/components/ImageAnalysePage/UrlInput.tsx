@@ -7,17 +7,17 @@ import ImageSubmitButton from './ImageSubmitButton';
 
 
  const UrlInput = ({apiRoute} : {apiRoute:string}) => {
-  const { path, setPath, text } = useStore();
+  const { imgUrl, setImgUrl, text } = useStore();
 
 
   return (<div style={{ position: 'relative', width: '100%',  }}>
   
   <TextField
     // id="outlined-basic"
-    value={path}
+    value={imgUrl}
     disabled={text !== ''}
     onChange={(e) => {
-      setPath(e.target.value);
+      setImgUrl(e.target.value);
     }}
     fullWidth
     placeholder="https://storage.googleapis.com/aai-web-samples/5_common_sports_injuries.mp3"

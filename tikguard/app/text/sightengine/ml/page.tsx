@@ -1,7 +1,7 @@
 'use client';
 import React, { useEffect } from 'react';
 import TextAnalysePage from '@/components/TextAnalysePage';
-import Header from '@/components/Header';
+import Header from '@/components/TextAnalysePage/Header';
 import BasicSelect from '@/components/BasicSelect';
 import { languageCode } from '@/constant';
 import Button from '@mui/material/Button';
