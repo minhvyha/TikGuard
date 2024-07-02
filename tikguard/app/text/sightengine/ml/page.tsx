@@ -1,23 +1,14 @@
 'use client';
-import React, { useEffect } from 'react';
+import React from 'react';
 import TextAnalysePage from '@/components/TextAnalysePage';
 import Header from '@/components/TextAnalysePage/Header';
-import BasicSelect from '@/components/BasicSelect';
-import { languageCode } from '@/constant';
 import Button from '@mui/material/Button';
 import Link from 'next/link';
-import { useStore } from '@/app/context/context';
+import Language from '@/components/TextAnalysePage/Language';
 const page = () => {
 
 
-  const { language, setLanguage } = useStore();
-
-  let languageList = languageCode.map((item) => {
-    return {
-      value: item.code,
-      label: item.name + ' ' + `(${item.native})`,
-    };
-  });
+ 
   return (
     <div className="flex flex-col gap-2 py-5 dark:text-white text-black dark:bg-black bg-white">
       <Header page="sightengine" />
@@ -32,11 +23,8 @@ const page = () => {
             <Button variant="outlined">Rule-based Model</Button>
           </Link>
 
-          <BasicSelect
-            list={languageList}
-            value={language}
-            callback={setLanguage}
-          />
+          <Language />
+
         </div>
         <div className="flex-1"></div>
       </div>
