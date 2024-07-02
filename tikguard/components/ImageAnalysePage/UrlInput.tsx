@@ -1,23 +1,12 @@
+'use client'
 import React from 'react';
 import TextField from '@mui/material/TextField';
 import { useStore } from '@/app/context/context';
-import Button from '@mui/material/Button';
-import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-import { styled } from '@mui/material/styles';
 
-const VisuallyHiddenInput = styled('input')({
-  clip: 'rect(0 0 0 0)',
-  clipPath: 'inset(50%)',
-  height: 1,
-  overflow: 'hidden',
-  position: 'absolute',
-  bottom: 0,
-  left: 0,
-  whiteSpace: 'nowrap',
-  width: 1,
-});
+import ImageSubmitButton from './ImageSubmitButton';
 
- const UrlInput = () => {
+
+ const UrlInput = ({apiRoute} : {apiRoute:string}) => {
   const { path, setPath, text } = useStore();
 
 
@@ -37,23 +26,7 @@ const VisuallyHiddenInput = styled('input')({
     style={{flex: '1'}}
   />
   
-  <Button
-      component="label"
-      role={undefined}
-      variant="contained"
-      tabIndex={-1}
-      style={{
-        position: 'absolute',
-        bottom: 10,
-        right: 10,
-        borderRadius: 30,
-        textTransform: 'none',
-      }} disabled={path !== ''}
-      startIcon={<CloudUploadIcon />}
-    >
-      Upload file
-      <VisuallyHiddenInput type="file" />
-    </Button>
+  <ImageSubmitButton apiRoute={apiRoute} />
   </div>
   );
 };
