@@ -67,21 +67,6 @@ const Report = ({ page }: { page: string }) => {
     <div className=" h-full flex flex-row flex-wrap justify-center gap-4 rounded-[3px] dark:text-white text-black dark:bg-black bg-white">
       {modalCards}
       {remainingCards}
-      {/* <ModalCard data={{
-        "label": "Personal Insult",
-        "severity": 0,
-        "positions": [
-            {
-                "start": 0,
-                "end": 4
-            },
-            {
-                "start": 5,
-                "end": 8
-            }
-        ]
-    
-}} /> */}
     </div>
   );
 };
