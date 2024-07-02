@@ -25,7 +25,8 @@ const darkTheme = createTheme({
 
 
 interface pageState{
-  text:string | ''
+  text:string | '',
+  analysedText : string | '',
   error: string | null,
   taskId: string | null,
   severity: string | null,
@@ -37,6 +38,7 @@ interface pageState{
   language: string,
   setLanguage: (language: string) => void,
   setData: (data: any) => void, 
+  setAnalysedText: (analysedText: string) => void,
   toggleTheme: () => void,
   setPath: (path: string) => void,  
   setSeverity: (severity: string) => void,
@@ -48,6 +50,7 @@ interface pageState{
 
 export const useStore = create<pageState>((set) => ({
   text: '',
+  analysedText: '',
   baseUrl: process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://tikguard.vercel.app/',
   error: null,
   severity: 'error',
@@ -57,6 +60,7 @@ export const useStore = create<pageState>((set) => ({
   language: 'en',
   data: null,
   loading: false,
+  setAnalysedText: (analysedText) => set({analysedText}),
   setLanguage: (language) => set({language}),
   setText: (text) => set({text}),
   setError: (error) => set({error}),

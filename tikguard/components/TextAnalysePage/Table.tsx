@@ -30,7 +30,7 @@ const Table = ({
     }
   ];
 }) => {
-  const { theme, text } = useStore();
+  const { theme, analysedText } = useStore();
   const currentMode =
     theme.palette.mode === 'dark' ? 'bg-background-700' : 'bg-background-100';
 
@@ -80,7 +80,7 @@ const Table = ({
       end: row.end,
       type: row.type || '',
       intensity: row.intensity || '',
-      word: text.substring(Number(row.end), Number(row.start)),
+      word: analysedText.substring(Number(row.end), Number(row.start)),
     };
   });
 
