@@ -17,6 +17,15 @@ let imageApiPage = [
   },
 ];
 
+let imageHeader = {
+  azure :{
+    title: 'Azure Content Moderator',
+    description: 'Azure Content Moderator is an AI service for detecting and flagging offensive or undesirable content',
+  },
+  sightengine: {
+    title: 'Sightengine',
+    description: 'APIs to automatically assess, filter and moderate images,',
+  },
+}
 
-
-export {imageApiPage,}
+export {imageApiPage, imageHeader}

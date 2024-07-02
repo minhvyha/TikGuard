@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import TextAnalysePage from '@/components/TextAnalysePage';
-import Header from '@/components/Header';
+import Header from '@/components/TextAnalysePage/Header';
 
 const page = () => {
   return (
