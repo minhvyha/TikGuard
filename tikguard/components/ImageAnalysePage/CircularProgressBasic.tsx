@@ -7,9 +7,9 @@ export default function CircularProgressBasic({value} : {value: number}) {
   let color = 'red'
 
   return( 
-  <div className="w-1/2">
+  <div className="">
 
-    <SimpleGauge value={value} isTotal={true} barWidth={10} labelFontWeight="light" indicatorVisible={false} />
+    <SimpleGauge value={value} isTotal={true} barColor="red" barWidth={10} labelFontWeight="light" indicatorVisible={false} />
   </div>
   )
 }

@@ -9,7 +9,7 @@ const ImageDisplay = () => {
   return (
     <Stack spacing={1} className='pb-3'>
       {/* For variant="text", adjust the height via font-size */}
-      <Skeleton variant="rounded" height={380} />
+      <Skeleton variant="rounded" height={300} />
       <Skeleton variant="text" sx={{ fontSize: '1rem' }} />
 
       {/* For other variants, adjust the size with `width` and `height` */}
