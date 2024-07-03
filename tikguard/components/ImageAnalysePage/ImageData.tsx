@@ -13,10 +13,19 @@ const ImageData = ({
 }) => {
   return (
     <div className="flex-1 p-3 border-2 cursor-pointer border-background-500 dark:border-gray-500 border-solid text-xs rounded">
-      <div>{title}</div>
+      <div>{title}:</div>
       <div className="flex flex-col h-full justify-evenly items-center">
         <CircularProgressBasic value={value} classification={classification} />
-        <div className='text-lg'>{subtitle}</div>
+        {
+          value !== 0? 
+          <div className='text-lg'>
+            {classification ? '' : 'No '}
+            {subtitle} Detected
+            </div>:
+          <div>
+            No Data Available
+          </div>
+        }
       </div>
     </div>
   );
