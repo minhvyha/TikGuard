@@ -1,5 +1,8 @@
 'use client'
 import React from 'react'
+import SightengineImageAnalysePage from '@/components/SightengineImageAnalysePage';
+import ImageHeader from '@/components/ImageAnalysePage/ImageHeader';
+
 const page = () => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -22,11 +25,10 @@ const page = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <input type="file" name="file" />
-        <button type="submit">Upload</button>
-      </form>
+    <div className='py-6'>
+      <ImageHeader page="sightengine" />
+
+      <SightengineImageAnalysePage  />
     </div>
   )
 }

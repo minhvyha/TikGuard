@@ -7,7 +7,6 @@ import { useStore } from '@/app/context/context'
 
 const AzureImageAnalysePage = () => {
   const {data} = useStore()
-  console.log(data)
   return (
     <div className="flex p-6 flex-row gap-4 mt-4">
     <div className="flex-1 flex flex-col max-w-[49%]">
