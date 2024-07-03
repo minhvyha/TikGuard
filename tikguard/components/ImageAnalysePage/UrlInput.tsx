@@ -19,7 +19,7 @@ import ImageSubmitButton from './ImageSubmitButton';
       setImgUrl(e.target.value);
     }}
     fullWidth
-    placeholder="https://storage.googleapis.com/aai-web-samples/5_common_sports_injuries.mp3"
+    placeholder="https://example.com/img.mp3"
     label="Video/audio urls to analyse"
     variant="outlined"
     style={{flex: '1',}}

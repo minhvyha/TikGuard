@@ -4,38 +4,24 @@ import Button from '@mui/material/Button';
 const ImageSubmitButton = ({ apiRoute }: { apiRoute: string }) => {
   const {
     text,
+    imgUrl,
     setData,
-    path,
     setError,
     setSeverity,
-    setText,
-    setPath,
     language,
     setAnalysedText,
     setLoading,
   } = useStore();
 
   async function analyse() {
-    if (!text && !path) {
-      setError('Please enter text or url to analyze');
+    if (!imgUrl) {
+      setError('Please enter an image url to analyze');
       setSeverity('error');
       return;
     }
     try {
       setLoading(true);
       console.log(true);
-      if (path) {
-        let result = await fetch(`/transcribe/assemblyai/api`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ path: path }),
-        });
-        let data = await result.json();
-        setText(data.text);
-        setPath('');
-      }
       fetch(`/${apiRoute}/api`, {
         method: 'POST',
         headers: {
