@@ -13,8 +13,8 @@ const page = () => {
           <UrlInput apiRoute="/image/azurecontentmoderator/api" />
         </div>
         <div className="flex-1 gap-4 flex flex-row">
-          <ImageData title='Racism Classification' subtitle='Racism' />
-          <ImageData title='Sexual Content Classification' subtitle='Sexual Content' />
+          <ImageData title='Racism Classification' subtitle='Racism' value={60} classification={false} />
+          <ImageData title='Sexual Content Classification' subtitle='Sexual Content' value={70} classification={true} />
 
         </div>
       </div>
