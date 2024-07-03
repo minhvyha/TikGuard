@@ -11,8 +11,8 @@ export async function GET(request: NextRequest) {
           url: url,
           models:
             'nudity-2.1,weapon,alcohol,recreational_drug,medical,offensive,text-content,gore-2.0,qr-content,tobacco,violence,self-harm,money,gambling',
-          api_user: '92303675',
-          api_secret: 'Vf3ZZrMqeJBScK2XoBPk8YZ35JubduBK',
+          api_user: process.env.SIGHTENGINE_USER ?? '',
+          api_secret: process.env.SIGHTENGINE_SECRET ?? '',
         }),
       {
         method: 'GET',
@@ -38,8 +38,8 @@ export async function POST(request: Request) {
     'models',
     'nudity-2.1,weapon,alcohol,recreational_drug,medical,offensive,text-content,gore-2.0,qr-content,tobacco,violence,self-harm,money,gambling'
   );
-  data.append('api_user', '92303675');
-  data.append('api_secret', 'Vf3ZZrMqeJBScK2XoBPk8YZ35JubduBK');
+  data.append('api_user', process.env.SIGHTENGINE_USER ?? '');
+  data.append('api_secret', process.env.SIGHTENGINE_SECRET ?? '');
 
   const response = await axios({
     method: 'post',
