@@ -7,7 +7,7 @@ import ImageSubmitButton from './ImageSubmitButton';
 
 
  const UrlInput = ({apiRoute} : {apiRoute:string}) => {
-  const { imgUrl, setImgUrl, text } = useStore();
+  const { imgUrl, setImgUrl } = useStore();
 
 
   return (<div style={{ position: 'relative', width: '100%',  }}>
@@ -15,7 +15,6 @@ import ImageSubmitButton from './ImageSubmitButton';
   <TextField
     // id="outlined-basic"
     value={imgUrl}
-    disabled={text !== ''}
     onChange={(e) => {
       setImgUrl(e.target.value);
     }}
