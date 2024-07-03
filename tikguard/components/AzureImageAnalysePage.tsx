@@ -5,7 +5,7 @@ import UrlInput from './ImageAnalysePage/UrlInput'
 import ImageData from './ImageAnalysePage/ImageData'
 import { useStore } from '@/app/context/context'
 
-const ImageAnalysePage = () => {
+const AzureImageAnalysePage = () => {
   const {data} = useStore()
   console.log(data)
   return (
@@ -23,4 +23,4 @@ const ImageAnalysePage = () => {
   )
 }
 
-export default ImageAnalysePage
+export default AzureImageAnalysePage
