@@ -3,7 +3,6 @@ import { useStore } from '@/app/context/context';
 import Button from '@mui/material/Button';
 const ImageSubmitButton = ({ apiRoute }: { apiRoute: string }) => {
   const {
-    text,
     imgUrl,
     setData,
     setError,
@@ -14,20 +13,18 @@ const ImageSubmitButton = ({ apiRoute }: { apiRoute: string }) => {
   } = useStore();
 
   async function analyse() {
+    
     if (!imgUrl) {
       setError('Please enter an image url to analyze');
       setSeverity('error');
       return;
     }
+    setLoading(true);
     try {
-      setLoading(true);
-      console.log(true);
-      fetch(`/${apiRoute}/api`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ text: text, language: language }),
+      fetch(`/${apiRoute}/api?` +new URLSearchParams({
+        url: imgUrl,
+      }), {
+        method: 'GET',
       })
         .then((response) => {
           console.log(response);
@@ -40,7 +37,6 @@ const ImageSubmitButton = ({ apiRoute }: { apiRoute: string }) => {
               setSeverity('error');
             }
             console.log(data.data);
-            setAnalysedText(text);
             setData(data.data);
             setLoading(false);
           }
