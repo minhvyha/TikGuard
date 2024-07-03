@@ -1,11 +1,11 @@
 
 import { NextRequest, NextResponse } from "next/server";
 // Load the .env file if it exists
-export const dynamic = 'force-dynamic'
 
 
 export async function GET(request: NextRequest) {
   try {
+    console.log(123)
     let url = request.nextUrl.searchParams.get('url') ?? '';
 
     const headers = new Headers({
@@ -14,12 +14,12 @@ export async function GET(request: NextRequest) {
     });
 
     const result = await fetch(
-      'https://api.sightengine.com/1.0/check.json',
+      'https://minh1.cognitiveservices.azure.com/contentmoderator/moderate/v1.0/ProcessImage/Evaluate',
       {
         method: 'POST',
         headers: headers,
         body: JSON.stringify({
-          url: url,
+          Value: url,
           DataRepresentation: "URL",
         }),
       }

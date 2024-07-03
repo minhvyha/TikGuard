@@ -10,7 +10,7 @@ const page = () => {
       <div className="flex p-6 flex-row gap-4 mt-4">
         <div className="flex-1">
           <ImageDisplay />
-          <UrlInput apiRoute="/image/azurecontentmoderator/api" />
+          <UrlInput apiRoute="/image/azurecontentmoderator" />
         </div>
         <div className="flex-1 gap-4 flex flex-row">
           <ImageData title='Racism Classification' subtitle='Racism' value={60} classification={false} />
