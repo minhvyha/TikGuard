@@ -7,12 +7,11 @@ const ImageSubmitButton = ({ apiRoute }: { apiRoute: string }) => {
     setData,
     setError,
     setSeverity,
-    language,
-    setAnalysedText,
     setLoading,
   } = useStore();
 
   async function analyse() {
+    
     
     if (!imgUrl) {
       setError('Please enter an image url to analyze');
@@ -27,9 +26,15 @@ const ImageSubmitButton = ({ apiRoute }: { apiRoute: string }) => {
       // const response = await fetch(`/${apiRoute}/api`, {
       //   method: 'GET',
       // })
-      console.log(response)
       const data = await response.json();
       console.log(data)
+      setData({
+        isRacism: data.IsImageRacyClassified,
+        racism: percentageFormatter(data.RacyClassificationScore * 100),
+        isSexual: data.IsImageAdultClassified,
+        sexual:percentageFormatter(data.AdultClassificationScore * 100)
+      })
+      setLoading(false)
     } catch (err) {
       if (err) {
         setError(err.toString()); // Convert the error object to a string
@@ -37,7 +42,14 @@ const ImageSubmitButton = ({ apiRoute }: { apiRoute: string }) => {
         setLoading(false);
       }
     }
+    function percentageFormatter(num: number) {
+      return new Intl.NumberFormat('default', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }).format(num);
+    }
   }
+  
   return (
     <Button
       variant="contained"

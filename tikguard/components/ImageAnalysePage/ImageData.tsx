@@ -12,12 +12,12 @@ const ImageData = ({
   classification: boolean;
 }) => {
   return (
-    <div className="flex-1 p-3 border-2 cursor-pointer border-background-500 dark:border-gray-500 border-solid text-xs rounded">
+    <div className="flex-1 p-3 border-2 border-background-500 dark:border-gray-500 border-solid text-xs rounded">
       <div>{title}:</div>
       <div className="flex flex-col h-full justify-evenly items-center">
         <CircularProgressBasic value={value} classification={classification} />
         {
-          value !== 0? 
+          value !== -1? 
           <div className='text-lg'>
             {classification ? '' : 'No '}
             {subtitle} Detected
