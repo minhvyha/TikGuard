@@ -18,10 +18,11 @@ const VisuallyHiddenInput = styled('input')({
 });
 
 const TextInput = () => {
-  const { path, setPath, text, setError, setSeverity } = useStore();
+  const { path, setPath, text, setText, setError, setSeverity, setLoading } = useStore();
 
   const handleSubmitFile = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const formData = new FormData();
+    setLoading(true);
     if (event.target.files && event.target.files.length > 0) {
       formData.append('file', event.target.files[0]);
     }
@@ -34,12 +35,20 @@ const TextInput = () => {
       const data = await response.json();
       console.log(data);
       if (response.ok) {
-        console.log('File uploaded successfully');
-      } else {
-        console.error('File upload failed');
+        setText(data.result.result);
+        setError('File uploaded successfully');
+        setSeverity('success');
+      setLoading(false);
+    } else {
+        setError('File upload failed');
+        setSeverity('error')
+      setLoading(false);
+
       }
     } catch (error) {
-      console.error('Error uploading file:', error);
+      setError('Error uploading file: ' + error);
+      setSeverity('error');
+      setLoading(false);
     }
   };
   return (
@@ -81,12 +90,18 @@ const TextInput = () => {
           onChange={(e) => {
             if (e.target.files && e.target.files.length > 0) {
               const file = e.target.files[0];
-              if (file && file.size > 5 * 1024 * 1024) {
+                if (file && file.size > 5 * 1024 * 1024) {
                 setError('File size exceeds 5MB limit');
-                setSeverity('error')
+                setSeverity('error');
                 e.target.value = '';
-                return
-              }
+                return;
+                }
+                if (e.target.files && e.target.files.length > 1) {
+                setError('Please select only one file');
+                setSeverity('error');
+                e.target.value = '';
+                return;
+                }
               handleSubmitFile(e)
             }
           }}
