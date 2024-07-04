@@ -9,7 +9,6 @@ import SightengineFileUpload from './SightengineFileUpload';
  const UrlInput = ({apiRoute, apiRouteFile} : {apiRoute:string ,apiRouteFile: string | null}) => {
   const { imgUrl, setImgUrl } = useStore();
 
-
   return (<div style={{ position: 'relative', width: '100%',  }}>
   
   <TextField
@@ -25,8 +24,9 @@ import SightengineFileUpload from './SightengineFileUpload';
     style={{flex: '1',}}
     size='medium'
   />
-  {apiRouteFile && <SightengineFileUpload apiRoute={apiRouteFile} />}
   <ImageSubmitButton apiRoute={apiRoute} />
+  {apiRouteFile && <SightengineFileUpload apiRoute={apiRouteFile} />}
+
   </div>
   );
 };

@@ -52,7 +52,7 @@ const ImageSubmitButton = ({ apiRoute }: { apiRoute: string }) => {
       color="primary"
       style={{
         position: 'absolute',
-        bottom: 10,
+        top: 10,
         right: 10,
         borderRadius: 30,
         textTransform: 'none',
