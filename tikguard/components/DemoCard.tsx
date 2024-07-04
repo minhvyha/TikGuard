@@ -5,6 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Link from 'next/link';
+import { useStore } from '@/app/context/context';
 
 const DemoCard = ({
   title,
@@ -19,6 +20,12 @@ const DemoCard = ({
   url: string;
   category: string;
 }) => {
+  const {setData, setAnalysedText} = useStore();
+
+  function clearData() {
+    setData(null);
+    setAnalysedText('');
+  }
   return (
     <Card sx={{ bgcolor: 'background.default', maxWidth: '400px', padding: '4px' }} variant="outlined">
       <CardContent>
@@ -36,7 +43,7 @@ const DemoCard = ({
         <Typography variant="body2">{description}</Typography>
       </CardContent>
       <CardActions>
-        <Link href={path}>
+        <Link onClick={clearData} href={path}>
           <Button size="small">Try Demo</Button>
         </Link>
       </CardActions>

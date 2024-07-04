@@ -27,13 +27,14 @@ const Report = ({ page }: { page: string }) => {
         );
       });
       if (remaining.length > 0) {
+        console.log('a')
         const remainingCards = remaining.map((label: string, index: number) => {
           return (
             <ModalCard
               key={index}
               data={{
                 label: label,
-                severity: null,
+                severity: 0,
                 positions: null,
               }}
             />

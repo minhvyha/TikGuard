@@ -33,6 +33,7 @@ const ModalCard = ({ data}: { data: {
   const handleClose = () => {
     setOpen(false)
   };
+  console.log(data.severity)
   return (
     <>
       {data.positions ? (
@@ -61,7 +62,7 @@ const ModalCard = ({ data}: { data: {
             <>
               Frequencies: {(data as { positions: any[] }).positions.length}
             </>
-          ) : data.severity ? (
+          ) : data.severity !== null ? (
             <>
               Severity: {data.severity.toString()}
             </>
