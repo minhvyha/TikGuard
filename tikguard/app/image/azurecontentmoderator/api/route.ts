@@ -1,6 +1,7 @@
 
 import { NextRequest, NextResponse } from "next/server";
 // Load the .env file if it exists
+export const dynamic = 'force-dynamic'; // <- add this to force dynamic render
 
 
 export async function GET(request: NextRequest) {

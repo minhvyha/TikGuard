@@ -1,6 +1,7 @@
 // @ts-nocheck
 import { NextRequest, NextResponse } from 'next/server';
 const axios = require('axios');
+export const dynamic = 'force-dynamic'; // <- add this to force dynamic render
 
 export async function GET(request: NextRequest) {
   // try {
