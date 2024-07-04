@@ -25,7 +25,7 @@ import SightengineFileUpload from './SightengineFileUpload';
     size='medium'
   />
   <ImageSubmitButton apiRoute={apiRoute} />
-  {apiRouteFile && <SightengineFileUpload apiRoute={apiRouteFile} />}
+  {apiRouteFile && <SightengineFileUpload />}
 
   </div>
   );

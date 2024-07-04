@@ -3,13 +3,15 @@ import { useStore } from '@/app/context/context';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
+import { promises as fs } from 'fs';
 
-const SightengineFileUpload = ({ apiRoute }: { apiRoute: string }) => {
+const SightengineFileUpload = () => {
   const {
     imgUrl,
     setError,
     setSeverity,
     setData,
+    setImgUrl,
     setLoading
   } = useStore();
 
@@ -30,8 +32,17 @@ const SightengineFileUpload = ({ apiRoute }: { apiRoute: string }) => {
     event.preventDefault();
     const formData = new FormData();
     setLoading(true);
+    
+
     if (event.target.files && event.target.files.length > 0) {
-      formData.append('file', event.target.files[0]);
+      const file = event.target.files[0];
+      const reader = new FileReader();
+      reader.onload = () => {
+        const base64Data = reader.result?.toString();
+        // Use the base64Data as needed
+        setImgUrl(base64Data as string);
+      };
+      reader.readAsDataURL(file);
     }
         try {
       const response = await fetch('/image/sightengine/api', {
