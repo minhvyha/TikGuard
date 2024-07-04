@@ -119,7 +119,9 @@ export async function GET(request: NextRequest) {
       }
     );
     let data = await result.json();
-    console.log(data)
+    if (data.status === 'failure') {
+      return NextResponse.json({ error: data.error });
+    }
     delete data?.request;
     delete data?.status;
     delete data?.media;
