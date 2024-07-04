@@ -8,7 +8,7 @@ function cleanResult(result: any) {
   delete result?.request;
   delete result?.status;
   delete result?.media;
-  console.log()
+
   result.nudity = {
     none: result.nudity.none,
     classes: {
@@ -97,7 +97,13 @@ function cleanResult(result: any) {
       real: result.gore.type.real,
     },
   };
+  let returnData = []
+  for (const [key, value] of Object.entries(result)) {
+    console.log(value)
+    let severity = value.none | value.prop | false
 
+    returnData.push({label: key, severity: severity, classes: value.classes});
+  }
   return result;
 }
 
@@ -110,7 +116,7 @@ export async function GET(request: NextRequest) {
         new URLSearchParams({
           url: url,
           models:
-            'nudity-2.1,weapon,alcohol,recreational_drug,offensive,gore-2.0,,tobacco,violence,self-harm,money,gambling',
+            'nudity-2.1,weapon,alcohol,recreational_drug,offensive,gore-2.0,tobacco,violence,self-harm,money,gambling',
           api_user: process.env.SIGHTENGINE_USER ?? '',
           api_secret: process.env.SIGHTENGINE_SECRET ?? '',
         }),
