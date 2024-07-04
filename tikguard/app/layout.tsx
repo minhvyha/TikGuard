@@ -29,7 +29,7 @@ export default function RootLayout({
         <Loading />
         <AlertMessage />
           <Nav />
-          <div className='pt-16 dark:bg-black'>
+          <div className=' dark:bg-black'>
 
           {children}
           </div>
