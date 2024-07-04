@@ -14,6 +14,7 @@
     "@emotion/styled": "^11.11.5",
     "@expertai/nlapi": "^2.0.0",
     "@google-cloud/vision": "^4.3.0",
+    "@material-tailwind/react": "^2.1.9",
     "@mui/icons-material": "^5.15.20",
     "@mui/material": "^5.15.19",
     "@mui/x-data-grid": "^7.7.1",

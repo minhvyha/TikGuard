@@ -9,8 +9,14 @@ const DemoContainer = ({api} : {api: any[]}) => {
     )
   })
   return (
-    <div className='grid grid-cols-2 gap-6'>
-      {DemoCards}
+    <div className='flex flex-col'>
+      <div className='flex flex-col justify-center items-center'>
+        <p className='text-gray-400'>subtitle</p>
+        <h2 className='text-5xl text-white font-black'>Header</h2>
+      </div>
+      <div className={`grid ${api.length < 2 ? 'grid-cols-1' : 'grid-cols-2'} gap-6 pt-6`}>
+        {DemoCards}
+      </div>
     </div>
   )
 }

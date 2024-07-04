@@ -1,13 +1,13 @@
 'use client'
 
-import React,  from 'react'
+import React  from 'react'
 import { textApiPage, imageApiPage, aiApiPage, videoApiPage } from '@/constant'
 import DemoContainer from './DemoContainer'
 
 const Main = () => {
 
   return (
-    <div className='flex justify-center flex-col items-center w-full py-8 gap-2 '>
+    <div className='flex justify-center flex-col items-center w-full py-8 gap-12 '>
       <DemoContainer api={textApiPage} />
       <DemoContainer api={imageApiPage} />
       <DemoContainer api={videoApiPage} />

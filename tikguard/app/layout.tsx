@@ -1,8 +1,6 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
 import './globals.css';
 import Nav from '@/components/Nav';
-const inter = Inter({ subsets: ['latin'] });
 import AlertMessage from '@/components/AlertMessage';
 import {ContextProviders} from '@/app/context/context';
 import Loading from '@/components/Loading';
@@ -34,6 +32,7 @@ export default function RootLayout({
 
           {children}
           </div>
+
       </ContextProviders>
         </body>
     </html>
