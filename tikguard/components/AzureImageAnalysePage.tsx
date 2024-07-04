@@ -11,7 +11,7 @@ const AzureImageAnalysePage = () => {
     <div className="flex p-6 flex-row gap-4 mt-4">
     <div className="flex-1 flex flex-col max-w-[49%]">
       <ImageDisplay />
-      <UrlInput apiRoute="/image/azurecontentmoderator" />
+      <UrlInput apiRoute="/image/azurecontentmoderator" apiRouteFile={null} />
     </div>
     <div className="flex-1 gap-4 flex flex-row">
       <ImageData title='Racism Classification' subtitle='Racism' value={data !== null ? data.racism ?? -1: -1} classification={data !== null ? data.isRacism ?? false: false} />
