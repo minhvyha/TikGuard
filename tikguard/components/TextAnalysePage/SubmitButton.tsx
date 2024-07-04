@@ -53,7 +53,7 @@ const SubmitButton = ({ apiRoute }: { apiRoute: string }) => {
               setError(data.error);
               setSeverity('error');
             }
-            console.log(data.data);
+            console.log(data);
             setAnalysedText(text);
             setData(data.data);
             setLoading(false);
