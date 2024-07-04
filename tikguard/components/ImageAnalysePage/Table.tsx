@@ -21,14 +21,7 @@ const GridContainer = styled('div')`
 const Table = ({
   data,
 }: {
-  data: [
-    {
-      start: Number;
-      end: Number;
-      intensity?: string;
-      type?: string;
-    }
-  ];
+  data: Object;
 }) => {
   const { theme, analysedText } = useStore();
   const currentMode =
@@ -38,51 +31,31 @@ const Table = ({
     {
       field: 'id',
       headerName: 'ID',
-      width: 70,
-      headerClassName: currentMode,
-    },
-    {
-      field: 'start',
-      headerName: 'Start Index',
-      width: 130,
-      headerClassName: currentMode,
-    },
-    {
-      field: 'end',
-      headerName: 'End Index',
-      width: 130,
-      headerClassName: currentMode,
-    },
-    {
-      field: 'type',
-      headerName: 'Type',
-      width: data[0]?.type ? 120 : 0,
-      headerClassName: currentMode,
-    },
-    {
-      field: 'intensity',
-      headerName: 'Intensity',
-      width: data[0]?.intensity ? 120 : 0,
-      headerClassName: currentMode,
-    },
-    {
-      field: 'word',
-      headerName: 'Words',
-      type: 'number',
       width: 90,
       headerClassName: currentMode,
     },
+
+    {
+      field: 'class',
+      headerName: 'Class',
+      width: 130,
+      headerClassName: currentMode,
+    },
+    {
+      field: 'severity',
+      headerName: 'Severity | Probability',
+      type: 'number',
+      width: 190,
+      headerClassName: currentMode,
+    },
   ];
-  let rows = data.map((row, index) => {
-    return {
-      id: index + 1,
-      start: row.start,
-      end: row.end,
-      type: row.type || '',
-      intensity: row.intensity || '',
-      word: analysedText.substring(Number(row.end), Number(row.start)),
-    };
-  });
+  let rows :any = []
+  let count = 1
+  for (const [key, value] of Object.entries(data)) {
+
+    rows.push({ id: count, class: key, severity: value });
+    count += 1;
+  }
 
   return (
     <GridContainer>

@@ -15,17 +15,15 @@ const style = {
 
 const ModalCard = ({ data}: { data: {
   label: String,
-  severity: Number | String | null,
-  positions: [ {
-    start: Number,
-    end: Number
-  
-  }]| null
+  severity: Boolean | String | Number | null,
+  classes: Object| null
 }}) => {
   const {setError, setSeverity} = useStore();
   const [open, setOpen] = React.useState(false);
+
+  console.log(data.severity)
   const handleOpen = () => {
-    if(!data.positions) {
+    if(!data.classes) {
       setError('No data available for this category');
       setSeverity('warning')
     };
@@ -35,7 +33,7 @@ const ModalCard = ({ data}: { data: {
   };
   return (
     <>
-      {data.positions ? (
+      {data.classes ? (
         <Modal
           open={open}
           onClose={handleClose}
@@ -43,7 +41,7 @@ const ModalCard = ({ data}: { data: {
           aria-describedby="modal-modal-description"
         >
           <Box sx={style}>
-            <Table data={data.positions} />
+            <Table data={data.classes} />
           </Box>
         </Modal>
       ) : (
@@ -57,15 +55,15 @@ const ModalCard = ({ data}: { data: {
           {data.label}:
         </div>
         <div className="h-full flex items-center justify-center py-2 ">
-          {data.positions ? (
-            <>
-              Frequencies: {(data as { positions: any[] }).positions.length}
-            </>
-          ) : data.severity ? (
+          { data.severity ? (
             <>
               Severity: {data.severity.toString()}
             </>
-          ) : (
+          ) : data.severity === false ?  (
+            <>
+              See details
+            </>
+          ): (
             <>
               Severity: Not Available
             </>

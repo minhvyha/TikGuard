@@ -21,8 +21,8 @@ const Report = ({ page }: { page: string }) => {
             key={index}
             data={{
               label: info.label,
-              severity: info.severity || null,
-              positions: info.positions || null,
+              severity: info.severity,
+              classes: info.classes || null,
             }}
           />
         );
@@ -35,7 +35,7 @@ const Report = ({ page }: { page: string }) => {
               data={{
                 label: label,
                 severity: null,
-                positions: null,
+                classes: null,
               }}
             />
           );
@@ -59,7 +59,7 @@ const Report = ({ page }: { page: string }) => {
           data={{
             label: label,
             severity: null,
-            positions: null,
+            classes: null,
           }}
         />
       );
