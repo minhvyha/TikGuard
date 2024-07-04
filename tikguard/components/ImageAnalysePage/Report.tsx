@@ -10,6 +10,7 @@ const Report = ({ page }: { page: string }) => {
   useEffect(() => {
     
     let remaining = defaultImageApi;
+    console.log(data)
     if (data !== null) {
       const cards = data.map((info: any, index: number) => {
         console.log(info.label)

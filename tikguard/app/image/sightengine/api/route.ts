@@ -10,7 +10,7 @@ function cleanResult(result: any) {
   delete result?.media;
 
   result.nudity = {
-    none: result.nudity.none,
+    prob: result.nudity.none,
     classes: {
       sexual_activity: result.nudity.sexual_activity,
       sexual_display: result.nudity.sexual_display,
@@ -100,11 +100,16 @@ function cleanResult(result: any) {
   let returnData = []
   for (const [key, value] of Object.entries(result)) {
     console.log(value)
-    let severity = value.none | value.prop | false
+
+    let severity = false
+    if(value.prob){
+      severity = value.prob
+    }
+
 
     returnData.push({label: key, severity: severity, classes: value.classes});
   }
-  return result;
+  return returnData;
 }
 
 export async function GET(request: NextRequest) {

@@ -3,7 +3,12 @@ import { NextRequest, NextResponse } from "next/server";
 // Load the .env file if it exists
 export const dynamic = 'force-dynamic'; // <- add this to force dynamic render
 export const maxDuration = 60; 
-
+function percentageFormatter(num: number) {
+  return new Intl.NumberFormat('default', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(num);
+}
 export async function GET(request: NextRequest) {
   try {
     console.log(123)
@@ -26,8 +31,13 @@ export async function GET(request: NextRequest) {
       }
     );
     const data = await result.json();
-
-    return NextResponse.json(data);
+    let returnData = {
+      isRacism: data.IsImageRacyClassified,
+      racism: percentageFormatter(data.RacyClassificationScore * 100),
+      isSexual: data.IsImageAdultClassified,
+      sexual:percentageFormatter(data.AdultClassificationScore * 100)
+    }
+    return NextResponse.json(returnData);
   } catch (error) {
     console.error('Error uploading file:', error);
     return NextResponse.json({ error });

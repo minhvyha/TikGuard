@@ -34,12 +34,7 @@ const ImageSubmitButton = ({ apiRoute }: { apiRoute: string }) => {
         setLoading(false);
         return;
       }
-      setData({
-        isRacism: data.IsImageRacyClassified,
-        racism: percentageFormatter(data.RacyClassificationScore * 100),
-        isSexual: data.IsImageAdultClassified,
-        sexual:percentageFormatter(data.AdultClassificationScore * 100)
-      })
+      setData(data)
       setLoading(false)
     } catch (err) {
       if (err) {
@@ -48,12 +43,7 @@ const ImageSubmitButton = ({ apiRoute }: { apiRoute: string }) => {
         setLoading(false);
       }
     }
-    function percentageFormatter(num: number) {
-      return new Intl.NumberFormat('default', {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
-      }).format(num);
-    }
+
   }
   
   return (
