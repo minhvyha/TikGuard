@@ -1,12 +1,12 @@
 let aiApiPage = [
   {
-    name: 'Azure Content Moderator',
-    url: 'https://learn.microsoft.com/en-us/azure/ai-services/content-moderator/overview',
-    path: 'image/azurecontentmoderator',
+    name: 'TikGuard AI',
+    url: 'https://tikguard.vercel.app/',
+    path: 'ml',
     description:
-      'Azure Content Moderator is an AI service for detecting and flagging offensive or undesirable content',
-    category: 'AI Text Analysis',
-    },
+      'Detect hate speech and threats in text with our advanced ML model, ensuring safe and respectful communication.',
+    category: 'Our ML Text Analysis Model',
+  },
 ];
 
-export {aiApiPage}
+export { aiApiPage };

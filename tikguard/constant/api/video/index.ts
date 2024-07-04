@@ -1,11 +1,11 @@
 let videoApiPage = [
   {
-    name: 'Azure Content Moderator',
-    url: 'https://learn.microsoft.com/en-us/azure/ai-services/content-moderator/overview',
-    path: 'image/azurecontentmoderator',
+    name: 'Sightengine Video Moderator',
+    url: 'https://sightengine.com/video-moderation',
+    path: 'video/sightengine',
     description:
-      'Azure Content Moderator is an AI service for detecting and flagging offensive or undesirable content',
-    category: 'AI Text Analysis',
+      'Efficiently moderate user videos and live streams in real-time with scalable Video Moderation API.',
+    category: 'Video Analysis',
     },
 ];
 
