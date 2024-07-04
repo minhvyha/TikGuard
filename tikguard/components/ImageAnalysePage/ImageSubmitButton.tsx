@@ -28,6 +28,12 @@ const ImageSubmitButton = ({ apiRoute }: { apiRoute: string }) => {
       // })
       const data = await response.json();
       console.log(data)
+      if(data.error){
+        setError(data.error.message);
+        setSeverity('error');
+        setLoading(false);
+        return;
+      }
       setData({
         isRacism: data.IsImageRacyClassified,
         racism: percentageFormatter(data.RacyClassificationScore * 100),
