@@ -9,7 +9,7 @@ const SightengineImageAnalysePage = () => {
     <div className="flex p-6 flex-row gap-4 mt-4">
     <div className="flex-1 flex flex-col max-w-[49%]">
       <ImageDisplay />
-      <UrlInput apiRoute="/image/sightengine" />
+      <UrlInput apiRoute="/image/sightengine" apiRouteFile='/image/sightengine' />
     </div>
     <div className="flex-1 gap-4 flex flex-row">
       <Report page="sightengine" />

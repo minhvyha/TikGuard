@@ -4,9 +4,9 @@ import TextField from '@mui/material/TextField';
 import { useStore } from '@/app/context/context';
 
 import ImageSubmitButton from './ImageSubmitButton';
+import SightengineFileUpload from './SightengineFileUpload';
 
-
- const UrlInput = ({apiRoute} : {apiRoute:string}) => {
+ const UrlInput = ({apiRoute, apiRouteFile} : {apiRoute:string ,apiRouteFile: string | null}) => {
   const { imgUrl, setImgUrl } = useStore();
 
 
@@ -25,7 +25,7 @@ import ImageSubmitButton from './ImageSubmitButton';
     style={{flex: '1',}}
     size='medium'
   />
-  
+  {apiRouteFile && <SightengineFileUpload apiRoute={apiRouteFile} />}
   <ImageSubmitButton apiRoute={apiRoute} />
   </div>
   );
