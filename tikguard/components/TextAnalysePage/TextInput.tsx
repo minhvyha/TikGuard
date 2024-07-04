@@ -90,8 +90,8 @@ const TextInput = () => {
           onChange={(e) => {
             if (e.target.files && e.target.files.length > 0) {
               const file = e.target.files[0];
-                if (file && file.size > 5 * 1024 * 1024) {
-                setError('File size exceeds 5MB limit');
+                if (file && file.size > 100 * 1024 * 1024) {
+                setError('File size exceeds 100MB limit');
                 setSeverity('error');
                 e.target.value = '';
                 return;
