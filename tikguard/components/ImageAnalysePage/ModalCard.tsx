@@ -1,4 +1,4 @@
-          // @ts-ignore
+// @ts-ignore
 
 import React from 'react'
 import Modal from '@mui/material/Modal';
@@ -15,13 +15,12 @@ const style = {
 
 const ModalCard = ({ data}: { data: {
   label: String,
-  severity: Boolean | String | Number | null,
+  severity: Boolean | Number | null,
   classes: Object| null
 }}) => {
   const {setError, setSeverity} = useStore();
   const [open, setOpen] = React.useState(false);
 
-  console.log(data.severity)
   const handleOpen = () => {
     if(!data.classes) {
       setError('No data available for this category');
@@ -31,6 +30,12 @@ const ModalCard = ({ data}: { data: {
   const handleClose = () => {
     setOpen(false)
   };
+  function formatter(num: number) {
+    return new Intl.NumberFormat('default', {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    }).format(num);
+  }
   return (
     <>
       {data.classes ? (
@@ -54,10 +59,10 @@ const ModalCard = ({ data}: { data: {
         <div>
           {data.label}:
         </div>
-        <div className="h-full flex items-center justify-center py-2 ">
-          { data.severity ? (
+        <div className={`h-full flex items-center justify-center py-2 ${data.classes !== null ? 'underline underline-offset-1' : ''}`}>
+          { data.severity !== false ? (
             <>
-              Severity: {data.severity.toString()}
+              Severity: {formatter(data.severity as number).toString()}
             </>
           ) : data.severity === false ?  (
             <>
