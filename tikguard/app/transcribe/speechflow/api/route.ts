@@ -1,8 +1,6 @@
-const https = require('https');
-const querystring = require('querystring');
 const { randomUUID } = require('crypto');
 
-import { ClientRequest, IncomingMessage } from 'http';
+export const maxDuration = 60; 
 
 import { NextResponse } from 'next/server';
 export async function POST(request: Request) {
