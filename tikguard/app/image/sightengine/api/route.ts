@@ -10,7 +10,7 @@ function cleanResult(result: any) {
   delete result?.media;
 
   result.nudity = {
-    prob: result.nudity.none,
+    prob: 1 - result.nudity.none,
     classes: {
       sexual_activity: result.nudity.sexual_activity,
       sexual_display: result.nudity.sexual_display,
@@ -22,12 +22,12 @@ function cleanResult(result: any) {
       bikini: result.nudity.suggestive_classes.bikini,
       cleavage: result.nudity.suggestive_classes.cleavage,
       cleavage_categories:
-        result.nudity.suggestive_classes.cleavage_categories.none,
+        1 - result.nudity.suggestive_classes.cleavage_categories.none,
 
       lingerie: result.nudity.suggestive_classes.lingerie,
       male_chest: result.nudity.suggestive_classes.male_chest,
       male_chest_categories:
-        result.nudity.suggestive_classes.male_chest_categories.none,
+        1 - result.nudity.suggestive_classes.male_chest_categories.none,
 
       male_underwear: result.nudity.suggestive_classes.male_underwear,
       miniskirt: result.nudity.suggestive_classes.miniskirt,
@@ -133,9 +133,6 @@ export async function GET(request: NextRequest) {
     if (data.status === 'failure') {
       return NextResponse.json({ error: data.error });
     }
-    delete data?.request;
-    delete data?.status;
-    delete data?.media;
     data = cleanResult(data);
     return NextResponse.json(data);
   } catch (error) {
@@ -169,6 +166,8 @@ export async function POST(request: Request) {
         'nudity-2.1,weapon,alcohol,recreational_drug,medical,offensive,text-content,gore-2.0,tobacco,violence,self-harm,money,gambling',
     },
   });
+  let returnData = response.data;
+  returnData = cleanResult(returnData);
 
-  return NextResponse.json(response.data);
+  return NextResponse.json(returnData);
 }
