@@ -50,7 +50,7 @@ const SubmitButton = ({ apiRoute }: { apiRoute: string }) => {
         .then((data) => {
           if (data) {
             if (data.error) {
-              setError(data.error);
+              setError(data.error.message);
               setSeverity('error');
             }
             console.log(data);
