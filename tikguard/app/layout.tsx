@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import Nav from '@/components/Nav';
 import AlertMessage from '@/components/AlertMessage';
+import { Footer } from '@/components/Footer';
 import {ContextProviders} from '@/app/context/context';
 import Loading from '@/components/Loading';
 export const metadata: Metadata = {
@@ -32,7 +33,7 @@ export default function RootLayout({
 
           {children}
           </div>
-
+          <Footer />
       </ContextProviders>
         </body>
     </html>
