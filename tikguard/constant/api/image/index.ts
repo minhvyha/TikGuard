@@ -28,4 +28,22 @@ let imageHeader = {
   },
 }
 
-export {imageApiPage, imageHeader}
+let defaultImageApi = [
+  
+    "nudity",
+    "weapon",
+    "recreational_drug",
+    "alcohol",
+    "offensive",
+    "gore",
+    "tobacco",
+    "violence",
+    "self-harm",
+    "money",
+    "gambling",
+
+]
+  
+
+
+export {imageApiPage, imageHeader, defaultImageApi}

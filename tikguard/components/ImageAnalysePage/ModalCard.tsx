@@ -56,7 +56,7 @@ const ModalCard = ({ data}: { data: {
         <div>
           {data.label}:
         </div>
-        <div className="h-full flex items-center justify-center ">
+        <div className="h-full flex items-center justify-center py-2 ">
           {data.positions ? (
             <>
               Frequencies: {(data as { positions: any[] }).positions.length}

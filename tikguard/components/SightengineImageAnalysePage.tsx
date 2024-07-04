@@ -1,7 +1,7 @@
 import React from 'react'
 import ImageDisplay from './ImageAnalysePage/ImageDisplay'
 import UrlInput from './ImageAnalysePage/UrlInput'
-import ImageData from './ImageAnalysePage/ImageData'
+import Report from './ImageAnalysePage/Report'
 import { useStore } from '@/app/context/context'
 
 const SightengineImageAnalysePage = () => {
@@ -12,7 +12,7 @@ const SightengineImageAnalysePage = () => {
       <UrlInput apiRoute="/image/sightengine" />
     </div>
     <div className="flex-1 gap-4 flex flex-row">
-
+      <Report page="sightengine" />
     </div>
   </div>
   )

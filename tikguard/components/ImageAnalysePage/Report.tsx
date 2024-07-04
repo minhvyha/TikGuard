@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useStore } from '@/app/context/context';
-import { defaultValue } from '@/constant';
+import { defaultImageApi } from '@/constant';
 import ModalCard from './ModalCard';
 
 const Report = ({ page }: { page: string }) => {
@@ -9,7 +9,7 @@ const Report = ({ page }: { page: string }) => {
   const [remainingCards, setRemainingCards] = useState([] as any[]);
   useEffect(() => {
     
-    let remaining = defaultValue[page as keyof typeof defaultValue];
+    let remaining = defaultImageApi;
     if (data !== null) {
       const cards = data.map((info: any, index: number) => {
         console.log(info.label)
@@ -49,7 +49,7 @@ const Report = ({ page }: { page: string }) => {
   }, [data]);
 
   useEffect(() => {
-    let remaining = defaultValue[page as keyof typeof defaultValue];
+    let remaining = defaultImageApi;
 
     const remainingCards = remaining.map((label: string, index: number) => {
       return (
