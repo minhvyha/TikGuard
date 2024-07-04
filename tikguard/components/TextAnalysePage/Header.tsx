@@ -1,8 +1,9 @@
+'use client'
 import React from 'react'
 import { header } from '@/constant'
 
-
 const Header = ({page} : {page: string}) => {
+
   return (
     <div className='flex flex-col justify-center items-center'>
         <h1 className='text-2xl'>{header[page as keyof typeof header].title}</h1>

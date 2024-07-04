@@ -8,6 +8,7 @@ const Report = ({ page }: { page: string }) => {
   const [modalCards, setModalCards] = useState([] as any[]);
   const [remainingCards, setRemainingCards] = useState([] as any[]);
   useEffect(() => {
+    
     let remaining = defaultValue[page as keyof typeof defaultValue];
     if (data !== null) {
       const cards = data.map((info: any, index: number) => {
@@ -46,6 +47,7 @@ const Report = ({ page }: { page: string }) => {
       setModalCards(cards);
     }
   }, [data]);
+
   useEffect(() => {
     let remaining = defaultValue[page as keyof typeof defaultValue];
 
