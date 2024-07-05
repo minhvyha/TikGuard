@@ -47,13 +47,21 @@ As mentioned earlier, we use 4 different APIs to analyze the severity of text in
 		- Sexual
 		- Violence
 - #### HateHoundAPI
-	- HateHound 
-- 
+	- HateHoundapi is different from the other APIs and rather measures the severity based on the probability of hateful and offensive content. Content is categorized as follows:
+   		- Toxic
+        	- Sever toxic
+        	- obscene
+           	- threat
+           	- insult
+           	- Identity hate
 - #### Sightengine
-- 
-
-
-
+  	- Sightengine also provides a probability however it is a much more robust API than hatehound. Content in the sightengine API is categorized as follows:
+  	  	- Sexual
+  	  	- Discriminatory
+  	  	- Self-harm
+  	  	- Insulting
+  	  	- Violent
+  	  	- toxic
 
 ## Image Analysis 
 
