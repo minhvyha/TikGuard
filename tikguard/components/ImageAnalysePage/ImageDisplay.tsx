@@ -3,8 +3,7 @@ import React from 'react';
 import Skeleton from '@mui/material/Skeleton';
 import Stack from '@mui/material/Stack';
 import { useStore } from '@/app/context/context';
-import Typography from '@mui/material/Typography';
-import Link from '@mui/material/Link';
+import Link from 'next/link';
 const ImageDisplay = () => {
   const { imgUrl } = useStore();
   return (
@@ -22,8 +21,9 @@ const ImageDisplay = () => {
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
               /> */}
             </div>
-            
+            <Link href={imgUrl}>
             <p style={{ display: 'inline-block', maxWidth: '100%', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{imgUrl}</p>
+            </Link>
 
           </>
         ) : (
