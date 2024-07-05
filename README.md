@@ -23,9 +23,40 @@ You will see a landing page similar to this:
 
 #TODO [Insert an image of the landing page here]
 
-Each option on the landing page represents a different API:
 
-- [Expert.ai](#)
-- [HateHound](#)
-- [Sightengine](#)
-- [Azure Content Moderator](#)
+
+## Text Analysis 
+
+As mentioned earlier, we use 4 different APIs to analyze the severity of text in different ways: 
+
+ - #### Expert.ai 
+	 - expert.ai measures the severity of text based on the frequency count of inappropriate words used in the context, these counts are also categorized as follows:
+		 - Personal Insult 
+		 - Racism
+		 - Sexism
+		 - Ableism
+		 - Religous Hatred 
+		 - Homophobia
+		 - Classism 
+		 - Body Shaming 
+		 - Threat and Violence
+- #### Azure AI content safety
+	- Azure content safety works similarly to expert.ai however with a different categorization:
+		- Hate 
+		- SelfHarm
+		- Sexual
+		- Violence
+- #### HateHoundAPI
+	- HateHound 
+- 
+- #### Sightengine
+- 
+
+
+
+
+## Image Analysis 
+
+## Video Analysis 
+
+## Our Machine Learning Model
