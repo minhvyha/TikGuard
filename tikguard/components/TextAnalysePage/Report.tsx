@@ -20,7 +20,7 @@ const Report = ({ page }: { page: string }) => {
             key={index}
             data={{
               label: info.label,
-              severity: info.severity || null,
+              severity: info.severity,
               positions: info.positions || null,
             }}
           />

@@ -13,7 +13,7 @@ const TextAnalysePage = ({ page }: { page: string }) => {
           <MainInput apiRoute={'text/' + page} />
         </div>
         <div className="flex flex-row gap-2">
-          <TextInput />
+          <TextInput apiRoute={'text/' + page} />
         </div>
       </div>
       <div className="flex-1">

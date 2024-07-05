@@ -17,10 +17,23 @@ const VisuallyHiddenInput = styled('input')({
   width: 1,
 });
 
-const TextInput = () => {
-  const { path, setPath, text, setText, setError, setSeverity, setLoading } = useStore();
+const TextInput = ({ apiRoute }: { apiRoute: string }) => {
+  const {
+    path,
+    setPath,
+    text,
+    setText,
+    setError,
+    setSeverity,
+    setLoading,
+    setAnalysedText,
+    setData,
+    language,
+  } = useStore();
 
-  const handleSubmitFile = async (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSubmitFile = async (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     const formData = new FormData();
     setLoading(true);
     if (event.target.files && event.target.files.length > 0) {
@@ -34,16 +47,19 @@ const TextInput = () => {
       });
       const data = await response.json();
       console.log(data);
+
       if (response.ok) {
         setText(data.result.result);
         setError('File uploaded successfully');
         setSeverity('success');
-      setLoading(false);
-    } else {
-        setError('File upload failed');
-        setSeverity('error')
-      setLoading(false);
+        setLoading(false);
+        console.log(data.result.result)
+        analyse(data.result.result);
 
+      } else {
+        setError('File upload failed');
+        setSeverity('error');
+        setLoading(false);
       }
     } catch (error) {
       setError('Error uploading file: ' + error);
@@ -51,6 +67,47 @@ const TextInput = () => {
       setLoading(false);
     }
   };
+
+  async function analyse(text: string) {
+    try {
+      setLoading(true);
+      console.log(true);
+      if (text) {
+        fetch(`/${apiRoute}/api`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ text: text, language: language }),
+        })
+          .then((response) => {
+            console.log(response);
+            return response.json();
+          })
+          .then((data) => {
+            if (data) {
+              if (data.error) {
+                setError(data.error.message);
+                setSeverity('error');
+                setLoading(false);
+                return
+              }
+              console.log(data);
+              setAnalysedText(text);
+              setData(data.data);
+              setLoading(false);
+            }
+          });
+      }
+
+    } catch (err) {
+      if (err) {
+        setError(err.toString()); // Convert the error object to a string
+        setSeverity('error');
+        setLoading(false);
+      }
+    }
+  }
   return (
     <div style={{ position: 'relative', width: '100%' }}>
       <TextField
@@ -90,19 +147,19 @@ const TextInput = () => {
           onChange={(e) => {
             if (e.target.files && e.target.files.length > 0) {
               const file = e.target.files[0];
-                if (file && file.size > 100 * 1024 * 1024) {
+              if (file && file.size > 100 * 1024 * 1024) {
                 setError('File size exceeds 100MB limit');
                 setSeverity('error');
                 e.target.value = '';
                 return;
-                }
-                if (e.target.files && e.target.files.length > 1) {
+              }
+              if (e.target.files && e.target.files.length > 1) {
                 setError('Please select only one file');
                 setSeverity('error');
                 e.target.value = '';
                 return;
-                }
-              handleSubmitFile(e)
+              }
+              handleSubmitFile(e);
             }
           }}
         />
