@@ -6,7 +6,7 @@ type LayoutProps = {
 const Layout = ({ children }: LayoutProps) => {
 
   return (
-    <div>
+    <div className='pt-20'>
       {/* Add your layout components here */}
       {children}
     </div>
