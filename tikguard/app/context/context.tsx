@@ -33,6 +33,7 @@ interface pageState{
   path: string | '',
   baseUrl: string,
   theme: Theme,
+  videoUrl: string | '',
   data: any,
   loading: boolean,
   imgUrl: string,
@@ -59,127 +60,10 @@ export const useStore = create<pageState>((set) => ({
   taskId: null,
   path: '',
   theme: darkTheme,
+  videoUrl: '',
   language: 'en',
   data: null,
-//   data: {
-//     "nudity": {
-//         "none": 0.97,
-//         "classes": {
-//             "sexual_activity": 0.01,
-//             "sexual_display": 0.01,
-//             "erotica": 0.01,
-//             "very_suggestive": 0.01,
-//             "suggestive": 0.01,
-//             "mildly_suggestive": 0.03,
-//             "bikini": 0.01,
-//             "cleavage": 0.01,
-//             "cleavage_categories": 0.99,
-//             "lingerie": 0.01,
-//             "male_chest": 0.01,
-//             "male_chest_categories": 0.99,
-//             "male_underwear": 0.01,
-//             "miniskirt": 0.01,
-//             "minishort": 0.01,
-//             "nudity_art": 0.01,
-//             "schematic": 0.01,
-//             "sextoy": 0.01,
-//             "suggestive_focus": 0.01,
-//             "suggestive_pose": 0.01,
-//             "swimwear_male": 0.01,
-//             "swimwear_one_piece": 0.01,
-//             "visibly_undressed": 0.01,
-//             "other": 0.01,
-//             "sea_lake_pool": 0.03,
-//             "outdoor_other": 0.81,
-//             "indoor_other": 0.16
-//         }
-//     },
-//     "weapon": {
-//         "classes": {
-//             "firearm": 0.01,
-//             "firearm_gesture": 0.01,
-//             "firearm_toy": 0.01,
-//             "knife": 0.01,
-//             "animated": 0.01,
-//             "aiming_threat": 0.01,
-//             "aiming_safe": 0.01,
-//             "in_hand_not_aiming": 0.01,
-//             "worn_not_in_hand": 0.01,
-//             "not_worn": 0.01
-//         }
-//     },
-//     "recreational_drug": {
-//         "prob": 0.01,
-//         "classes": {
-//             "cannabis": 0.01,
-//             "cannabis_logo_only": 0.01,
-//             "cannabis_plant": 0.01,
-//             "cannabis_drug": 0.01,
-//             "recreational_drugs_not_cannabis": 0.01
-//         }
-//     },
-//     "alcohol": {
-//         "prob": 0.01
-//     },
-//     "offensive": {
-//         "prob": 0.01,
-//         "classes": {
-//             "nazi": 0.01,
-//             "confederate": 0.01,
-//             "supremacist": 0.01,
-//             "terrorist": 0.01,
-//             "middle_finger": 0.01
-//         }
-//     },
-//     "gore": {
-//         "prob": 0.01,
-//         "classes": {
-//             "very_bloody": 0.01,
-//             "slightly_bloody": 0.01,
-//             "body_organ": 0.01,
-//             "serious_injury": 0.01,
-//             "superficial_injury": 0.01,
-//             "corpse": 0.01,
-//             "skull": 0.01,
-//             "unconscious": 0.01,
-//             "body_waste": 0.01,
-//             "other": 0.01,
-//             "animated": 0.01,
-//             "fake": 0.01,
-//             "real": 0.01
-//         }
-//     },
-//     "tobacco": {
-//         "prob": 0.01,
-//         "classes": {
-//             "regular_tobacco": 0.01,
-//             "ambiguous_tobacco": 0.01
-//         }
-//     },
-//     "violence": {
-//         "prob": 0.01,
-//         "classes": {
-//             "physical_violence": 0.01,
-//             "firearm_threat": 0.01,
-//             "combat_sport": 0.01
-//         }
-//     },
-//     "self-harm": {
-//         "prob": 0.01,
-//         "classes": {
-//             "real": 0.01,
-//             "fake": 0.01,
-//             "animated": 0.01
-//         }
-//     },
-//     "money": {
-//         "prob": 0.01
-//     },
-//     "gambling": {
-//         "prob": 0.01
-//     }
-// },
-  loading: false,
+ loading: false,
   imgUrl: '',
   setImgUrl: (imgUrl) => set({imgUrl}),
   setAnalysedText: (analysedText) => set({analysedText}),
