@@ -21,9 +21,9 @@ const GridContainer = styled('div')`
 const Table = ({
   data,
 }: {
-  data: Object;
+  data: any;
 }) => {
-  const { theme, analysedText } = useStore();
+  const { theme } = useStore();
   const currentMode =
     theme.palette.mode === 'dark' ? 'bg-background-700' : 'bg-background-100';
 
@@ -31,14 +31,20 @@ const Table = ({
     {
       field: 'id',
       headerName: 'ID',
-      width: 90,
+      width: 70,
+      headerClassName: currentMode,
+    },
+    {
+      field:'timestamp',
+      headerName: 'Timestamp',
+      width: 110,
       headerClassName: currentMode,
     },
 
     {
       field: 'class',
       headerName: 'Class',
-      width: 130,
+      width: 170,
       headerClassName: currentMode,
     },
     {
@@ -51,11 +57,17 @@ const Table = ({
   ];
   let rows :any = []
   let count = 1
-  for (const [key, value] of Object.entries(data)) {
+  console.log(data)
+  data.forEach((element: any) => {
+    console.log(element)
+    let timestamp = new Date(element.time * 1000).toISOString().slice(11, 19); 
+    for (const [key, value] of Object.entries(element.classes)) {
 
-    rows.push({ id: count, class: key, severity: value });
-    count += 1;
-  }
+      rows.push({ id: count, timestamp:timestamp, class: key, severity: value });
+      count += 1;
+    }
+  });
+  
 
   return (
     <GridContainer>

@@ -3,7 +3,7 @@ import { useStore } from '@/app/context/context';
 import Button from '@mui/material/Button';
 const SubmitButton = ({ apiRoute }: { apiRoute: string }) => {
   const {
-    imgUrl,
+    videoUrl,
     setData,
     setError,
     setSeverity,
@@ -13,15 +13,15 @@ const SubmitButton = ({ apiRoute }: { apiRoute: string }) => {
   async function analyse() {
     
     
-    if (!imgUrl) {
+    if (!videoUrl) {
       setError('Please enter an image url to analyze');
       setSeverity('error');
       return;
     }
     setLoading(true);
     try {
-      let response = await fetch(`${apiRoute}/api?` + new URLSearchParams({
-        url: imgUrl,
+      let response = await fetch(`/video/sightengine/api?` + new URLSearchParams({
+        url: videoUrl,
       }))
       // const response = await fetch(`/${apiRoute}/api`, {
       //   method: 'GET',
@@ -34,7 +34,7 @@ const SubmitButton = ({ apiRoute }: { apiRoute: string }) => {
         setLoading(false);
         return;
       }
-      setData(data)
+      setData(data.data)
       setLoading(false)
     } catch (err) {
       if (err) {

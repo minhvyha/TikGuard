@@ -13,21 +13,21 @@ const Report = () => {
     let remaining = defaultImageApi;
     console.log(data)
     if (data !== null) {
-      const cards = data.map((info: any, index: number) => {
-        console.log(info.label)
-        remaining = remaining.filter((x) => x !== info.label);
-        console.log(remaining)
-        return (
+      const cards = []
+      for (const [key, value] of Object.entries(data)) {
+        console.log(key)
+        console.log(value)
+        remaining = remaining.filter((x) => x !== key);
+        cards.push(
           <ModalCard
-            key={index}
             data={{
-              label: info.label,
-              severity: info.severity,
-              classes: info.classes || null,
+              label: key,
+              classes: value,
             }}
           />
         );
-      });
+        
+      }
       if (remaining.length > 0) {
         const remainingCards = remaining.map((label: string, index: number) => {
           return (
@@ -35,8 +35,7 @@ const Report = () => {
               key={index}
               data={{
                 label: label,
-                severity: null,
-                classes: null,
+                  classes: null,
               }}
             />
           );
@@ -59,7 +58,6 @@ const Report = () => {
           key={index}
           data={{
             label: label,
-            severity: null,
             classes: null,
           }}
         />

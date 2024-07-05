@@ -18,7 +18,7 @@ import SubmitButton from './SubmitButton';
     }}
     fullWidth
     placeholder="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
-    label="Video/audio urls to analyse"
+    label="Video urls to analyse (less than 60s)."
     variant="outlined"
     style={{flex: '1',}}
     size='medium'

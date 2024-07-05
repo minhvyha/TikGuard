@@ -15,8 +15,7 @@ const style = {
 
 const ModalCard = ({ data}: { data: {
   label: String,
-  severity: Boolean | Number | null,
-  classes: Object| null
+  classes: any
 }}) => {
   const {setError, setSeverity} = useStore();
   const [open, setOpen] = React.useState(false);
@@ -60,19 +59,9 @@ const ModalCard = ({ data}: { data: {
           {data.label}:
         </div>
         <div className={`h-full flex items-center justify-center py-2 ${data.classes !== null ? 'underline underline-offset-1' : ''}`}>
-          { data.severity !== false ? (
-            <>
-              Severity: {formatter(data.severity as number).toString()}
-            </>
-          ) : data.severity === false ?  (
-            <>
+
               See details
-            </>
-          ): (
-            <>
-              Severity: Not Available
-            </>
-          )}
+
         </div>
       </div>
     </>
