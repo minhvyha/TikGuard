@@ -1,6 +1,10 @@
 import React from 'react';
 import Link from 'next/link';
 const Model = () => {
+  let sampleObject = {
+    "sample": "object"
+  }
+
   return (
     <section className="h-dvh flex justify-center items-center">
       <div className=" max-w-screen-xl px-12 py-8 mx-auto lg:gap-8 xl:gap-12 lg:py-16 flex lg:flex-row flex-col">
@@ -41,8 +45,8 @@ const Model = () => {
         </div>
         <div className="flex-1 bg-background-800 m-6 rounded-lg">
           <div className="flex flex-col p-4 items-center gap-4">
-            <h2 className="flex w-fit font-bold text-lg text-black dark:text-white">
-              Our Machine Learning Model to Detect Hate Speech
+            <h2 className="flex w-fit font-bold text-xl px-4 text-center text-black dark:text-white">
+              Try our ML Model
             </h2>
 
             <div className="relative max-w-[400px] w-full">
@@ -50,6 +54,7 @@ const Model = () => {
                 <div className="bg-background-600 p-2 rounded">POST</div>
 
                 <Link
+                target='_blank'
                   className="truncate"
                   href="https://hate-detection-app-1-973e6bace837.herokuapp.com/predict"
                 >
@@ -66,6 +71,12 @@ const Model = () => {
               <button className="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                 Analyse
               </button>
+            </div>
+            <div className='max-w-[400px] w-full'>
+
+            <pre>
+              <code lang='json'>{JSON.stringify(sampleObject, null, 2)}</code>
+            </pre>
             </div>
           </div>
         </div>
