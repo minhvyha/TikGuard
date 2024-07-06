@@ -9,7 +9,7 @@ const DemoContainer = ({api, id, title, subtitle} : {api: any[], id:string, titl
     )
   })
   return (
-    <div id={id} className='flex flex-col pt-[80px]'>
+    <div id={id} className='flex flex-col pb-[80px]'>
       <div className='flex flex-col justify-center items-center'>
         <p className='dark:text-gray-400 text-gray-600'>{subtitle}</p>
         <h2 className='text-5xl text-gray-800 dark:text-white font-black'>{title}</h2>
