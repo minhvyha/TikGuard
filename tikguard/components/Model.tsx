@@ -2,12 +2,12 @@ import React from 'react';
 import Link from 'next/link';
 const Model = () => {
   let sampleObject = {
-    "sample": "object"
-  }
+    sample: 'object',
+  };
 
   return (
     <section className="h-dvh flex justify-center items-center">
-      <div className=" max-w-screen-xl px-12 py-8 mx-auto lg:gap-8 xl:gap-12 lg:py-16 flex lg:flex-row flex-col">
+      <div className=" max-w-screen-xl px-12 py-8 gap-4 mx-auto lg:gap-8 xl:gap-12 lg:py-16 flex lg:flex-row items-center flex-col">
         <div className="mr-auto place-self-center lg:col-span-7 flex-1">
           <h1 className="max-w-4xl mb-4 text-4xl text-black font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">
             TikGuard: Detect Hate Speech & Violent Content.
@@ -43,8 +43,8 @@ const Model = () => {
             Contact Us
           </a>
         </div>
-        <div className="flex-1 bg-background-800 m-6 rounded-lg">
-          <div className="flex flex-col p-4 items-center gap-4">
+        <div className="flex-1 flex bg-background-800 m-6 max-w-xl  rounded-lg">
+          <div className="flex flex-1 flex-col p-4 items-center gap-4">
             <h2 className="flex w-fit font-bold text-xl px-4 text-center text-black dark:text-white">
               Try our ML Model
             </h2>
@@ -54,7 +54,7 @@ const Model = () => {
                 <div className="bg-background-600 p-2 rounded">POST</div>
 
                 <Link
-                target='_blank'
+                  target="_blank"
                   className="truncate"
                   href="https://hate-detection-app-1-973e6bace837.herokuapp.com/predict"
                 >
@@ -72,11 +72,10 @@ const Model = () => {
                 Analyse
               </button>
             </div>
-            <div className='max-w-[400px] w-full'>
-
-            <pre>
-              <code lang='json'>{JSON.stringify(sampleObject, null, 2)}</code>
-            </pre>
+            <div className="max-w-[400px] w-full h-full flex-1 flex items-center">
+              <pre>
+                {/* <code lang="json">{JSON.stringify(sampleObject, null, 2)}</code> */}
+              </pre>
             </div>
           </div>
         </div>
