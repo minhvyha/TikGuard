@@ -13,7 +13,7 @@ export async function POST(request: Request) {
     let jsonData = await res.json()
   
   
-    return NextResponse.json({data : jsonData});
+    return NextResponse.json(jsonData);
   }
   catch(err){
     return NextResponse.json({error: err});
