@@ -5,19 +5,26 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 
-export default function BasicSelect({list, value, callback} : {list: {
-  value: string,
-    label: string,
-
-}[], value: string, callback: (value: string) => void}) {
-
+export default function BasicSelect({
+  list,
+  value,
+  callback,
+}: {
+  list: {
+    value: string;
+    label: string;
+  }[];
+  value: string;
+  callback: (value: string) => void;
+}) {
   const selectList = list.map((item, index) => {
     return (
-      <MenuItem key={index} value={item.value}>{item.label}</MenuItem>
-    )
-  }
-  )
-  
+      <MenuItem key={index} value={item.value}>
+        {item.label}
+      </MenuItem>
+    );
+  });
+
   const handleChange = (event: SelectChangeEvent) => {
     callback(event.target.value as string);
   };
