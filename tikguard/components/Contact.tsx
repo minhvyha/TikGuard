@@ -4,7 +4,7 @@ import { useStore } from '@/app/context/context';
 
 
 const Contact = () => {
-  const {  setLoading } = useStore();
+  const {  setLoading, setError, setSeverity } = useStore();
   const formRef = useRef<HTMLFormElement | null>(null);
   const [form, setForm] = useState({
     name: '',
@@ -42,8 +42,8 @@ const Contact = () => {
       .then(
         () => {
           setLoading(false);
-          alert('Thank you. I will get back to you as soon as possible.');
-
+          setError('Thank you. I will get back to you as soon as possible.');
+          setSeverity('success');
           setForm({
             name: '',
             email: '',
@@ -54,7 +54,8 @@ const Contact = () => {
           setLoading(false);
           console.error(error);
 
-          alert('Ahh, something went wrong. Please try again.');
+          setError('Ahh, something went wrong. Please try again.');
+          setSeverity('error');
         }
       );
   };
