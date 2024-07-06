@@ -8,7 +8,7 @@ import Model from './Model'
 const Main = () => {
 
   return (
-    <div className='flex justify-center flex-col items-center w-full py-8 pt-20 gap-12 pb-24'>
+    <div className='flex justify-center flex-col items-center w-full gap-12 pb-24'>
       <Model />
       <DemoContainer id='text' api={textApiPage} title='Text Analysis API' subtitle='Detect and Prevent Hate Speech Effectively' />
       <DemoContainer id='image' api={imageApiPage} title='Image Analysis API' subtitle='Identify and Block Hateful Visual Content' />
