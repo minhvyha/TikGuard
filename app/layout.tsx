@@ -3,7 +3,7 @@ import './globals.css';
 import Nav from '@/components/Nav';
 import AlertMessage from '@/components/AlertMessage';
 import { Footer } from '@/components/Footer';
-import {ContextProviders} from '@/app/context/context';
+import { ContextProviders } from '@/app/context/context';
 import Loading from '@/components/Loading';
 export const metadata: Metadata = {
   title: 'TikGuard',
@@ -15,7 +15,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
   return (
     <html lang="en">
       <head>
@@ -25,18 +24,15 @@ export default function RootLayout({
         />
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
-        <body className="text-text-100 inter">
-      <ContextProviders>
-        <Loading />
-        <AlertMessage />
+      <body className="text-text-100 inter">
+        <ContextProviders>
+          <Loading />
+          <AlertMessage />
           <Nav />
-          <div className=' dark:bg-black'>
-
-          {children}
-          </div>
+          <div className=" dark:bg-black">{children}</div>
           <Footer />
-      </ContextProviders>
-        </body>
+        </ContextProviders>
+      </body>
     </html>
   );
 }
