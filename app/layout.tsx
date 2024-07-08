@@ -22,6 +22,7 @@ export default function RootLayout({
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
         />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
       <body className="text-text-100 inter">
         <ContextProviders>
