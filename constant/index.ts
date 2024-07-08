@@ -3,7 +3,6 @@ import { imageApiPage, imageHeader, defaultImageApi } from './api/image';
 import { aiApiPage } from './api/ai';
 import { videoApiPage } from './api/video';
 
-
 let navLink = [
   {
     name: 'Text',
@@ -22,17 +21,14 @@ let navLink = [
     href: '#ai',
   },
   {
-    name:'Contact',
-    href:'#contact',
-
+    name: 'Contact',
+    href: '#contact',
   },
   {
-    name:'GitHub Repo',
-    href:'https://github.com/minhvyha/TikGuard',
-  }
-
+    name: 'GitHub Repo',
+    href: 'https://github.com/minhvyha/TikGuard',
+  },
 ];
-
 
 export {
   textApiPage,
