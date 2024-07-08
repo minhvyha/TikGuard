@@ -9,7 +9,7 @@ TikGuard features a chatbot-like interface where users can upload text or media.
 TikGuard supports the following types of analysis:
 - **Text Analysis**: Using [Azure Content Safety](https://azure.microsoft.com/en-us/products/ai-services/ai-content-safety), [Expert.ai](https://docs.expert.ai/nlapi/v2/), [HateHoundAPI](https://hate-hound-api.vercel.app/?ref=taaft&utm_source=taaft&utm_medium=referral), and [Sightengine](https://sightengine.com/docs/) APIs.
 - **Image Analysis**: Using [Azure Content Moderator](https://learn.microsoft.com/en-us/azure/ai-services/content-moderator/overview) and [Sightengine](https://sightengine.com/docs/) APIs.
-- **Video/Audio Analysis**: Using [Sightengine](https://sightengine.com/docs/) API. Videos and audios are first transcribed into text using [AssemblyAI](https://www.assemblyai.com/discover/products/speech-to-text?utm_source=google&utm_medium=cpc&utm_campaign=Brand&utm_term=assemblyai&gad_source=1&gclid=EAIaIQobChMIl7ee28iOhwMV6RiDAx3DTgF6EAAYASABEgJwJfD_BwE) and [Speechflow](https://speechflow.io/) APIs before analysis.
+- **VideoAnalysis**: Using [Sightengine](https://sightengine.com/docs/) API. This API is used for text analysis as it turns the audio in the video to text and for that text to be analyzed. 
 
 ## Quick Start
 
@@ -47,7 +47,7 @@ As mentioned earlier, we use 4 different APIs to analyze the severity of text in
 		- Sexual
 		- Violence
 - #### HateHoundAPI
-	- HateHoundapi is different from the other APIs and measures the severity based on the probability of hateful and offensive content. Content is categorized as follows:
+	- HateHoundApi is different from the other APIs and measures the severity based on the probability of hateful and offensive content. Content is categorized as follows:
    		- Toxic
         	- Severe toxicity
         	- Obscene words
