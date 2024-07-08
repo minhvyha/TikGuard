@@ -21,7 +21,8 @@ https://tikguard.vercel.app/
 
 You will see a landing page similar to this:
 
-#TODO [Insert an image of the landing page here]
+![image](https://github.com/minhvyha/TikGuard/assets/132450443/6a064f43-8092-405b-bc0d-231738356f83)
+
 
 
 
