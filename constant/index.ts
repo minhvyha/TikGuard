@@ -4,6 +4,34 @@ import { aiApiPage } from './api/ai';
 import { videoApiPage } from './api/video';
 
 
+let navLink = [
+  {
+    name: 'Text',
+    href: '#text',
+  },
+  {
+    name: 'Image',
+    href: '#image',
+  },
+  {
+    name: 'Video',
+    href: '#video',
+  },
+  {
+    name: 'AI',
+    href: '#ai',
+  },
+  {
+    name:'Contact',
+    href:'#contact',
+
+  },
+  {
+    name:'GitHub Repo',
+    href:'https://github.com/minhvyha/TikGuard',
+  }
+
+];
 
 
 export {
@@ -15,5 +43,6 @@ export {
   defaultImageApi,
   imageApiPage,
   aiApiPage,
+  navLink,
   languageCode,
 };
