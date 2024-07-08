@@ -9,7 +9,7 @@ TikGuard features a chatbot-like interface where users can upload text or media.
 TikGuard supports the following types of analysis:
 - **Text Analysis**: Using [Azure Content Safety](https://azure.microsoft.com/en-us/products/ai-services/ai-content-safety), [Expert.ai](https://docs.expert.ai/nlapi/v2/), [HateHoundAPI](https://hate-hound-api.vercel.app/?ref=taaft&utm_source=taaft&utm_medium=referral), and [Sightengine](https://sightengine.com/docs/) APIs.
 - **Image Analysis**: Using [Azure Content Moderator](https://learn.microsoft.com/en-us/azure/ai-services/content-moderator/overview) and [Sightengine](https://sightengine.com/docs/) APIs.
-- **VideoAnalysis**: Using [Sightengine](https://sightengine.com/docs/) API. This API is used for text analysis as it turns the audio in the video to text and for that text to be analyzed. 
+- **Video Analysis**: Using [Sightengine](https://sightengine.com/docs/) API. This API is used for text analysis as it turns the audio in the video to text and for that text to be analyzed. 
 
 ## Quick Start
 
@@ -92,7 +92,7 @@ We use two kinds of APIs for image analysis:
 We only provide one kind of API for video analysis:
 
 - #### Sightengine
-  	- Sightengine provides a probability between 0-1 for images. Content in the Sightengine API is categorized as follows:
+  	- Sightengine provides a probability between 0-1 for videos. This also turns the audio in videos into text to be analysed. Content in the Sightengine API is categorized as follows:
   	  	- Nudity
   	  	- Recreational drug usage
   	  	- Offensive
