@@ -21,7 +21,8 @@ https://tikguard.vercel.app/
 
 You will see a landing page similar to this:
 
-![image](https://github.com/minhvyha/TikGuard/assets/132450443/6a064f43-8092-405b-bc0d-231738356f83)
+![TikGuardLanding](https://github.com/minhvyha/TikGuard/assets/132450443/c3c61eb9-6b4d-4541-8bba-a04593a3ae6d)
+
 
 
 
