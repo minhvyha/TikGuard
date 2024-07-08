@@ -30,8 +30,8 @@ You will see a landing page similar to this:
 As mentioned earlier, we use 4 different APIs to analyze the severity of text in different ways: 
 
  - #### Expert.ai 
-	 - expert.ai measures the severity of text based on the frequency count of inappropriate words used in the context, these counts are also categorized as follows:
-		 - Personal Insult 
+	 - Expert.ai measures the severity of text based on the frequency count of inappropriate words used in the context, these counts are also categorized as follows:
+		 - Personal Insults 
 		 - Racism
 		 - Sexism
 		 - Ableism
@@ -41,27 +41,27 @@ As mentioned earlier, we use 4 different APIs to analyze the severity of text in
 		 - Body Shaming 
 		 - Threat and Violence
 - #### Azure AI content safety
-	- Azure content safety works similarly to expert.ai however with a different categorization:
+	- Azure AI content safety works similarly to Expert.ai however with a different categorization:
 		- Hate 
-		- SelfHarm
+		- Self-harm
 		- Sexual
 		- Violence
 - #### HateHoundAPI
-	- HateHoundapi is different from the other APIs and rather measures the severity based on the probability of hateful and offensive content. Content is categorized as follows:
+	- HateHoundapi is different from the other APIs and measures the severity based on the probability of hateful and offensive content. Content is categorized as follows:
    		- Toxic
-        	- Sever toxic
-        	- obscene
-           	- threat
-           	- insult
-           	- Identity hate
+        	- Severe toxicity
+        	- Obscene words
+           	- Threats
+           	- Insults
+           	- Discrimination
 - #### Sightengine
-  	- Sightengine also provides a probability however it is a much more robust API than hatehound. Content in the sightengine API is categorized as follows:
-  	  	- Sexual
-  	  	- Discriminatory
-  	  	- Self-harm
-  	  	- Insulting
-  	  	- Violent
-  	  	- toxic
+  	- Sightengine also provides a probability however it is a much more robust API than hatehound. Content in the Sightengine API is categorized as follows:
+  	  	- Sexual based words
+  	  	- Discrimination
+  	  	- Self-harm statements
+  	  	- Insulting words
+  	  	- Violent words
+  	  	- Toxic words
 
 ## Image Analysis 
 
