@@ -67,6 +67,43 @@ As mentioned earlier, we use 4 different APIs to analyze the severity of text in
 
 ## Image Analysis 
 
+We use two kinds of APIs for image analysis:
+
+- #### Sightengine
+  	- Sightengine provides a probability between 0-1 for images. Content in the Sightengine API is categorized as follows:
+  	  	- Nudity
+  	  	- Recreational drug usage
+  	  	- Offensive
+  	  	- Tobacco
+  	  	- Self-harm
+  	  	- Gambling
+  	  	- Weaponry
+  	  	- Alcohol
+  	  	- Gore
+  	  	- Violence
+  	  	- Money
+- #### Azure AI content safety
+	- Azure AI content safety works with a percentage on two measures:
+		- Racism
+  		- Sexual Content
+
 ## Video Analysis 
+
+We only provide one kind of API for video analysis:
+
+- #### Sightengine
+  	- Sightengine provides a probability between 0-1 for images. Content in the Sightengine API is categorized as follows:
+  	  	- Nudity
+  	  	- Recreational drug usage
+  	  	- Offensive
+  	  	- Tobacco
+  	  	- Self-harm
+  	  	- Gambling
+  	  	- Weaponry
+  	  	- Alcohol
+  	  	- Gore
+  	  	- Violence
+  	  	- Money
+
 
 ## Our Machine Learning Model
