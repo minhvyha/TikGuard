@@ -18,7 +18,7 @@ To access TikGuard, simply launch your preferred browser and enter the following
 https://tikguard.vercel.app/
 ```
 
-You will see a landing page similar to this(Dark Mode):
+You will see a landing page similar to this (Dark Mode):
 
 ![TikGuardLanding](https://github.com/minhvyha/TikGuard/assets/132450443/c3c61eb9-6b4d-4541-8bba-a04593a3ae6d)
 
