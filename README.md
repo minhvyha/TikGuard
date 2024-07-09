@@ -4,6 +4,11 @@
   <img src="https://github.com/minhvyha/TikGuard/assets/120470330/2650af17-0349-4e15-a44d-ad21b6c4e858" />
 </p>
 
+# Links
+- [TikGuard](https://tikguard.vercel.app/)
+- [Website GitHub Repo](https://github.com/minhvyha/TikGuard)
+- [Machine Learning GitHub Repo](https://github.com/minhvyha/Tikguardbackendapi)
+
 # About
 
 TikGuard is a frontend interface developed using [Next.js](https://nextjs.org/) and deployed via [Vercel](https://vercel.com/). It demonstrates a potential machine learning model for detecting hate speech and offensive content in TikTok posts, captions, and comments.
