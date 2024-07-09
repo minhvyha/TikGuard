@@ -12,7 +12,7 @@ TikGuard features a chatbot-like interface where users can upload text or media.
 
 # Demo
 
-To access TikGuard, simply launch your preferred browser and enter the following URL:
+To access TikGuard, simply launch your preferred browser and enter the following [URL](https://tikguard.vercel.app/):
 
 ```
 https://tikguard.vercel.app/
@@ -31,13 +31,13 @@ TikGuard supports the following types of analysis:
 - **Video Analysis**: Using [Sightengine](https://sightengine.com/docs/) API. This API is used for text analysis as it turns the audio in the video to text and for that text to be analyzed. 
 
 
-## Our Machine Learning Model
+## [Our Machine Learning Model](https://github.com/minhvyha/TikGuardAPI)
 TikGuard uses a machine learning model built with Scikit-learn to determine the level of hate speech in a given text. This model leverages natural language processing techniques to analyze and classify text inputs, providing an effective tool for detecting and mitigating harmful content on social media platforms. You can find the code for the ML model [here](https://github.com/minhvyha/TikGuardAPI).
 
 ## Text Analysis 
 
 As mentioned earlier, we use 4 different APIs to analyze the severity of text in different ways: 
-### Expert.ai 
+### [Expert.ai](https://www.expert.ai/) 
 
 Expert.ai measures the severity of text based on the frequency count of inappropriate words used in the context, these counts are also categorized as follows:
 - Personal Insults 
@@ -50,7 +50,7 @@ Expert.ai measures the severity of text based on the frequency count of inapprop
 - Body Shaming 
 - Threat and Violence
 
-### Azure AI content safety
+### [Azure AI content safety](https://azure.microsoft.com/en-au/products/ai-services/ai-content-safety)
 
 Azure AI content safety works similarly to Expert.ai however with a different categorization:
 - Hate 
@@ -58,7 +58,7 @@ Azure AI content safety works similarly to Expert.ai however with a different ca
 - Sexual
 - Violence
   
-### HateHoundAPI
+### [HateHoundAPI](https://hate-hound-api.vercel.app/)
 
 HateHoundApi is different from the other APIs and measures the severity based on the probability of hateful and offensive content. Content is categorized as follows:
 - Toxic
@@ -68,7 +68,7 @@ HateHoundApi is different from the other APIs and measures the severity based on
 - Insults
 - Discrimination
 
-### Sightengine
+### [Sightengine](https://sightengine.com/)
 
 Sightengine also provides a probability however it is a much more robust API than hatehound. Content in the Sightengine API is categorized as follows:
 - Sexual based words
@@ -81,7 +81,7 @@ Sightengine also provides a probability however it is a much more robust API tha
 ## Image Analysis 
 We use two kinds of APIs for image analysis:
 
-### Sightengine
+### [Sightengine](https://sightengine.com/)
 Sightengine provides a probability between 0-1 for images. Content in the Sightengine API is categorized as follows:
 - Nudity
 - Recreational drug usage
@@ -95,8 +95,8 @@ Sightengine provides a probability between 0-1 for images. Content in the Sighte
 - Violence
 - Money
 
-### Azure AI content safety
-Azure AI content safety works with a percentage on two measures:
+### [Azure Content Moderator](https://learn.microsoft.com/en-us/azure/ai-services/content-moderator/overview)
+Azure AI content moderator works with a percentage on two measures:
 - Racism
 - Sexual Content
 
@@ -104,7 +104,7 @@ Azure AI content safety works with a percentage on two measures:
 
 We only provide one kind of API for video analysis:
 
-### Sightengine
+### [Sightengine](https://sightengine.com/)
 Sightengine provides a probability between 0-1 for videos. This also turns the audio in videos into text to be analysed. Content in the Sightengine API is categorized as follows:
 - Nudity
 - Recreational drug usage
