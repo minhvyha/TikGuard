@@ -30,6 +30,10 @@ TikGuard supports the following types of analysis:
 - **Image Analysis**: Using [Azure Content Moderator](https://learn.microsoft.com/en-us/azure/ai-services/content-moderator/overview) and [Sightengine](https://sightengine.com/docs/) APIs.
 - **Video Analysis**: Using [Sightengine](https://sightengine.com/docs/) API. This API is used for text analysis as it turns the audio in the video to text and for that text to be analyzed. 
 
+
+## Our Machine Learning Model
+TikGuard uses a machine learning model built with Scikit-learn to determine the level of hate speech in a given text. This model leverages natural language processing techniques to analyze and classify text inputs, providing an effective tool for detecting and mitigating harmful content on social media platforms. You can find the code for the ML model [here](https://github.com/minhvyha/TikGuardAPI).
+
 ## Text Analysis 
 
 As mentioned earlier, we use 4 different APIs to analyze the severity of text in different ways: 
@@ -114,5 +118,3 @@ Sightengine provides a probability between 0-1 for videos. This also turns the a
 - Violence
 - Money
 
-
-## Our Machine Learning Model
