@@ -1,8 +1,7 @@
-
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse } from 'next/server';
 // Load the .env file if it exists
 export const dynamic = 'force-dynamic'; // <- add this to force dynamic render
-export const maxDuration = 60; 
+export const maxDuration = 60;
 function percentageFormatter(num: number) {
   return new Intl.NumberFormat('default', {
     minimumFractionDigits: 2,
@@ -11,12 +10,13 @@ function percentageFormatter(num: number) {
 }
 export async function GET(request: NextRequest) {
   try {
-    console.log(123)
+    console.log(123);
     let url = request.nextUrl.searchParams.get('url') ?? '';
 
     const headers = new Headers({
       'Content-Type': 'application/json',
-      'Ocp-Apim-Subscription-Key': process.env.AZURE_CONTENT_MODERATOR_KEY ?? '',
+      'Ocp-Apim-Subscription-Key':
+        process.env.AZURE_CONTENT_MODERATOR_KEY ?? '',
     });
 
     const result = await fetch(
@@ -26,7 +26,7 @@ export async function GET(request: NextRequest) {
         headers: headers,
         body: JSON.stringify({
           Value: url,
-          DataRepresentation: "URL",
+          DataRepresentation: 'URL',
         }),
       }
     );
@@ -35,8 +35,8 @@ export async function GET(request: NextRequest) {
       isRacism: data.IsImageRacyClassified,
       racism: percentageFormatter(data.RacyClassificationScore * 100),
       isSexual: data.IsImageAdultClassified,
-      sexual:percentageFormatter(data.AdultClassificationScore * 100)
-    }
+      sexual: percentageFormatter(data.AdultClassificationScore * 100),
+    };
     return NextResponse.json(returnData);
   } catch (error) {
     console.error('Error uploading file:', error);
