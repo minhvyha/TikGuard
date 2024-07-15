@@ -8,12 +8,14 @@ const GridContainer = styled('div')`
     border-top: 2px solid rgb(107 114 128) !important;
   }
   .MuiDataGrid-filler {
-    border-top: 2px solid rgb(107 114 128) !important;
+    border
+    
+    -top: 2px solid rgb(107 114 128) !important;
   }
   .MuiDataGrid-footerContainer {
     border-top: 2px solid rgb(107 114 128) !important;
   }
-  .css-mtwq5m-MuiDataGrid-root .MuiDataGrid-row:hover {
+  .css-mtw\q5m-MuiDataGrid-root .MuiDataGrid-row:hover {
     background-color: rgb(65 68 88) !important;
   }
 `;
