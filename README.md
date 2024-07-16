@@ -8,7 +8,7 @@
 - [TikGuard](https://tikguard.vercel.app/)
 - [Website GitHub Repo](https://github.com/minhvyha/TikGuard)
 - [Machine Learning GitHub Repo](https://github.com/minhvyha/Tikguardbackendapi)
-- [Jupyter Notebook](https://colab.research.google.com/drive/1ADEBlvA0wEZyyHu0JoKfSYWQlwuYGBm4?usp=sharing))
+- [Jupyter Notebook](https://colab.research.google.com/drive/1ADEBlvA0wEZyyHu0JoKfSYWQlwuYGBm4?usp=sharing)
 
 
 # About
