@@ -10,7 +10,7 @@ const page = () => {
     <div className="flex flex-col gap-2 py-5 dark:text-white text-black dark:bg-black bg-white">
       <Header page="sightengine" />
       <div className="flex flex-row p-6 pb-0">
-        <SightEngineSwitch />
+        <SightEngineSwitch page='rule' />
         <div className="flex-1"></div>
       </div>
       <TextAnalysePage page="sightengine/rule" />
