@@ -8,14 +8,13 @@ const Report = ({ page }: { page: string }) => {
   const [modalCards, setModalCards] = useState([] as any[]);
   const [remainingCards, setRemainingCards] = useState([] as any[]);
   useEffect(() => {
-    
     let remaining = defaultImageApi;
-    console.log(data)
+    console.log(data);
     if (data !== null) {
       const cards = data.map((info: any, index: number) => {
-        console.log(info.label)
+        console.log(info.label);
         remaining = remaining.filter((x) => x !== info.label);
-        console.log(remaining)
+        console.log(remaining);
         return (
           <ModalCard
             key={index}
@@ -41,9 +40,8 @@ const Report = ({ page }: { page: string }) => {
           );
         });
         setRemainingCards([...remainingCards]);
-      }
-      else{
-        setRemainingCards([])
+      } else {
+        setRemainingCards([]);
       }
       setModalCards(cards);
     }
