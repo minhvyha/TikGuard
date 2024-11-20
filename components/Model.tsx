@@ -28,6 +28,7 @@ const Model = () => {
     setError('Analyse Successful!');
     setSeverity('success');
     setLoading(false);
+    console.log(data);
     setResponse(JSON.stringify(data, null, 2));
   }
   return (
